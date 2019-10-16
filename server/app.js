@@ -1,6 +1,7 @@
 // Basic server components
 const express = require("express");
 const session = require("express-session");
+const path = require("path");
 
 // Server configured components
 const mdb = require("./utils/mdb");
@@ -17,6 +18,7 @@ const mdbInit = async () => {
 
 // Setup used components in app
 const appInit = async () => {
+  app.use(express.static(path.join(__dirname, "../client/build"))); // Public folder -- TODO review
   app.use(express.urlencoded({ extended: false }));
   app.use(express.json());
   app.use(
@@ -30,6 +32,8 @@ const appInit = async () => {
       store: mdbStore
     })
   );
+  const routes = require("./routes/routes.js");
+  app.use(routes);
 };
 
 //Start server

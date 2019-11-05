@@ -1,0 +1,29 @@
+/* Style all font awesome icons */
+.fa {
+  font-size: 30px;
+  width: 50px;
+  text-align: center;
+  text-decoration: none;
+  margin: 5px 15px;
+}
+
+/* Add a hover effect if you want */
+.fa:hover {
+  opacity: 0.7;
+}
+
+/* Set a specific color for each brand */
+
+/* Facebook */
+.fa-facebook {
+  color: white;
+}
+
+/* Twitter */
+.fa-twitter {
+  color: white;
+}
+
+.fa-instagram {
+  color: white;
+}

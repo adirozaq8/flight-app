@@ -5,34 +5,34 @@ import "./Navbar.css";
 
 function Navbar() {
   return (
-    <div>
-      <nav class="container navbar navbar-expand-sm navbar-light bg-light">
-        <a href="" class="navbar-brand">
+    <div className="bg-light">
+      <nav className="container navbar navbar-expand-sm navbar-light">
+        <a href="#" className="navbar-brand">
           Logo here
         </a>
         <button
-          class="navbar-toggler"
+          className="navbar-toggler"
           data-toggle="collapse"
           data-target="#myNav1"
         >
-          <span class="navbar-toggler-icon"></span>
+          <span className="navbar-toggler-icon"></span>
         </button>
         <div
-          class="collapse navbar-collapse justify-content-between"
+          className="collapse navbar-collapse justify-content-between"
           id="myNav1"
         >
-          <ul class="navbar-nav ml-auto">
-            <form action="" class="form-inline">
-              <div class="input-group">
+          <ul className="navbar-nav ml-auto">
+            <form action="" className="form-inline">
+              <div className="input-group">
                 <input
                   type="text"
-                  class="form-control"
+                  className="form-control"
                   placeholder="Search"
                   aria-label="Search"
                   aria-describedby="basic-addon1"
                 />
-                <div class="input-group-append">
-                  <span class="input-group-text" id="basic-addon1">
+                <div className="input-group-append">
+                  <span className="input-group-text" id="basic-addon1">
                     <div className="MainFrame__fa-icon">
                       <FontAwesomeIcon icon={faSearch} />
                     </div>
@@ -40,13 +40,13 @@ function Navbar() {
                 </div>
               </div>
             </form>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
+            <li className="nav-item">
+              <a href="#" className="nav-link">
                 Login
               </a>
             </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link disabled">
+            <li className="nav-item">
+              <a href="#" className="nav-link disabled">
                 Sign up
               </a>
             </li>

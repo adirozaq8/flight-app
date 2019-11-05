@@ -1,11 +1,13 @@
-import React from 'react';
-import Footer from './Footer'
+import React from "react";
+import Navbar from "./components/navbar/navbar";
+import Footer from "./Footer";
 
 function App() {
   return (
     <div>
+      <Navbar />
       {/* Header Section */}
-      
+
       {/* Footer Section */}
       <Footer />
     </div>

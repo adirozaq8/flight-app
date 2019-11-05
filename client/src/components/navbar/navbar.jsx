@@ -1,4 +1,6 @@
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 function Navbar() {
   return (
@@ -30,7 +32,9 @@ function Navbar() {
                 />
                 <div class="input-group-append">
                   <span class="input-group-text" id="basic-addon1">
-                    ?
+                    <div className="MainFrame__fa-icon">
+                      <FontAwesomeIcon icon={faSearch} />
+                    </div>
                   </span>
                 </div>
               </div>
@@ -42,7 +46,7 @@ function Navbar() {
             </li>
             <li class="nav-item">
               <a href="#" class="nav-link disabled">
-                Sign in
+                Sign up
               </a>
             </li>
           </ul>

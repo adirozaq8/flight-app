@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import "./Navbar.css";
 
 function Navbar() {
+  const [navSearchShow, setNavSearchShow] = useState(1);
   return (
-    <div className="bg-light">
+    <div className="">
       <nav className="container navbar navbar-expand-sm navbar-light">
         <a href="#" className="navbar-brand">
           Logo here
@@ -46,7 +47,7 @@ function Navbar() {
               </a>
             </li>
             <li className="nav-item">
-              <a href="#" className="nav-link disabled">
+              <a href="#" className="nav-link">
                 Sign up
               </a>
             </li>

@@ -1,13 +1,11 @@
-import React, { Component } from "./node_modules/react";
-import "./node_modules/bootstrap/dist/css/bootstrap.min.css";
-import "./node_modules/bootstrap/dist/js/bootstrap.bundle.min";
+import React, { Component } from "react";
 
-import { FontAwesomeIcon } from "./node_modules/@fortawesome/react-fontawesome";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faFacebookSquare,
   faTwitter,
   faInstagram
-} from "./node_modules/@fortawesome/free-brands-svg-icons";
+} from "@fortawesome/free-brands-svg-icons";
 
 import "./Footer.css";
 

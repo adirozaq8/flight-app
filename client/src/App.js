@@ -1,16 +1,13 @@
 import React from "react";
-import Navbar from "./components/Navbar/Navbar";
-import TestBody from "./components/Test/TestBody";
-import Footer from "./components/Footer/Footer";
+import { Switch, Route } from "react-router-dom";
+import Main from "./pages/Main";
 
 function App() {
   return (
     <div>
-      <Navbar />
-      {/* Header Section */}
-      <TestBody />
-      {/* Footer Section */}
-      <Footer />
+      <Switch>
+        <Route exact path="/" component={Main} />
+      </Switch>
     </div>
   );
 }

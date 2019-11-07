@@ -34,29 +34,36 @@ function Jumbotron() {
           <div className="container">
             <div className="input-group">
               <input
-                type="text"
+                type="date"
                 className="form-control"
                 placeholder="Calendar date departure"
+                defaultValue={Date.now()}
               />
               <input
-                type="text"
+                type="date"
                 className="form-control"
                 placeholder="Calendar date arrival"
+                defaultValue={Date.now()}
               />
             </div>
           </div>
           <div className="container">
             <div className="input-group">
               <input
-                type="text"
+                type="number"
                 className="form-control"
                 placeholder="Number of passengers"
+                defaultValue="1"
               />
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Class type"
-              />
+              <select name="cars">
+                <option value="select" selected disabled>
+                  {"< select class >"}
+                </option>
+                <option value="first">First class</option>
+                <option value="business">Business</option>
+                <option value="premium">Premium</option>
+                <option value="economy">Economy</option>
+              </select>
             </div>
           </div>
         </form>

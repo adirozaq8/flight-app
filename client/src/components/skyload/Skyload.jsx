@@ -6,7 +6,7 @@ const Skyload = () => {
   useEffect(() => {
     const anchor = document.createElement("div");
     anchor.setAttribute("id", "SkySearch");
-    anchor.setAttribute("data-skyscanner-widget", "SearchWidget");
+    anchor.setAttribute("data-skyscanner-widget", "FlightSearchWidget");
     document.getElementById("skySearch").appendChild(anchor);
 
     const script = document.createElement("script");

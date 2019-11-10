@@ -1,15 +1,13 @@
 import React from "react";
-import Navbar from "./components/navbar/navbar";
-import Footer from "./components/footer/Footer";
+import { Switch, Route } from "react-router-dom";
+import Main from "./pages/Main";
 
 function App() {
   return (
     <div>
-      <Navbar />
-      {/* Header Section */}
-
-      {/* Footer Section */}
-      <Footer />
+      <Switch>
+        <Route exact path="/" component={Main} />
+      </Switch>
     </div>
   );
 }

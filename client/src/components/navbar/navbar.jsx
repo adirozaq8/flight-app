@@ -1,7 +1,9 @@
-import React, {Component} from "react";
-import './navbar.css'
+import React, { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import "./navbar.css";
 
-class Navbar extends Component {
+class Navbar extends React.Component {
   componentDidMount() {
     const s = document.createElement('script');
     s.type = 'text/javascript';
@@ -22,24 +24,26 @@ class Navbar extends Component {
       });`;
       document.body.appendChild(s)
   }
+
+  const [navSearchShow, setNavSearchShow] = useState(1);
   render(){
     return (
-      <div>
-        <nav className="container navbar navbar-expand-sm navbar-light bg-light">
-          <a href="" className="navbar-brand">
+      <div className="">
+        <nav className="container navbar navbar-expand-sm navbar-light">
+          <a href="#" className="navbar-brand">
             Logo here
           </a>
-            <div id="nav-clock" className="col-md-3">
-              <div className="card bg-primary text-white">
-              <h3 className="card-title text-center">
-              <div className="d-flex flex-wrap justify-content-center mt-2">
-              <a><span className="badge hours"></span></a> :
-              <a><span className="badge min"></span></a> :
-              <a><span className="badge sec"></span></a>
-              </div>
-              </h3>
-              </div>
+          <div id="nav-clock" className="col-md-3">
+            <div className="card bg-primary text-white">
+            <h3 className="card-title text-center">
+            <div className="d-flex flex-wrap justify-content-center mt-2">
+            <a><span className="badge hours"></span></a> :
+            <a><span className="badge min"></span></a> :
+            <a><span className="badge sec"></span></a>
             </div>
+            </h3>
+            </div>
+          </div>
           <button
             className="navbar-toggler"
             data-toggle="collapse"
@@ -63,7 +67,9 @@ class Navbar extends Component {
                   />
                   <div className="input-group-append">
                     <span className="input-group-text" id="basic-addon1">
-                      ?
+                      <div className="MainFrame__fa-icon">
+                        <FontAwesomeIcon icon={faSearch} />
+                      </div>
                     </span>
                   </div>
                 </div>
@@ -74,8 +80,8 @@ class Navbar extends Component {
                 </a>
               </li>
               <li className="nav-item">
-                <a href="#" className="nav-link disabled">
-                  Sign in
+                <a href="#" className="nav-link">
+                  Sign up
                 </a>
               </li>
             </ul>

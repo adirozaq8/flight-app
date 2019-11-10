@@ -1,55 +1,89 @@
-import React from "react";
+import React, {Component} from "react";
+import './navbar.css'
 
-function Navbar() {
-  return (
-    <div>
-      <nav class="container navbar navbar-expand-sm navbar-light bg-light">
-        <a href="" class="navbar-brand">
-          Logo here
-        </a>
-        <button
-          class="navbar-toggler"
-          data-toggle="collapse"
-          data-target="#myNav1"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div
-          class="collapse navbar-collapse justify-content-between"
-          id="myNav1"
-        >
-          <ul class="navbar-nav ml-auto">
-            <form action="" class="form-inline">
-              <div class="input-group">
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Search"
-                  aria-label="Search"
-                  aria-describedby="basic-addon1"
-                />
-                <div class="input-group-append">
-                  <span class="input-group-text" id="basic-addon1">
-                    ?
-                  </span>
-                </div>
+class Navbar extends Component {
+  componentDidMount() {
+    const s = document.createElement('script');
+    s.type = 'text/javascript';
+    s.async = true;
+    s.innerHTML = `$(document).ready(function() {
+      setInterval( function() {
+      var hours = new Date().getHours();
+      $(".hours").html(( hours < 10 ? "0" : "" ) + hours);
+      }, 1000);
+      setInterval( function() {
+      var minutes = new Date().getMinutes();
+      $(".min").html(( minutes < 10 ? "0" : "" ) + minutes);
+      },1000);
+      setInterval( function() {
+      var seconds = new Date().getSeconds();
+      $(".sec").html(( seconds < 10 ? "0" : "" ) + seconds);
+      },1000);
+      });`;
+      document.body.appendChild(s)
+  }
+  render(){
+    return (
+      <div>
+        <nav className="container navbar navbar-expand-sm navbar-light bg-light">
+          <a href="" className="navbar-brand">
+            Logo here
+          </a>
+            <div id="nav-clock" className="col-md-3">
+              <div className="card bg-primary text-white">
+              <h3 className="card-title text-center">
+              <div className="d-flex flex-wrap justify-content-center mt-2">
+              <a><span className="badge hours"></span></a> :
+              <a><span className="badge min"></span></a> :
+              <a><span className="badge sec"></span></a>
               </div>
-            </form>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                Login
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link disabled">
-                Sign in
-              </a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-    </div>
-  );
+              </h3>
+              </div>
+            </div>
+          <button
+            className="navbar-toggler"
+            data-toggle="collapse"
+            data-target="#myNav1"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div
+            className="collapse navbar-collapse justify-content-between"
+            id="myNav1"
+          >
+            <ul className="navbar-nav ml-auto">
+              <form action="" className="form-inline">
+                <div className="input-group">
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Search"
+                    aria-label="Search"
+                    aria-describedby="basic-addon1"
+                  />
+                  <div className="input-group-append">
+                    <span className="input-group-text" id="basic-addon1">
+                      ?
+                    </span>
+                  </div>
+                </div>
+              </form>
+              <li className="nav-item">
+                <a href="#" className="nav-link">
+                  Login
+                </a>
+              </li>
+              <li className="nav-item">
+                <a href="#" className="nav-link disabled">
+                  Sign in
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    );
+  }
 }
 
 export default Navbar;

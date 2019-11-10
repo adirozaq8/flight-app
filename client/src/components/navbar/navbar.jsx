@@ -5,8 +5,8 @@ import "./Navbar.css";
 
 class Navbar extends React.Component {
   componentDidMount() {
-    const s = document.createElement('script');
-    s.type = 'text/javascript';
+    const s = document.createElement("script");
+    s.type = "text/javascript";
     s.async = true;
     s.innerHTML = `$(document).ready(function() {
       setInterval( function() {
@@ -22,10 +22,10 @@ class Navbar extends React.Component {
       $(".sec").html(( seconds < 10 ? "0" : "" ) + seconds);
       },1000);
       });`;
-      document.body.appendChild(s)
+    document.body.appendChild(s);
   }
-
-  render(){
+  //
+  render() {
     // const [navSearchShow, setNavSearchShow] = useState(1);
     return (
       <div className="shadow bg-white rounded">
@@ -35,13 +35,21 @@ class Navbar extends React.Component {
           </a>
           <div id="nav-clock" className="col-md-3">
             <div className="card bg-primary text-white">
-            <h3 className="card-title text-center">
-            <div className="d-flex flex-wrap justify-content-center mt-2">
-            <a><span className="badge hours"></span></a> :
-            <a><span className="badge min"></span></a> :
-            <a><span className="badge sec"></span></a>
-            </div>
-            </h3>
+              <h3 className="card-title text-center">
+                <div className="d-flex flex-wrap justify-content-center mt-2">
+                  <a>
+                    <span className="badge hours"></span>
+                  </a>{" "}
+                  :
+                  <a>
+                    <span className="badge min"></span>
+                  </a>{" "}
+                  :
+                  <a>
+                    <span className="badge sec"></span>
+                  </a>
+                </div>
+              </h3>
             </div>
           </div>
           <button

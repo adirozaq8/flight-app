@@ -1,5 +1,5 @@
 @media only screen and (max-width: 770px) {
-  #nav-clock {
+  .nav-clock {
     display: none;
   }
 }

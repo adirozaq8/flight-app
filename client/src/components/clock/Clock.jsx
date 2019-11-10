@@ -25,7 +25,7 @@ class Clock extends Component {
 
   render(){
     return(
-      <div className="col-md-3">
+      <div className="col-md-3 nav-clock">
         <div className="card bg-primary text-white">
           <h3 className="card-title text-center">
             <div className="d-flex flex-wrap justify-content-center mt-2">

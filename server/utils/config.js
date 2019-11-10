@@ -12,7 +12,8 @@ exports.system = () => {
       db: process.env.dbname,
       con: process.env.mdbCon,
       col: {
-        session: "sessions"
+        session: process.env.session || "sessions",
+        user: process.env.user || "user"
       }
     }
   };

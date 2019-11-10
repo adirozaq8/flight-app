@@ -16,7 +16,7 @@ const Skyload = () => {
     document.getElementById("skyContainer").appendChild(script);
   }, []);
   return (
-    <div>
+    <div className="pt-4">
       <div className="container skyContainer" id="skyContainer"></div>
     </div>
   );

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import "./navbar.css";
+import "./Navbar.css";
 
 class Navbar extends React.Component {
   componentDidMount() {
@@ -25,10 +25,10 @@ class Navbar extends React.Component {
       document.body.appendChild(s)
   }
 
-  const [navSearchShow, setNavSearchShow] = useState(1);
   render(){
+    // const [navSearchShow, setNavSearchShow] = useState(1);
     return (
-      <div className="">
+      <div className="shadow bg-white rounded">
         <nav className="container navbar navbar-expand-sm navbar-light">
           <a href="#" className="navbar-brand">
             Logo here

@@ -1,8 +1,3 @@
 .navbar-toggler {
   color: default;
 }
-@media only screen and (max-width: 770px) {
-  #nav-clock {
-    display: none;
-  }
-}

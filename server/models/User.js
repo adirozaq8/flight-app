@@ -18,6 +18,7 @@ let User = function(data, getAvatar) {
 };
 
 User.prototype.fetchAll = function() {
+  //TODO add security here!
   return new Promise((resolve, reject) => {
     mDb.find().toArray((err, data) => {
       resolve(data);

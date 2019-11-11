@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import "./Navbar.css";
 
-import Clock from "../clock/Clock"
+import Clock from "../clock/Clock";
 
 class Navbar extends React.Component {
   //
@@ -12,7 +12,7 @@ class Navbar extends React.Component {
     return (
       <div className="shadow bg-white rounded">
         <nav className="container navbar navbar-expand-sm navbar-light">
-          <a href="#" className="navbar-brand">
+          <a href="/" className="navbar-brand">
             Logo here
           </a>
           <Clock />
@@ -47,12 +47,22 @@ class Navbar extends React.Component {
                 </div>
               </form>
               <li className="nav-item">
-                <button type="button" className="nav-link no-button" data-toggle="modal" data-target="#loginModal">
+                <button
+                  type="button"
+                  className="nav-link no-button"
+                  data-toggle="modal"
+                  data-target="#loginModal"
+                >
                   Login
                 </button>
               </li>
               <li className="nav-item">
-                <button type="button" className="nav-link no-button" data-toggle="modal" data-target="#signupModal">
+                <button
+                  type="button"
+                  className="nav-link no-button"
+                  data-toggle="modal"
+                  data-target="#signupModal"
+                >
                   Sign up
                 </button>
               </li>
@@ -61,27 +71,53 @@ class Navbar extends React.Component {
         </nav>
 
         {/* Login Modal */}
-        <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Sign Up</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <div
+          className="modal fade"
+          id="loginModal"
+          tabIndex="-1"
+          role="dialog"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div className="modal-dialog" role="document">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="exampleModalLabel">
+                  Sign Up
+                </h5>
+                <button
+                  type="button"
+                  className="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <div class="modal-body">
+              <div className="modal-body">
                 <form action="/" method="POST">
-                  <div class="form-group">
-                    <label for="usernameSignup">Username</label>
-                    <input type="text" class="form-control" id="usernameSignup" placeholder="Enter username" />
+                  <div className="form-group">
+                    <label htmlFor="usernameLogin">Username</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="usernameLogin"
+                      placeholder="Enter username"
+                    />
                   </div>
-                  <div class="form-group">
-                    <label for="passwordSignup">Password</label>
-                    <input type="password" class="form-control" id="passwordSignup" placeholder="Enter password" />
+                  <div className="form-group">
+                    <label htmlFor="passwordLogin">Password</label>
+                    <input
+                      type="password"
+                      className="form-control"
+                      id="passwordLogin"
+                      placeholder="Enter password"
+                    />
                   </div>
-                  <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Login</button>
+                  <div className="modal-footer">
+                    <button type="submit" className="btn btn-primary">
+                      Login
+                    </button>
                   </div>
                 </form>
               </div>
@@ -91,35 +127,72 @@ class Navbar extends React.Component {
         {/* Modal End */}
 
         {/* Signup Modal */}
-        <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Sign Up</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <div
+          className="modal fade"
+          id="signupModal"
+          tabIndex="-1"
+          role="dialog"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div className="modal-dialog" role="document">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="exampleModalLabel">
+                  Sign Up
+                </h5>
+                <button
+                  type="button"
+                  className="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <div class="modal-body">
+              <div className="modal-body">
                 <form action="/" method="POST">
-                  <div class="form-group">
-                    <label for="usernameSignup">Username</label>
-                    <input type="text" class="form-control" id="usernameSignup" placeholder="Enter username" />
+                  <div className="form-group">
+                    <label htmlFor="usernameSignup">Username</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="usernameSignup"
+                      placeholder="Enter username"
+                    />
                   </div>
-                  <div class="form-group">
-                    <label for="passwordSignup">Password</label>
-                    <input type="password" class="form-control" id="passwordSignup" placeholder="Enter password" />
+                  <div className="form-group">
+                    <label htmlFor="passwordSignup">Password</label>
+                    <input
+                      type="password"
+                      className="form-control"
+                      id="passwordSignup"
+                      placeholder="Enter password"
+                    />
                   </div>
-                  <div class="form-group">
-                    <label for="emailSignup">Email address</label>
-                    <input type="email" class="form-control" id="emailSignup" aria-describedby="emailHelp" placeholder="Enter email address" />
+                  <div className="form-group">
+                    <label htmlFor="emailSignup">Email address</label>
+                    <input
+                      type="email"
+                      className="form-control"
+                      id="emailSignup"
+                      aria-describedby="emailHelp"
+                      placeholder="Enter email address"
+                    />
                   </div>
-                  <div class="form-group">
-                    <label for="phoneNumberSignup">Phone Number</label>
-                    <input type="text" class="form-control" id="phoneNumberSignup" placeholder="Enter phone number" />
+                  <div className="form-group">
+                    <label htmlFor="phoneNumberSignup">Phone Number</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="phoneNumberSignup"
+                      placeholder="Enter phone number"
+                    />
                   </div>
-                  <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Sign Up</button>
+                  <div className="modal-footer">
+                    <button type="submit" className="btn btn-primary">
+                      Sign Up
+                    </button>
                   </div>
                 </form>
               </div>
@@ -127,7 +200,6 @@ class Navbar extends React.Component {
           </div>
         </div>
         {/* Modal End */}
-
       </div>
     );
   }

@@ -47,18 +47,87 @@ class Navbar extends React.Component {
                 </div>
               </form>
               <li className="nav-item">
-                <a href="#" className="nav-link">
+                <button type="button" className="nav-link no-button" data-toggle="modal" data-target="#loginModal">
                   Login
-                </a>
+                </button>
               </li>
               <li className="nav-item">
-                <a href="#" className="nav-link">
+                <button type="button" className="nav-link no-button" data-toggle="modal" data-target="#signupModal">
                   Sign up
-                </a>
+                </button>
               </li>
             </ul>
           </div>
         </nav>
+
+        {/* Login Modal */}
+        <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Sign Up</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form action="/" method="POST">
+                  <div class="form-group">
+                    <label for="usernameSignup">Username</label>
+                    <input type="text" class="form-control" id="usernameSignup" placeholder="Enter username" />
+                  </div>
+                  <div class="form-group">
+                    <label for="passwordSignup">Password</label>
+                    <input type="password" class="form-control" id="passwordSignup" placeholder="Enter password" />
+                  </div>
+                  <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Login</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* Modal End */}
+
+        {/* Signup Modal */}
+        <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Sign Up</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form action="/" method="POST">
+                  <div class="form-group">
+                    <label for="usernameSignup">Username</label>
+                    <input type="text" class="form-control" id="usernameSignup" placeholder="Enter username" />
+                  </div>
+                  <div class="form-group">
+                    <label for="passwordSignup">Password</label>
+                    <input type="password" class="form-control" id="passwordSignup" placeholder="Enter password" />
+                  </div>
+                  <div class="form-group">
+                    <label for="emailSignup">Email address</label>
+                    <input type="email" class="form-control" id="emailSignup" aria-describedby="emailHelp" placeholder="Enter email address" />
+                  </div>
+                  <div class="form-group">
+                    <label for="phoneNumberSignup">Phone Number</label>
+                    <input type="text" class="form-control" id="phoneNumberSignup" placeholder="Enter phone number" />
+                  </div>
+                  <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Sign Up</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* Modal End */}
+
       </div>
     );
   }

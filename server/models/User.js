@@ -3,7 +3,14 @@ const validator = require("validator");
 const md5 = require("md5");
 const settings = require("../utils/config");
 const system = settings.system();
-const mDb = require("../utils/mdb").db.collection(system.mdb.col.user);
+let mDb;
+if (typeof db !== "undefined") {
+  mDb = require("../utils/mdb").db.collection(system.mdb.col.user);
+} else if (typeof dbm !== "undefined") {
+  mDb = require("../utils/mdb").dbm;
+}
+
+console.log(mDb);
 
 let User = function(data, getAvatar) {
   this.data = data;

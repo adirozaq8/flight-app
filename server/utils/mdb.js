@@ -15,11 +15,17 @@ const connect = async (app, system) => {
           useFindAndModify: false,
           useUnifiedTopology: true
         })
-        .then(con => {
-          app.listen(
-            system.port,
-            console.log(`listening on port: ${system.port} with Mongoose`)
-          );
+        .then(client => {
+          if (app)
+            app.listen(
+              system.port,
+              console.log(`listening on port: ${system.port} with Mongoose`)
+            );
+          dbm = client;
+          resolve((exports.dbm = dbm));
+        })
+        .catch(err => {
+          if (err) throw err;
         });
     } else {
       MongoClient.connect(

@@ -6,7 +6,6 @@ const router = express.Router();
 router.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../client/build/index.html"));
 });
-
 router.post("/login", userController.login);
 router.post("/register", userController.register);
 

@@ -11,13 +11,13 @@ const mdbStore = mdb.store(system);
 // Express init
 const app = express();
 
-// MongoDB connection
-const mdbInit = async () => {
-  await mdb.connect(app, system);
-};
-
 // Setup used components in app
 const appInit = async () => {
+  // MongoDB connection
+  const mdbInit = async () => {
+    await mdb.connect(app, system);
+  };
+  await mdbInit();
   app.use(express.static(path.join(__dirname, "../client/build"))); // Public folder -- TODO review
   app.use(express.urlencoded({ extended: false }));
   app.use(express.json());
@@ -38,7 +38,6 @@ const appInit = async () => {
 
 //Start server
 const serverStart = async () => {
-  await mdbInit();
-  appInit();
+  await appInit();
 };
 serverStart();

@@ -83,7 +83,7 @@ class Navbar extends React.Component {
             <div className="modal-content">
               <div className="modal-header">
                 <h5 className="modal-title" id="exampleModalLabel">
-                  Sign Up
+                  Log In
                 </h5>
                 <button
                   type="button"
@@ -95,7 +95,7 @@ class Navbar extends React.Component {
                 </button>
               </div>
               <div className="modal-body">
-                <form action="/" method="POST">
+                <form action="/login" method="POST">
                   <div className="form-group">
                     <label htmlFor="usernameLogin">Username</label>
                     <input
@@ -151,7 +151,7 @@ class Navbar extends React.Component {
                 </button>
               </div>
               <div className="modal-body">
-                <form action="/" method="POST">
+                <form action="/register" method="POST">
                   <div className="form-group">
                     <label htmlFor="usernameSignup">Username</label>
                     <input

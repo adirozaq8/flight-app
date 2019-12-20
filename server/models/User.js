@@ -3,14 +3,13 @@ const validator = require("validator");
 const md5 = require("md5");
 const settings = require("../utils/config");
 const system = settings.system();
-let mDb;
+let mDb, dbM;
 if (typeof db !== "undefined") {
   mDb = require("../utils/mdb").db.collection(system.mdb.col.user);
 } else if (typeof dbm !== "undefined") {
-  mDb = require("../utils/mdb").dbm;
+  dbM = require("../utils/mdb").dbm;
 }
-
-console.log(mDb);
+console.log("mDb: ", typeof mDb, "dbM: ", typeof dbM);
 
 let User = function(data, getAvatar) {
   this.data = data;
@@ -24,13 +23,8 @@ let User = function(data, getAvatar) {
   }
 };
 
-User.prototype.fetchAll = function() {
-  //TODO add security here!
-  return new Promise((resolve, reject) => {
-    mDb.find().toArray((err, data) => {
-      resolve(data);
-    });
-  });
+User.prototype.getAvatar = function() {
+  this.avatar = `https://gravatar.com/avatar/${md5(this.body.email)}?s=128`;
 };
 
 User.prototype.cleanUp = function() {
@@ -43,6 +37,17 @@ User.prototype.cleanUp = function() {
   if (typeof this.body.password != "string") {
     this.body.password = "";
   }
+};
+
+User.prototype.fetchAll = function() {
+  //TODO add security here!
+  return new Promise((resolve, reject) => {
+    if (typeof mDb === "object") {
+      mDb.find().toArray((err, data) => {
+        resolve(data);
+      });
+    }
+  });
 };
 
 User.prototype.validate = function() {
@@ -60,7 +65,6 @@ User.prototype.validate = function() {
       this.errors.push("You must provide a valid email address.");
     }
     if (this.body.password !== this.body.passwordR) {
-      console.log(this.body.password, this.body.passwordR);
       this.errors.push("Passwords do not match.");
     }
     if (this.body.password == "") {
@@ -91,9 +95,13 @@ User.prototype.validate = function() {
       }
     }
     if (validator.isEmail(this.body.email)) {
-      let emailExists = await mDb.findOne({
-        email: this.body.email
-      });
+      let emailExists;
+
+      if (typeof mDb === "object") {
+        emailExists = await mDb.findOne({
+          email: this.body.email
+        });
+      }
       if (emailExists) {
         this.errors.push("That email is already being used.");
       }
@@ -103,26 +111,28 @@ User.prototype.validate = function() {
 };
 
 User.prototype.login = function() {
-  return new Promise((resolve, reject) => {
-    this.cleanUp();
-    mDb
-      .findOne({ username: this.body.username })
-      .then(attemptedUser => {
-        if (
-          attemptedUser &&
-          bcrypt.compareSync(this.body.password, attemptedUser.password)
-        ) {
-          this.body = attemptedUser;
-          this.getAvatar();
-          resolve("Congrats!");
-        } else {
-          reject("Invalid username / password.");
-        }
-      })
-      .catch(function() {
-        reject("Please try again later.");
-      });
-  });
+  if (typeof mDb === "object") {
+    return new Promise((resolve, reject) => {
+      this.cleanUp();
+      mDb
+        .findOne({ username: this.body.username })
+        .then(attemptedUser => {
+          if (
+            attemptedUser &&
+            bcrypt.compareSync(this.body.password, attemptedUser.password)
+          ) {
+            this.body = attemptedUser;
+            this.getAvatar();
+            resolve("Congrats!");
+          } else {
+            reject("Invalid username / password.");
+          }
+        })
+        .catch(function() {
+          reject("Please try again later.");
+        });
+    });
+  }
 };
 User.prototype.register = function() {
   return new Promise(async (resolve, reject) => {
@@ -139,9 +149,11 @@ User.prototype.register = function() {
         sysOp: false
       };
       this.body.user_attributes.ip_addresses.push(this.data.ip);
-      await mDb.insertOne(this.body);
-      this.getAvatar();
-      console.log("user inserted");
+      if (mDb === "object") {
+        await mDb.insertOne(this.body);
+        this.getAvatar();
+        console.log("user inserted");
+      }
     } else {
       console.log(this.errors);
     }
@@ -152,10 +164,6 @@ User.prototype.register = function() {
     .catch(() => {
       reject();
     });
-};
-
-User.prototype.getAvatar = function() {
-  this.avatar = `https://gravatar.com/avatar/${md5(this.body.email)}?s=128`;
 };
 
 module.exports = User;

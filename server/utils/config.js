@@ -8,6 +8,7 @@ exports.system = () => {
     bstrap4css: true,
     bstrap4js: true,
     usemdb: true,
+    useMongoose: true,
     mdb: {
       db: process.env.dbname,
       con: process.env.mdbCon,

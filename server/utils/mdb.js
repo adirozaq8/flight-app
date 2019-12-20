@@ -1,4 +1,5 @@
 const mongodb = require("mongodb");
+const mongoose = require("mongoose");
 const session = require("express-session");
 const mdbStore = require("connect-mongodb-session")(session);
 const MongoClient = mongodb.MongoClient;
@@ -6,20 +7,36 @@ const ObjectID = mongodb.ObjectID;
 
 const connect = async (app, system) => {
   return new Promise(async (resolve, reject) => {
-    MongoClient.connect(
-      system.mdb.con,
-      { useNewUrlParser: true, useUnifiedTopology: true },
-      (err, client) => {
-        if (err) throw err;
-        if (app)
+    if (system.useMongoose) {
+      mongoose
+        .connect(system.mdb.con, {
+          useNewUrlParser: true,
+          useCreateIndex: true,
+          useFindAndModify: false,
+          useUnifiedTopology: true
+        })
+        .then(con => {
           app.listen(
             system.port,
-            console.log(`listening on port: ${system.port} with mDB`)
+            console.log(`listening on port: ${system.port} with Mongoose`)
           );
-        db = client.db();
-        resolve((exports.db = db));
-      }
-    );
+        });
+    } else {
+      MongoClient.connect(
+        system.mdb.con,
+        { useNewUrlParser: true, useUnifiedTopology: true },
+        (err, client) => {
+          if (err) throw err;
+          if (app)
+            app.listen(
+              system.port,
+              console.log(`listening on port: ${system.port} with mDB`)
+            );
+          db = client.db();
+          resolve((exports.db = db));
+        }
+      );
+    }
   });
 };
 

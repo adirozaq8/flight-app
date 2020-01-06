@@ -15,13 +15,13 @@ function AdminPanel() {
           </tr>
         </thead>
         <tbody>
-          {Object.keys(Data).map(key => {
+          {Object.keys(Data.Users).map(key => {
             return (
               <tr key={key}>
-                <td key={key + " name"}>{Data[key].Username}</td>
-                <td key={key + " password"}>{Data[key].Password}</td>
-                <td key={key + " email"}>{Data[key].Email}</td>
-                <td key={key + " phone"}>{Data[key].Phone}</td>
+                <td key={key + " name"}>{Data.Users[key].Username}</td>
+                <td key={key + " password"}>{Data.Users[key].Password}</td>
+                <td key={key + " email"}>{Data.Users[key].Email}</td>
+                <td key={key + " phone"}>{Data.Users[key].Phone}</td>
                 <td>
                   <button>Edit</button>
                 </td>

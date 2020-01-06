@@ -39,7 +39,7 @@ class Admin extends Component {
     return (
       <div className="Admin">
         {!this.state.login && (
-          <div>
+          <div className="Admin__Login">
             <AdminLogin />
           </div>
         )}

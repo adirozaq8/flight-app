@@ -18,9 +18,11 @@ class UserPanel extends Component {
     return (
       <div className="UserPanel">
         <div className="UserPanel__header">
-          <h4>Users: </h4>
-          <div className="UserPanel__header-count">
-            <p>{Object.keys(this.Users).length}</p>
+          <div className="UserPanel__header-info">
+            <h4>Users: </h4>
+            <div className="UserPanel__header-count">
+              <p>{Object.keys(this.Users).length}</p>
+            </div>
           </div>
           <div>
             <button
@@ -38,8 +40,8 @@ class UserPanel extends Component {
             </button>
           </div>
         </div>
-        <div className="UserPanel__table">
-          {this.state.UserTable && (
+        {this.state.UserTable && (
+          <div className="UserPanel__table">
             <table>
               <thead>
                 <tr>
@@ -74,8 +76,8 @@ class UserPanel extends Component {
                 </tr>
               </tfoot>
             </table>
-          )}
-        </div>
+          </div>
+        )}
       </div>
     );
   }

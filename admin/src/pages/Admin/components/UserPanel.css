@@ -1,6 +1,5 @@
 .UserPanel {
   padding: 0 4rem;
-  background-color: lightyellow;
 }
 .UserPanel__header {
   display: flex;
@@ -8,9 +7,28 @@
   justify-content: space-between;
   align-items: center;
 }
+.UserPanel__header-info {
+  display: flex;
+  align-items: center;
+}
+.UserPanel__header-info * {
+  padding: 0 0.3rem;
+  font-weight: 700;
+}
 .UserPanel__table {
   width: 100%;
+  animation: utAnim 0.7s ease;
 }
 .UserPanel__table table {
   width: 100%;
+}
+@keyframes utAnim {
+  from {
+    opacity: 0;
+    transform: translateY(-30%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

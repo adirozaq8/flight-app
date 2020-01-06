@@ -1,0 +1,16 @@
+.UserPanel {
+  padding: 0 4rem;
+  background-color: lightyellow;
+}
+.UserPanel__header {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+.UserPanel__table {
+  width: 100%;
+}
+.UserPanel__table table {
+  width: 100%;
+}

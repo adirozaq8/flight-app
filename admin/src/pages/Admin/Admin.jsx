@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Data from "../../data/Data";
+import AdminLogin from "./components/AdminLogin";
 import UserPanel from "./components/UserPanel";
 import Axios from "axios";
 import "./Admin.css";
@@ -37,9 +38,16 @@ class Admin extends Component {
   render() {
     return (
       <div className="Admin">
-        <div className="Admin__UserPanel">
-          <UserPanel Users={Data.Users} />
-        </div>
+        {!this.state.login && (
+          <div>
+            <AdminLogin />
+          </div>
+        )}
+        {this.state.login && (
+          <div className="Admin__UserPanel">
+            <UserPanel Users={Data.Users} />
+          </div>
+        )}
       </div>
     );
   }

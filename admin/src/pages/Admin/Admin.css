@@ -1,0 +1,7 @@
+.Admin {
+  margin: 0;
+  padding: 1rem;
+}
+.Admin__UserPanel {
+  width: 50%;
+}

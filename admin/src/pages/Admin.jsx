@@ -1,7 +1,7 @@
 import React from "react";
 import Data from "../data/Data";
 
-function Admin() {
+function AdminPanel() {
   return (
     <div>
       <h4>Users</h4>
@@ -41,4 +41,4 @@ function Admin() {
   );
 }
 
-export default Admin;
+export default AdminPanel;

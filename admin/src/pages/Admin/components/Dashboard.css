@@ -1,0 +1,20 @@
+.Dashboard {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-gap: 1rem;
+  grid-template-rows: repeat(12, 1fr);
+  height: 100%;
+}
+.Dashboard__Sidebar {
+  grid-column-start: 1;
+  grid-column-end: 1;
+  grid-row-start: 1;
+  grid-row-end: 12;
+  background-color: lightblue;
+}
+.Dashboard__UserPanel {
+  grid-column-start: 3;
+  grid-column-end: 10;
+  grid-row-start: 1;
+  grid-row-end: 10;
+}

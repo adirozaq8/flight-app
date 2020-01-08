@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Data from "../../data/Data";
 import AdminLogin from "./components/AdminLogin";
-import UserPanel from "./components/UserPanel";
+import Dashboard from "./components/Dashboard";
 import Axios from "axios";
 import "./Admin.css";
 
@@ -10,7 +10,7 @@ class Admin extends Component {
     super();
 
     this.state = {
-      login: false,
+      login: true,
       users: null,
       getUsers: false,
       errors: null
@@ -44,8 +44,8 @@ class Admin extends Component {
           </div>
         )}
         {this.state.login && (
-          <div className="Admin__UserPanel">
-            <UserPanel Users={Data.Users} />
+          <div className="Admin__Dashboard">
+            <Dashboard Users={Data.Users} />
           </div>
         )}
       </div>

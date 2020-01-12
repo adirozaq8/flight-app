@@ -1,15 +1,15 @@
 import React, { Component } from "react";
-import Sidebar from "./Sidebar";
-import UserPanel from "./UserPanel";
+import Sidebar from "../sidebar/Sidebar";
+import UserPanel from "../userpanel/UserPanel";
 import "./Dashboard.css";
 
 class Dashboard extends Component {
   render() {
     return (
       <div className="Dashboard">
-        <div className="Dashboard__Sidebar">
+        <aside className="Dashboard__Sidebar">
           <Sidebar />
-        </div>
+        </aside>
         <div className="Dashboard__UserPanel">
           <UserPanel Users={this.props.Users} />
         </div>

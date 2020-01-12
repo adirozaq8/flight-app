@@ -2,8 +2,15 @@
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   grid-gap: 1rem;
-  grid-template-rows: repeat(12, 1fr);
+  grid-template-rows: 60px repeat(11, 1fr);
   height: 100%;
+}
+.Dashboard__Navbar {
+  overflow: hidden;
+  grid-column-start: 2;
+  grid-column-end: -1;
+  grid-row-start: 1;
+  grid-row-end: 2;
 }
 .Dashboard__Sidebar {
   grid-column-start: 1;
@@ -15,6 +22,6 @@
 .Dashboard__UserPanel {
   grid-column-start: 3;
   grid-column-end: 10;
-  grid-row-start: 1;
+  grid-row-start: 3;
   grid-row-end: 10;
 }

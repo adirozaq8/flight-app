@@ -1,0 +1,19 @@
+.Navbar {
+  background-color: lightyellow;
+  display: flex;
+  position: relative;
+}
+.Navbar__nav {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+}
+.Navbar__nav__nav-item {
+  display: list-item;
+}
+.Navbar__nav__ml-auto {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  margin-left: auto;
+}

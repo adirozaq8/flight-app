@@ -3,7 +3,7 @@ import Data from "../../data/Data";
 import AdminLogin from "./components/AdminLogin";
 import Dashboard from "./components/dashboard/Dashboard";
 import Axios from "axios";
-//import "./Admin.css";
+import "./Admin.css";
 
 class Admin extends Component {
   constructor() {

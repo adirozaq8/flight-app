@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Navbar from "../navbar/Navbar";
 import Sidebar from "../sidebar/Sidebar";
 import UserPanel from "../userpanel/UserPanel";
-//import "./Dashboard.css";
+import "./Dashboard.css";
 
 class Dashboard extends Component {
   render() {
@@ -14,8 +14,10 @@ class Dashboard extends Component {
         <div className="Dashboard__Sidebar">
           <Sidebar />
         </div>
-        <div className="Dashboard__UserPanel">
-          <UserPanel Users={this.props.Users} />
+        <div className="Dashboard__Main-area">
+          <div className="Dashboard__UserPanel">
+            <UserPanel Users={this.props.Users} />
+          </div>
         </div>
       </div>
     );

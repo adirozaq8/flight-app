@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "../components/navbar/Navbar";
+import Navbar from "../components/navbar/navbar";
 import Jumbotron from "../components/jumbotron/Jumbotron";
 import Footer from "../components/footer/Footer";
 // import TestBody from "../components/Test/TestBody";

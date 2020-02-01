@@ -4,3 +4,6 @@
 .Sidebar ul li {
   list-style-type: none;
 }
+.main-sidebar img {
+  opacity: 0.8;
+}

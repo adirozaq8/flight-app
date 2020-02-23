@@ -1,5 +1,12 @@
 import React, { Component } from "react";
-//import "./Navbar.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faComments } from "@fortawesome/free-solid-svg-icons";
+import { faBell } from "@fortawesome/free-solid-svg-icons";
+import { faBellO } from "@fortawesome/free-solid-svg-icons";
+import { faThLarge } from "@fortawesome/free-solid-svg-icons";
+import "./Navbar.css";
 
 class Navbar extends Component {
   render() {
@@ -8,7 +15,7 @@ class Navbar extends Component {
         <ul class="Navbar__nav navbar-nav">
           <li class="nav-item">
             <a class="nav-link" data-widget="pushmenu" href="#">
-              <i class="fas fa-bars"></i>
+              <FontAwesomeIcon icon={faBars} />
             </a>
           </li>
           <li class="nav-item d-none d-sm-inline-block">
@@ -32,7 +39,7 @@ class Navbar extends Component {
             />
             <div class="input-group-append">
               <button class="btn btn-navbar" type="submit">
-                <i class="fas fa-search"></i>
+                <FontAwesomeIcon icon={faSearch} />
               </button>
             </div>
           </div>
@@ -40,7 +47,7 @@ class Navbar extends Component {
         <ul class="Navbar__nav__ml-auto navbar-nav ml-auto">
           <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#">
-              <i class="far fa-comments"></i>
+              <FontAwesomeIcon icon={faComments} />
               <span class="badge badge-danger navbar-badge">4</span>
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
@@ -117,7 +124,7 @@ class Navbar extends Component {
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#">
-              <i class="far fa-bell"></i>
+              <FontAwesomeIcon icon={faBell} />
               <span class="badge badge-warning navbar-badge">15</span>
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
@@ -152,7 +159,7 @@ class Navbar extends Component {
               data-slide="true"
               href="#"
             >
-              <i class="fas fa-th-large"></i>
+              <FontAwesomeIcon icon={faThLarge} />
             </a>
           </li>
         </ul>

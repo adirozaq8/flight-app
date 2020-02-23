@@ -45,3 +45,13 @@
 .main-sidebar img {
   opacity: 0.8;
 }
+.nav-link {
+  display: block;
+  padding: 0.5rem 1rem;
+}
+.nav-sidebar > .nav-item .nav-icon {
+  font-size: 1.2rem;
+  margin-right: 0.2rem;
+  text-align: center;
+  width: 1.6rem;
+}

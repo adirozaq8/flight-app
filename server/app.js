@@ -2,11 +2,16 @@
 const express = require("express");
 const session = require("express-session");
 const path = require("path");
+const cors = require("cors")
 
 // Server configured components
 const mdb = require("./utils/mdb");
 const system = require("./utils/config").system();
 const mdbStore = mdb.store(system);
+
+// Middleware components
+const bodyParser = require("body-parser");
+const errorHandler = require("./handlers/error")
 
 // Express init
 const app = express();
@@ -21,6 +26,7 @@ const appInit = async () => {
   app.use(express.static(path.join(__dirname, "../client/build"))); // Public folder -- TODO review
   app.use(express.urlencoded({ extended: false }));
   app.use(express.json());
+  app.use(bodyParser.json())
   app.use(
     session({
       secret: "1234#changeOnDeploy",

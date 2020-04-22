@@ -49,9 +49,36 @@
   display: block;
   padding: 0.5rem 1rem;
 }
+.nav-sidebar .nav-item {
+  width: 100%;
+}
 .nav-sidebar > .nav-item .nav-icon {
   font-size: 1.2rem;
   margin-right: 0.2rem;
   text-align: center;
   width: 1.6rem;
+}
+.nav-sidebar .nav-link {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.nav-sidebar p {
+  margin: 0;
+  padding: 0;
+}
+.nav-sidebar > li > a {
+  display: flex;
+  align-items: center;
+}
+.nav-sidebar .nav-link > :nth-child(1) {
+  margin-right: 0.4rem;
+}
+.nav-sidebar .nav-link > p {
+  display: inline-block;
+  width: 100%;
+}
+.nav-sidebar .nav-link > p > :nth-child(1) {
+  color: yellow;
+  margin-left: auto;
 }

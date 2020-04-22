@@ -22,7 +22,7 @@ class UserPanel extends Component {
         </div>
         <div className="UserPanel__info">
           <div className="UserPanel-info__content">
-            <h6>Total users </h6>
+            <h6>Total users</h6>
             <div className="UserPanel__count">
               <p>{Object.keys(this.Users).length}</p>
             </div>

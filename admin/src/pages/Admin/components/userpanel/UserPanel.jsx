@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
+import { faUsers } from "@fortawesome/free-solid-svg-icons";
 import "./UserPanel.css";
 
 class UserPanel extends Component {
@@ -8,7 +8,7 @@ class UserPanel extends Component {
     super(props);
     this.Users = props.Users;
     this.state = {
-      UserTable: false
+      UserTable: false,
     };
   }
   setToggleBtn(e) {
@@ -17,67 +17,17 @@ class UserPanel extends Component {
   render() {
     return (
       <div className="UserPanel">
-        <div className="UserPanel__header">
-          <div className="UserPanel__header-info">
-            <h4>Users: </h4>
-            <div className="UserPanel__header-count">
+        <div className="UserPanel__img-wrapper">
+          <FontAwesomeIcon icon={faUsers} />
+        </div>
+        <div className="UserPanel__info">
+          <div className="UserPanel-info__content">
+            <h6>Total users </h6>
+            <div className="UserPanel__count">
               <p>{Object.keys(this.Users).length}</p>
             </div>
           </div>
-          <div>
-            <button
-              onClick={() =>
-                !this.state.UserTable
-                  ? this.setState({ UserTable: true })
-                  : this.setState({ UserTable: false })
-              }
-            >
-              {!this.state.UserTable ? (
-                <FontAwesomeIcon icon={faPlus} />
-              ) : (
-                <FontAwesomeIcon icon={faMinus} />
-              )}
-            </button>
-          </div>
         </div>
-        {this.state.UserTable && (
-          <div className="UserPanel__table">
-            <table>
-              <thead>
-                <tr>
-                  <td>Username</td>
-                  <td>Password</td>
-                  <td>Email</td>
-                  <td>Phone</td>
-                </tr>
-              </thead>
-              <tbody>
-                {Object.keys(this.Users).map(key => {
-                  return (
-                    <tr key={key}>
-                      <td key={key + " name"}>{this.Users[key].Username}</td>
-                      <td key={key + " password"}>
-                        {this.Users[key].Password}
-                      </td>
-                      <td key={key + " email"}>{this.Users[key].Email}</td>
-                      <td key={key + " phone"}>{this.Users[key].Phone}</td>
-                      <td>
-                        <button>Edit</button>
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-              <tfoot>
-                <tr>
-                  <td>
-                    <button>New User</button>
-                  </td>
-                </tr>
-              </tfoot>
-            </table>
-          </div>
-        )}
       </div>
     );
   }

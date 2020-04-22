@@ -42,6 +42,9 @@
 .Sidebar ul li {
   list-style-type: none;
 }
+.main-sidebar {
+  min-height: 100vh;
+}
 .main-sidebar img {
   opacity: 0.8;
 }

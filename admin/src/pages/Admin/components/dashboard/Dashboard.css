@@ -15,5 +15,17 @@
   width: 250px;
 }
 .Dashboard__Main-area {
+  min-height: 100vh;
+  background: rgb(247, 247, 247);
   margin-left: 250px;
+}
+.Main-area__top {
+  padding: 2rem;
+  width: 100%;
+  height: 100px;
+  display: flex;
+}
+.Main-area__top-item {
+  width: 280px;
+  height: 100%;
 }

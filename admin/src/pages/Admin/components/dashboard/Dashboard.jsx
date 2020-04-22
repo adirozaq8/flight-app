@@ -15,8 +15,12 @@ class Dashboard extends Component {
           <Sidebar />
         </div>
         <div className="Dashboard__Main-area">
-          <div className="Dashboard__UserPanel">
-            <UserPanel Users={this.props.Users} />
+          <div className="Main-area__top">
+            <div className="Main-area__top-item">
+              <div className="Dashboard__UserPanel">
+                <UserPanel Users={this.props.Users} />
+              </div>
+            </div>
           </div>
         </div>
       </div>

@@ -5,7 +5,7 @@ const amadeus = new Amadeus({
   clientSecret: process.env.AMA_SECRET,
 });
 
-// Test call, NB maximum 3000 a month
+// Test call, NB maximum 2000 a month
 
 // amadeus.shopping.flightOffersSearch
 //   .get({

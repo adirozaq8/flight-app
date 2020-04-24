@@ -1,9 +1,9 @@
-require("dotenv").config()
+require("dotenv").config();
 // Basic server components
 const express = require("express");
 // const session = require("express-session");
 // const path = require("path");
-const cors = require("cors")
+const cors = require("cors");
 
 // // Server configured components
 // const mdb = require("./utils/mdb");
@@ -12,20 +12,22 @@ const cors = require("cors")
 
 // Middleware components
 const bodyParser = require("body-parser");
-const errorHandler = require("./handlers/error")
+const errorHandler = require("./handlers/error");
 
+// Amadeus travel API
+const amadeus = require("./controllers/amadeus");
 // Express init
 const app = express();
 
 // Routes
-const authRoutes = require("./routes/auth")
+const authRoutes = require("./routes/auth");
 
 app.use(cors());
 app.use(bodyParser.json());
 
-app.use("/api/auth", authRoutes)
+app.use("/api/auth", authRoutes);
 
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   let err = new Error("Not Found");
   err.status = 404;
   next(err);
@@ -33,10 +35,9 @@ app.use(function(req, res, next) {
 
 app.use(errorHandler);
 
-app.listen(process.env.PORT, function() {
+app.listen(process.env.PORT, function () {
   console.log(`Server is starting on port ${process.env.PORT}`);
 });
-
 
 // // Setup used components in app
 // const appInit = async () => {

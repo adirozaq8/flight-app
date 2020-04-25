@@ -1,16 +1,6 @@
 const mongoose = require("mongoose")
 const bcrypt = require("bcrypt");
 // const validator = require("validator");
-// const md5 = require("md5");
-// const settings = require("../utils/config");
-// const system = settings.system();
-// let mDb, dbM;
-// if (typeof db !== "undefined") {
-//   mDb = require("../utils/mdb").db.collection(system.mdb.col.user);
-// } else if (typeof dbm !== "undefined") {
-//   dbM = require("../utils/mdb").dbm;
-// }
-// console.log("mDb: ", typeof mDb, "dbM: ", typeof dbM);
 
 const userSchema = new mongoose.Schema({
   email: {
@@ -53,45 +43,6 @@ userSchema.methods.comparePassword = async function(candidatePassword, next){
     return next(err)
   }
 }
-
-// let User = function(data, getAvatar) {
-//   this.data = data;
-//   this.body = data.body;
-//   this.errors = [];
-//   if (getAvatar == undefined) {
-//     getAvatar = false;
-//   }
-//   if (getAvatar) {
-//     this.getAvatar();
-//   }
-// };
-
-// User.prototype.getAvatar = function() {
-//   this.avatar = `https://gravatar.com/avatar/${md5(this.body.email)}?s=128`;
-// };
-
-// User.prototype.cleanUp = function() {
-//   if (typeof this.body.username != "string") {
-//     this.body.username = "";
-//   }
-//   if (typeof this.body.email != "string") {
-//     this.body.email = "";
-//   }
-//   if (typeof this.body.password != "string") {
-//     this.body.password = "";
-//   }
-// };
-
-// User.prototype.fetchAll = function() {
-//   //TODO add security here!
-//   return new Promise((resolve, reject) => {
-//     if (typeof mDb === "object") {
-//       mDb.find().toArray((err, data) => {
-//         resolve(data);
-//       });
-//     }
-//   });
-// };
 
 // User.prototype.validate = function() {
 //   return new Promise(async (resolve, reject) => {
@@ -153,30 +104,6 @@ userSchema.methods.comparePassword = async function(candidatePassword, next){
 //   });
 // };
 
-// User.prototype.login = function() {
-//   if (typeof mDb === "object") {
-//     return new Promise((resolve, reject) => {
-//       this.cleanUp();
-//       mDb
-//         .findOne({ username: this.body.username })
-//         .then(attemptedUser => {
-//           if (
-//             attemptedUser &&
-//             bcrypt.compareSync(this.body.password, attemptedUser.password)
-//           ) {
-//             this.body = attemptedUser;
-//             this.getAvatar();
-//             resolve("Congrats!");
-//           } else {
-//             reject("Invalid username / password.");
-//           }
-//         })
-//         .catch(function() {
-//           reject("Please try again later.");
-//         });
-//     });
-//   }
-// };
 // User.prototype.register = function() {
 //   return new Promise(async (resolve, reject) => {
 //     this.cleanUp();

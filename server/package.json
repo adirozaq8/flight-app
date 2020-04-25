@@ -6,6 +6,7 @@
     "eject": ""
   },
   "dependencies": {
+    "airport-codes": "^1.0.2",
     "amadeus": "^4.0.0",
     "bcrypt": "^4.0.1",
     "body-parser": "^1.19.0",

@@ -25,6 +25,8 @@ class AmForm extends Component {
           <label htmlFor="AmTypeReturn">Return</label>
           <input type="radio" id="AmMulti" name="flight-route" value="multi" />
           <label htmlFor="AmMulti">Multi-city</label>
+          <input type="radio" id="AmNomad" name="flight-route" value="nomad" />
+          <label htmlFor="AmNomad">Nomad</label>
         </div>
         <div className="form__input-group">
           <label htmlFor="AmFrom">From</label>

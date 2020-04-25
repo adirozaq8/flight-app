@@ -14,6 +14,8 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const errorHandler = require("./handlers/error");
 
+// Install flight IATA code table
+const iataInstall = require("./handlers/airport");
 // Amadeus travel API
 const amadeus = require("./controllers/amadeus");
 // Express init

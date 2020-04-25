@@ -1,4 +1,4 @@
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 // const validator = require("validator");
 // const md5 = require("md5");
@@ -16,43 +16,43 @@ const userSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
   },
   username: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
   },
   password: {
     type: String,
     required: true,
   },
   avatar: {
-    type: String
+    type: String,
+  },
+});
+
+userSchema.pre("save", async function (next) {
+  try {
+    if (!this.isModified("password")) {
+      return next();
+    }
+    let hashedPassword = await bcrypt.hash(this.password, 10);
+    this.password = hashedPassword;
+    return next();
+  } catch (err) {
+    return next(err);
   }
 });
 
-userSchema.pre("save", async function(next) {
+userSchema.methods.comparePassword = async function (candidatePassword, next) {
   try {
-    if(!this.isModified("password")) {
-      return next()
-    }
-    let hashedPassword = await bcrypt.hash(this.password, 10)
-    this.password = hashedPassword
-    return next()
-  } catch(err) {
-    return next(err)
+    let isMatch = await bcrypt.compare(candidatePassword, this.password);
+    return isMatch;
+  } catch (err) {
+    return next(err);
   }
-})
-
-userSchema.methods.comparePassword = async function(candidatePassword, next){
-  try {
-    let isMatch = await bcrypt.compare(candidatePassword, this.password)
-    return isMatch
-  } catch(err) {
-    return next(err)
-  }
-}
+};
 
 // let User = function(data, getAvatar) {
 //   this.data = data;

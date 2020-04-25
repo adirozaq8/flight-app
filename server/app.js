@@ -23,11 +23,13 @@ const app = express();
 
 // Routes
 const authRoutes = require("./routes/auth");
+const amFormRoutes = require("./routes/amform");
 
 app.use(cors());
 app.use(bodyParser.json());
 
 app.use("/api/auth", authRoutes);
+app.use("/api/amform", amFormRoutes);
 
 app.use(function (req, res, next) {
   let err = new Error("Not Found");

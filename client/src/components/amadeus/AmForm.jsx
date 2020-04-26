@@ -4,6 +4,21 @@ import "./AmForm.css";
 class AmForm extends Component {
   constructor() {
     super();
+    this.state = {
+      airports: null,
+    };
+  }
+  // TODO This fetch should be considered moving up in the component chain
+  componentDidMount() {
+    fetch("http://localhost:5000/api/amform/getairports", {
+      method: "POST",
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        this.setState({ airports: data });
+      });
   }
   render() {
     return (
@@ -30,11 +45,23 @@ class AmForm extends Component {
         </div>
         <div className="form__input-group">
           <label htmlFor="AmFrom">From</label>
-          <input type="text" id="AmFrom" name="from" />
+          <input type="text" id="AmFrom" name="from" list="list_airports" />
+          <datalist id="list_airports">
+            {this.state.airports &&
+              this.state.airports.reqAirport.map((el, idx) => {
+                return (
+                  <option key={idx}>
+                    {el.city}
+                    {el.iata}
+                    {el.country}
+                  </option>
+                );
+              })}
+          </datalist>
         </div>
         <div className="form__input-group">
           <label htmlFor="AmTo">To</label>
-          <input type="text" id="AmTo" name="to" />
+          <input type="text" id="AmTo" name="to" list="list_airports" />
         </div>
         <div className="form__input-group">
           <label htmlFor="AmDepart">Departure</label>

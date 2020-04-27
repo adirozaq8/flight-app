@@ -62,3 +62,6 @@ typings/
 # folders
 Test
 AdminLTE
+
+# lock
+package-lock.json

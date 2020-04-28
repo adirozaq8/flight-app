@@ -13,8 +13,9 @@ exports.flightOffers = async function (req, res, next) {
   }
 };
 exports.getAirports = async function (req, res, next) {
+  console.log(req.body);
   try {
-    const reqAirport = await db.Airport.find({});
+    const reqAirport = await db.Airport.find({}).sort({ city: "" });
     return res.status(200).json({ reqAirport });
   } catch (e) {
     return next({ status: 400, message: "Invalid request." });

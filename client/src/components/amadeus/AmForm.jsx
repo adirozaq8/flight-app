@@ -50,11 +50,11 @@ class AmForm extends Component {
             {this.state.airports &&
               this.state.airports.reqAirport.map((el, idx) => {
                 return (
-                  <option key={idx}>
-                    {el.city}
-                    {el.iata}
-                    {el.country}
-                  </option>
+                  <div key={idx}>
+                    <option value={el.city + " (" + el.iata + ")"}>
+                      {el.country}
+                    </option>
+                  </div>
                 );
               })}
           </datalist>

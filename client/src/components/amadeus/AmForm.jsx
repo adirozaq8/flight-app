@@ -5,6 +5,9 @@ class AmForm extends Component {
   constructor() {
     super();
     this.state = {
+      inpOptLen: 5,
+      airDb: null,
+      from: "",
       airports: null,
     };
   }
@@ -17,9 +20,43 @@ class AmForm extends Component {
         return response.json();
       })
       .then((data) => {
-        this.setState({ airports: data });
+        this.setState({ airDb: data.reqAirport });
       });
   }
+
+  // inputlist option list changes based on input
+  fieldChange = (e) => {
+    let object = this.state.airDb.filter((airFilter) => {
+      return (
+        airFilter.city
+          .toLowerCase()
+          .includes(e.target.value.toLowerCase(), 0) && airFilter.iata !== ""
+      );
+    });
+
+    if (object.length > 0) {
+      object = this.sortInputFirst(e.target.value.toLowerCase(), object);
+    }
+
+    object = object.slice(0, this.state.inpOptLen);
+
+    this.setState({ airports: object });
+  };
+
+  // sorting priority based on input value at the beginning of string first
+  sortInputFirst = (inp, obj) => {
+    let first = [];
+    let second = [];
+    obj.forEach((el) => {
+      if (el.city.toLowerCase().indexOf(inp) == 0) {
+        first.push(el);
+      } else {
+        second.push(el);
+      }
+    });
+    return first.concat(second);
+  };
+
   render() {
     return (
       <form className="AmForm">
@@ -45,10 +82,26 @@ class AmForm extends Component {
         </div>
         <div className="form__input-group">
           <label htmlFor="AmFrom">From</label>
-          <input type="text" id="AmFrom" name="from" list="list_airports" />
+          <input
+            onChange={this.fieldChange}
+            type="text"
+            id="AmFrom"
+            name="from"
+            list="list_airports"
+          />
+          <div className="form__input-group">
+            <label htmlFor="AmTo">To</label>
+            <input
+              onChange={this.fieldChange}
+              type="text"
+              id="AmTo"
+              name="to"
+              list="list_airports"
+            />
+          </div>
           <datalist id="list_airports">
             {this.state.airports &&
-              this.state.airports.reqAirport.map((el, idx) => {
+              this.state.airports.map((el, idx) => {
                 return (
                   <div key={idx}>
                     <option value={el.city + " (" + el.iata + ")"}>
@@ -58,10 +111,6 @@ class AmForm extends Component {
                 );
               })}
           </datalist>
-        </div>
-        <div className="form__input-group">
-          <label htmlFor="AmTo">To</label>
-          <input type="text" id="AmTo" name="to" list="list_airports" />
         </div>
         <div className="form__input-group">
           <label htmlFor="AmDepart">Departure</label>

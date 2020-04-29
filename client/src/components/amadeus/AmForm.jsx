@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import DateInput from "../dateinput/DateInput";
+
 import "./AmForm.css";
 
 class AmForm extends Component {
@@ -7,7 +9,6 @@ class AmForm extends Component {
     this.state = {
       inpOptLen: 5,
       airDb: null,
-      from: "",
       airports: null,
     };
   }
@@ -48,7 +49,7 @@ class AmForm extends Component {
     let first = [];
     let second = [];
     obj.forEach((el) => {
-      if (el.city.toLowerCase().indexOf(inp) == 0) {
+      if (el.city.toLowerCase().indexOf(inp) === 0) {
         first.push(el);
       } else {
         second.push(el);
@@ -114,19 +115,19 @@ class AmForm extends Component {
         </div>
         <div className="form__input-group">
           <label htmlFor="AmDepart">Departure</label>
-          <input type="text" id="AmDepart" name="depart" />
+          <DateInput className="AmDepart" />
         </div>
-        <div className="form__input-group">
+        <div id="form__input-group">
           <label htmlFor="AmReturn">Return</label>
-          <input type="text" id="AmReturn" name="return" />
+          <DateInput id="AmReturn" />
         </div>
         <div className="form__input-group">
           <label htmlFor="AmClass">Cabin class</label>
           <select id="AmClass">
-            <option value="volvo">Economy</option>
-            <option value="volvo">Premium economy</option>
-            <option value="volvo">Business</option>
-            <option value="volvo">First class</option>
+            <option value="economy">Economy</option>
+            <option value="premium">Premium economy</option>
+            <option value="business">Business</option>
+            <option value="first">First class</option>
           </select>
         </div>
         <div className="form__input-group">

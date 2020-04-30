@@ -28,8 +28,12 @@ class AmForm extends Component {
   // inputlist option list changes based on input
   fieldChange = (e) => {
     let dataListOpt = [];
+    let exact = 0;
     if (this.state.airDb.length > 0) {
       dataListOpt = this.state.airDb.filter((airFilter) => {
+        if (airFilter.city.toLowerCase() === e.target.value.toLowerCase()) {
+          exact++;
+        }
         return (
           airFilter.city
             .toLowerCase()
@@ -44,8 +48,9 @@ class AmForm extends Component {
         dataListOpt
       );
     }
-
-    dataListOpt = dataListOpt.slice(0, this.state.inpOptLen);
+    exact > this.state.inpOptLen
+      ? (dataListOpt = dataListOpt.slice(0, exact))
+      : (dataListOpt = dataListOpt.slice(0, this.state.inpOptLen));
 
     this.setState({ airports: dataListOpt });
   };

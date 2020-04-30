@@ -7,39 +7,17 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
     unique: true,
-<<<<<<< HEAD
-    validate: {
-      validator: function(v){
-        return validator.isEmail(v)
-      },
-      message: props => `${props.value} is not a valid email!`
-    }
-  },
-  username: {
-    type: String,
-    required: [true, "You must provide a username."],
-    unique: true, 
-    validate: {
-      validator: function(v){
-        return validator.isAlphanumeric(v)
-      },
-      message: () => `Username can only contain letters and numbers.!`
-    },
-    minlength: [3, "Username must be at least 3 characters."],
-    maxlength: [30, "Username cannot exceed 30 characters."]
-=======
   },
   username: {
     type: String,
     required: true,
     unique: true,
->>>>>>> amadeusforms
   },
   password: {
     type: String,
     required: [true, "You must provide a password."],
     minlength: [8, "Password must be at least 8 characters."],
-    maxlength: [50, "Password cannot exceed 50 characters."]
+    maxlength: [50, "Password cannot exceed 50 characters."],
   },
   avatar: {
     type: String,

@@ -27,21 +27,27 @@ class AmForm extends Component {
 
   // inputlist option list changes based on input
   fieldChange = (e) => {
-    let object = this.state.airDb.filter((airFilter) => {
-      return (
-        airFilter.city
-          .toLowerCase()
-          .includes(e.target.value.toLowerCase(), 0) && airFilter.iata !== ""
-      );
-    });
-
-    if (object.length > 0) {
-      object = this.sortInputFirst(e.target.value.toLowerCase(), object);
+    let dataListOpt = [];
+    if (this.state.airDb.length > 0) {
+      dataListOpt = this.state.airDb.filter((airFilter) => {
+        return (
+          airFilter.city
+            .toLowerCase()
+            .includes(e.target.value.toLowerCase(), 0) && airFilter.iata !== ""
+        );
+      });
     }
 
-    object = object.slice(0, this.state.inpOptLen);
+    if (dataListOpt.length > 0) {
+      dataListOpt = this.sortInputFirst(
+        e.target.value.toLowerCase(),
+        dataListOpt
+      );
+    }
 
-    this.setState({ airports: object });
+    dataListOpt = dataListOpt.slice(0, this.state.inpOptLen);
+
+    this.setState({ airports: dataListOpt });
   };
 
   // sorting priority based on input value at the beginning of string first

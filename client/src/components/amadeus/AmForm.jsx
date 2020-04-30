@@ -67,6 +67,7 @@ class AmForm extends Component {
             id="AmOneWay"
             name="flight-route"
             value="oneWay"
+            defaultChecked
           />
           <label htmlFor="AmOneWay">One way</label>
           <input
@@ -132,7 +133,7 @@ class AmForm extends Component {
         </div>
         <div className="form__input-group">
           <label htmlFor="AmAdults">Adults</label>
-          <input type="number" id="AmAdults" name="adults" />
+          <input type="number" id="AmAdults" name="adults" defaultValue="1" />
           <label htmlFor="AmChildren">Children</label>
           <input type="number" id="AmChildren" name="children" />
         </div>

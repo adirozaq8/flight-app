@@ -1,4 +1,4 @@
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const validator = require("validator");
 
@@ -7,6 +7,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
     unique: true,
+<<<<<<< HEAD
     validate: {
       validator: function(v){
         return validator.isEmail(v)
@@ -26,6 +27,13 @@ const userSchema = new mongoose.Schema({
     },
     minlength: [3, "Username must be at least 3 characters."],
     maxlength: [30, "Username cannot exceed 30 characters."]
+=======
+  },
+  username: {
+    type: String,
+    required: true,
+    unique: true,
+>>>>>>> amadeusforms
   },
   password: {
     type: String,
@@ -34,31 +42,31 @@ const userSchema = new mongoose.Schema({
     maxlength: [50, "Password cannot exceed 50 characters."]
   },
   avatar: {
-    type: String
+    type: String,
+  },
+});
+
+userSchema.pre("save", async function (next) {
+  try {
+    if (!this.isModified("password")) {
+      return next();
+    }
+    let hashedPassword = await bcrypt.hash(this.password, 10);
+    this.password = hashedPassword;
+    return next();
+  } catch (err) {
+    return next(err);
   }
 });
 
-userSchema.pre("save", async function(next) {
+userSchema.methods.comparePassword = async function (candidatePassword, next) {
   try {
-    if(!this.isModified("password")) {
-      return next()
-    }
-    let hashedPassword = await bcrypt.hash(this.password, 10)
-    this.password = hashedPassword
-    return next()
-  } catch(err) {
-    return next(err)
+    let isMatch = await bcrypt.compare(candidatePassword, this.password);
+    return isMatch;
+  } catch (err) {
+    return next(err);
   }
-})
-
-userSchema.methods.comparePassword = async function(candidatePassword, next){
-  try {
-    let isMatch = await bcrypt.compare(candidatePassword, this.password)
-    return isMatch
-  } catch(err) {
-    return next(err)
-  }
-}
+};
 
 // User.prototype.validate = function() {
 //   return new Promise(async (resolve, reject) => {

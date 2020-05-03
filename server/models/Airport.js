@@ -6,6 +6,24 @@ let Airport = {};
 //   },
 //   airportModel = {};
 
+//test apCodes
+// const targCity = "bristol";
+// const cityRes = [];
+
+// converts letter case to lower with each word capitalized
+// apCodes.map((apCode) => {
+//   if (apCode.city.toLowerCase() === targCity.toLowerCase()) {
+//     let tempSplit = apCode.city.split(" ");
+//     tempSplit.forEach((el, idx) => {
+//       el = el.charAt(0).toUpperCase() + el.toLowerCase().slice(1, el.length);
+//       tempSplit[idx] = el;
+//     });
+//     apCode.city = tempSplit.join(" ");
+//     cityRes.push(apCode);
+//   }
+// });
+// console.log(cityRes);
+
 const setAirport = () => {
   // extract airport codes from airport-codes
   apCodesKeys = Object.keys(apCodes[0]);
@@ -31,7 +49,16 @@ const setAirport = () => {
         // creates the airports collection from airport-codes if it does not exist
         if (airportsExists === false) {
           apCodes.forEach((apCode) => {
-            let airport = new airportModel(apCode);
+            // converts letter case to lower with each word capitalized
+            let tempSplit = apCode.city.split(" ");
+            tempSplit.forEach((el, idx) => {
+              el =
+                el.charAt(0).toUpperCase() +
+                el.toLowerCase().slice(1, el.length);
+              tempSplit[idx] = el;
+            });
+            apCode.city = tempSplit.join(" ");
+            let airport = new Airport(apCode);
             airport.save((err, ap) => {
               if (err) return console.log(err);
             });

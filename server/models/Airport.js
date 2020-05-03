@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-let Airport = {};
+const apCodes = require("airport-codes").toJSON();
 
 const setAirport = async (apCodes) => {
   // extract airport codes from airport-codes
@@ -11,7 +11,7 @@ const setAirport = async (apCodes) => {
 
   // create mongoose schema from airport codes
   const airportSchema = new mongoose.Schema(schemaObject);
-  Airport = mongoose.model("Airport", airportSchema, "airports");
+  exports.Airport = mongoose.model("Airport", airportSchema, "airports");
 };
 
 const setAirportSource = async () => {
@@ -62,4 +62,4 @@ const setAirportSource = async () => {
   }
 };
 setAirportSource();
-module.exports = Airport;
+//setAirport(apCodes);

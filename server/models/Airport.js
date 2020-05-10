@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
-const apCodes = require("airport-codes").toJSON();
 
-const setAirport = async (apCodes) => {
+const AirportSchema = async (apCodes) => {
   // extract airport codes from airport-codes
   apCodesKeys = Object.keys(apCodes);
   schemaObject = {};
@@ -18,7 +17,7 @@ const setAirportSource = async () => {
   try {
     mongoose.connection.on("open", function () {
       // get collection names from database
-      mongoose.connection.db.listCollections().toArray(function (err, colList) {
+      mongoose.connection.db.listCollections().toArray((err, colList) => {
         airportsExists = false;
         colList.forEach((col) => {
           if (col.name === "airports") airportsExists = true;
@@ -53,7 +52,7 @@ const setAirportSource = async () => {
             .then((res) => {
               return res;
             })
-            .then((data) => setAirport(data.toObject()));
+            .then((data) => AirportSchema(data.toObject()));
         }
       });
     });
@@ -62,4 +61,3 @@ const setAirportSource = async () => {
   }
 };
 setAirportSource();
-//setAirport(apCodes);

@@ -1,0 +1,31 @@
+#SuggestionList {
+  text-align: start;
+  background: white;
+  box-shadow: inset 0px 0px 10px -4px black;
+  border-radius: 2px;
+  padding: 0.4rem;
+  overflow-y: auto;
+  max-height: 200px;
+}
+#SuggestionList p {
+  margin: 0 0;
+}
+.city-block {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.6rem;
+  cursor: pointer;
+}
+.city-block:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.city-title {
+  font-weight: bold;
+}
+.city-subtitle {
+  font-size: 80%;
+}
+.from-to-icon {
+  opacity: 0.7;
+}

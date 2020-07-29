@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import './Clock.css'
+import React, { Component } from "react";
+import "./Clock.css";
 
 class Clock extends Component {
   componentDidMount() {
@@ -23,28 +23,28 @@ class Clock extends Component {
     document.body.appendChild(s);
   }
 
-  render(){
-    return(
+  render() {
+    return (
       <div className="col-md-3 nav-clock">
         <div className="card bg-primary text-white">
           <h3 className="card-title text-center">
             <div className="d-flex flex-wrap justify-content-center mt-2">
-              <a>
+              <a href="/">
                 <span className="badge hours"></span>
               </a>{" "}
               :
-              <a>
+              <a href="/">
                 <span className="badge min"></span>
               </a>{" "}
               :
-              <a>
+              <a href="/">
                 <span className="badge sec"></span>
               </a>
             </div>
           </h3>
         </div>
       </div>
-    )
+    );
   }
 }
 

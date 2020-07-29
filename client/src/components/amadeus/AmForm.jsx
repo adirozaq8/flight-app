@@ -1,5 +1,8 @@
 import React, { Component } from "react";
+import SuggestionList from "./SuggestionList";
 import DateInput from "../dateinput/DateInput";
+import CheckCircle from "@material-ui/icons/CheckCircle";
+import Circle from "@material-ui/icons/PanoramaFishEyeOutlined";
 
 import "./AmForm.css";
 
@@ -7,6 +10,8 @@ class AmForm extends Component {
   constructor() {
     super();
     this.state = {
+      fromToFocus: 0,
+      travelType: 1,
       inpOptLen: 5,
       airDb: null,
       airports: null,
@@ -26,7 +31,11 @@ class AmForm extends Component {
   }
 
   // inputlist option list changes based on input
-  fieldChange = (e) => {
+  travelChange = (e) => {
+    this.setState({ travelType: e });
+  };
+  fieldChange = (e, val) => {
+    this.setState({ fromToFocus: 0 });
     let dataListOpt = [];
     let exact = 0;
     if (this.state.airDb.length > 0) {
@@ -52,7 +61,7 @@ class AmForm extends Component {
       ? (dataListOpt = dataListOpt.slice(0, exact))
       : (dataListOpt = dataListOpt.slice(0, this.state.inpOptLen));
 
-    this.setState({ airports: dataListOpt });
+    this.setState({ airports: dataListOpt, fromToFocus: val });
   };
 
   // sorting priority based on input value at the beginning of string first
@@ -71,67 +80,91 @@ class AmForm extends Component {
 
   render() {
     return (
-      <form className="AmForm">
-        <div className="form__radio-group">
-          <input
-            type="radio"
-            id="AmOneWay"
-            name="flight-route"
-            value="oneWay"
-            defaultChecked
-          />
-          <label htmlFor="AmOneWay">One way</label>
-          <input
-            type="radio"
-            id="AmTypeReturn"
-            name="flight-route"
-            value="typeReturn"
-          />
-          <label htmlFor="AmTypeReturn">Return</label>
-          <input type="radio" id="AmMulti" name="flight-route" value="multi" />
-          <label htmlFor="AmMulti">Multi-city</label>
-          <input type="radio" id="AmNomad" name="flight-route" value="nomad" />
-          <label htmlFor="AmNomad">Nomad</label>
-        </div>
+      <div className="form" id="AmForm">
         <div className="form__input-group">
-          <label htmlFor="AmFrom">From</label>
-          <input
-            onChange={this.fieldChange}
-            type="text"
-            id="AmFrom"
-            name="from"
-            list="list_airports"
-          />
-          <div className="form__input-group">
-            <label htmlFor="AmTo">To</label>
-            <input
-              onChange={this.fieldChange}
-              type="text"
-              id="AmTo"
-              name="to"
-              list="list_airports"
-            />
-          </div>
-          <datalist id="list_airports">
-            {this.state.airports &&
-              this.state.airports.map((el, idx) => {
-                return (
-                  <div key={idx}>
-                    <option value={el.city + " (" + el.iata + ")"}>
-                      {el.country}
-                    </option>
-                  </div>
-                );
-              })}
-          </datalist>
+          <ul className="form__radio">
+            <li onClick={() => this.travelChange(1)}>
+              {(this.state.travelType === 1 && (
+                <CheckCircle
+                  viewBox="0 0 24 24"
+                  className="icon icon__active"
+                />
+              )) || <Circle className="icon" />}
+              <span>One way</span>
+            </li>
+            <li onClick={() => this.travelChange(2)}>
+              {(this.state.travelType === 2 && (
+                <CheckCircle className="icon icon__active" />
+              )) || <Circle className="icon" />}
+              <span>Return</span>
+            </li>
+            <li onClick={() => this.travelChange(3)}>
+              {(this.state.travelType === 3 && (
+                <CheckCircle className="icon icon__active" />
+              )) || <Circle className="icon" />}
+              <span>Multi-city</span>
+            </li>
+            <li onClick={() => this.travelChange(4)}>
+              {(this.state.travelType === 4 && (
+                <CheckCircle className="icon icon__active" />
+              )) || <Circle className="icon" />}
+              <span>Nomad</span>
+            </li>
+          </ul>
         </div>
         <div className="form__input-group">
           <label htmlFor="AmDepart">Departure</label>
-          <DateInput className="AmDepart" />
-        </div>
-        <div id="form__input-group">
+          <DateInput className="AmDate" />
           <label htmlFor="AmReturn">Return</label>
-          <DateInput id="AmReturn" />
+          <DateInput className="AmDate" />
+        </div>
+        <div className="form__input-group">
+          <div className="input-box">
+            <label htmlFor="Amf__input-from">From</label>
+            <input
+              onFocus={() => this.setState({ fromToFocus: 1 })}
+              onBlur={() => this.setState({ fromToFocus: 0, airports: [] })}
+              onInput={(e) => this.fieldChange(e, 1)}
+              autoComplete="off"
+              type="text"
+              id="Amf__input-from"
+              name="from"
+              list="list_airports"
+              placeholder="Origin"
+            />
+            <span>Iata code, Origin</span>
+            {this.state.fromToFocus === 1 && (
+              <div className="input__suggestion-list">
+                <SuggestionList
+                  field={this.state.fromToFocus}
+                  cities={this.state.airports || []}
+                />
+              </div>
+            )}
+          </div>
+          <div className="input-box">
+            <label htmlFor="Amf__input-to">To</label>
+            <input
+              onFocus={() => this.setState({ fromToFocus: 2 })}
+              onBlur={() => this.setState({ fromToFocus: 0, airports: [] })}
+              onInput={(e) => this.fieldChange(e, 2)}
+              autoComplete="off"
+              type="text"
+              id="Amf__input-to"
+              name="to"
+              list="list_airports"
+              placeholder="Destination"
+            />
+            <span>IATA code, Destination</span>
+            {this.state.fromToFocus === 2 && (
+              <div className="input__suggestion-list">
+                <SuggestionList
+                  field={this.state.fromToFocus}
+                  cities={this.state.airports || []}
+                />
+              </div>
+            )}
+          </div>
         </div>
         <div className="form__input-group">
           <label htmlFor="AmClass">Cabin class</label>
@@ -148,10 +181,12 @@ class AmForm extends Component {
           <label htmlFor="AmChildren">Children</label>
           <input type="number" id="AmChildren" name="children" />
         </div>
-        <button id="AmSubmit" type="submit">
-          Find flights
-        </button>
-      </form>
+        <div className="form__input-group">
+          <button id="AmSubmit" type="button">
+            Find flights
+          </button>
+        </div>
+      </div>
     );
   }
 }

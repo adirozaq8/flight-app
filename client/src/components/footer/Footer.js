@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faFacebookSquare,
   faTwitter,
-  faInstagram
+  faInstagram,
 } from "@fortawesome/free-brands-svg-icons";
 
 import "./Footer.css";
@@ -21,13 +21,13 @@ class Footer extends Component {
           </div>
           <hr className="bg-light w-75 text-center mx-auto" />
           <div className="pb-2">
-            <a href="#" className="fa fa-facebook">
+            <a href="/" className="fa fa-facebook">
               <FontAwesomeIcon icon={faFacebookSquare} />
             </a>
-            <a href="#" className="fa fa-twitter">
+            <a href="/" className="fa fa-twitter">
               <FontAwesomeIcon icon={faTwitter} />
             </a>
-            <a href="#" className="fa fa-instagram">
+            <a href="/" className="fa fa-instagram">
               <FontAwesomeIcon icon={faInstagram} />
             </a>
           </div>

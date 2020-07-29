@@ -1,0 +1,63 @@
+.form {
+  user-select: none;
+  padding: 2rem;
+  /* background: lightblue; */
+}
+/* travel types */
+.form__radio {
+  justify-content: center;
+  list-style-type: none;
+  display: flex;
+}
+.form__radio li {
+  align-items: center;
+  font-size: 1.1rem;
+  margin: 0 1rem;
+  display: flex;
+  cursor: pointer;
+}
+.MuiSvgIcon-root {
+  width: 1.6rem !important;
+  height: 1.6rem !important;
+}
+.icon {
+  opacity: 0.3;
+}
+.icon__active {
+  opacity: 0.7;
+}
+/* input for city search */
+.input-box {
+  height: 6rem;
+  position: relative;
+  margin-bottom: 1rem;
+}
+.form__input-group {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.input-box input,
+.input-box input:active,
+.input-box input:focus {
+  font-size: 1.6rem;
+  border: 1px solid grey;
+  padding: 0.4rem 0.6rem;
+  border-radius: 4px;
+  outline: none;
+  margin: 0 0.4rem;
+}
+.input-box label,
+input {
+  display: block;
+  left: 1rem;
+}
+.input__suggestion-list {
+  display: block;
+  width: calc(100% - 0.8rem);
+  background: lightblue;
+  position: absolute;
+  top: 5.3rem;
+  margin: 0 0.4rem;
+}

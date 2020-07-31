@@ -25,7 +25,9 @@ class Navbar extends React.Component {
             id="myNav1"
           >
             <ul className="navbar-nav ml-auto">
+              <li className="nav-item">
               <SearchBar />
+              </li>
               <li className="nav-item">
                 <button
                   type="button"

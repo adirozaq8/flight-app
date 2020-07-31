@@ -5,6 +5,7 @@
 .no-button {
   border: none;
   background: inherit;
+  margin-left: 10px;
 }
 
 .input-group-append {

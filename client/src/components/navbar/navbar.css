@@ -6,3 +6,7 @@
   border: none;
   background: inherit;
 }
+
+.input-group-append {
+  padding-left: 1rem;
+}

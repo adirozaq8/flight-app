@@ -3,8 +3,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import "./navbar.css";
 
-import Clock from "../clock/Clock";
-
 class Navbar extends React.Component {
   //
   render() {
@@ -15,7 +13,6 @@ class Navbar extends React.Component {
           <a href="/" className="navbar-brand">
             Logo here
           </a>
-          <Clock />
           <button
             className="navbar-toggler"
             data-toggle="collapse"
@@ -28,24 +25,7 @@ class Navbar extends React.Component {
             id="myNav1"
           >
             <ul className="navbar-nav ml-auto">
-              <form action="" className="form-inline">
-                <div className="input-group">
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Search"
-                    aria-label="Search"
-                    aria-describedby="basic-addon1"
-                  />
-                  <div className="input-group-append">
-                    <span className="input-group-text" id="basic-addon1">
-                      <div className="MainFrame__fa-icon">
-                        <FontAwesomeIcon icon={faSearch} />
-                      </div>
-                    </span>
-                  </div>
-                </div>
-              </form>
+              <SearchBar />
               <li className="nav-item">
                 <button
                   type="button"
@@ -69,65 +49,97 @@ class Navbar extends React.Component {
             </ul>
           </div>
         </nav>
+        <LoginModal />
+        <SignupModal />
+      </div>
+    );
+  }
+}
 
-        {/* Login Modal */}
-        <div
-          className="modal fade"
-          id="loginModal"
-          tabIndex="-1"
-          role="dialog"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        >
-          <div className="modal-dialog" role="document">
-            <div className="modal-content">
-              <div className="modal-header">
-                <h5 className="modal-title" id="exampleModalLabel">
-                  Log In
-                </h5>
-                <button
-                  type="button"
-                  className="close"
-                  data-dismiss="modal"
-                  aria-label="Close"
-                >
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div className="modal-body">
-                <form action="/login" method="POST">
-                  <div className="form-group">
-                    <label htmlFor="usernameLogin">Username</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="usernameLogin"
-                      placeholder="Enter username"
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="passwordLogin">Password</label>
-                    <input
-                      type="password"
-                      className="form-control"
-                      id="passwordLogin"
-                      placeholder="Enter password"
-                    />
-                  </div>
-                  <div className="modal-footer">
-                    <button type="submit" className="btn btn-primary">
-                      Login
-                    </button>
-                  </div>
-                </form>
-              </div>
+function SearchBar(){
+  return(
+    <form action="" className="form-inline">
+      <div className="input-group">
+        <input
+          type="text"
+          className="form-control"
+          placeholder="Search"
+          aria-label="Search"
+          aria-describedby="basic-addon1"
+        />
+        <div className="input-group-append">
+          <div className="input-group-text" id="basic-addon1">
+            <div className="MainFrame__fa-icon">
+              <FontAwesomeIcon icon={faSearch} />
             </div>
           </div>
         </div>
-        {/* Modal End */}
+      </div>
+    </form>
+  )
+}
 
-        {/* Signup Modal */}
-        <div
+function LoginModal(){
+  return(
+          <div
+            className="modal fade"
+            id="loginModal"
+            tabIndex="-1"
+            role="dialog"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+          >
+            <div className="modal-dialog" role="document">
+              <div className="modal-content">
+                <div className="modal-header">
+                  <h5 className="modal-title" id="exampleModalLabel">
+                    Log In
+                  </h5>
+                  <button
+                    type="button"
+                    className="close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div className="modal-body">
+                  <form action="/login" method="POST">
+                    <div className="form-group">
+                      <label htmlFor="usernameLogin">Username</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="usernameLogin"
+                        placeholder="Enter username"
+                      />
+                    </div>
+                    <div className="form-group">
+                      <label htmlFor="passwordLogin">Password</label>
+                      <input
+                        type="password"
+                        className="form-control"
+                        id="passwordLogin"
+                        placeholder="Enter password"
+                      />
+                    </div>
+                    <div className="modal-footer">
+                      <button type="submit" className="btn btn-primary">
+                        Login
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+  )
+}
+
+function SignupModal(){
+  return(
+          <div
           className="modal fade"
           id="signupModal"
           tabIndex="-1"
@@ -199,10 +211,7 @@ class Navbar extends React.Component {
             </div>
           </div>
         </div>
-        {/* Modal End */}
-      </div>
-    );
-  }
+  )
 }
 
 export default Navbar;

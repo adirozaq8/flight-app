@@ -29,15 +29,15 @@ class Clock extends Component {
         <div className="card bg-primary text-white">
           <h3 className="card-title text-center">
             <div className="d-flex flex-wrap justify-content-center mt-2">
-              <a href="/">
+              <a>
                 <span className="badge hours"></span>
               </a>{" "}
               :
-              <a href="/">
+              <a>
                 <span className="badge min"></span>
               </a>{" "}
               :
-              <a href="/">
+              <a>
                 <span className="badge sec"></span>
               </a>
             </div>

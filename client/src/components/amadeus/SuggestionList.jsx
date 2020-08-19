@@ -1,19 +1,24 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { setAmformState } from "../../redux/amform/amform.actions";
 import FlightTakeoff from "@material-ui/icons/FlightTakeoff";
 import FlightLand from "@material-ui/icons/FlightLand";
 import "./SuggestionList.css";
 
 class SuggestionList extends Component {
+  constructor(props) {
+    super(props);
+    this.amform = props.amform;
+    this.setAmForm = props.setAmformState;
+  }
+
   render() {
     const cities = this.props.cities;
     return (
       <>
         {cities.length > 0 && (
           <div id="SuggestionList">
-            <div id="sugList-recent">{/* <p>Recent searches</p> */}</div>
-            <div id="sugList-popular">{/* <p>Popular cities</p> */}</div>
             <div id="sugList-suggest">
-              {/* <p>Suggestions</p> */}
               <div>
                 {cities.map((city) => (
                   <div key={city._id}>
@@ -44,5 +49,7 @@ class SuggestionList extends Component {
     );
   }
 }
-
-export default SuggestionList;
+const mapStateToProps = (state) => ({
+  amform: state.amform,
+});
+export default connect(mapStateToProps, { setAmformState })(SuggestionList);

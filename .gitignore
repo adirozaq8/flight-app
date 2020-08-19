@@ -62,11 +62,6 @@ typings/
 # folders
 Test
 AdminLTE
-<<<<<<< HEAD
-
-# lock
-package-lock.json
-=======
 thedatepicker-master
 flatpickr-master
->>>>>>> amadeusforms
+rdxrev

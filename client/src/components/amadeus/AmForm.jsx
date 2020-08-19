@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { setAmformState } from "../../redux/amform/amform.actions";
 import SuggestionList from "./SuggestionList";
 import DateInput from "../dateinput/DateInput";
 import CheckCircle from "@material-ui/icons/CheckCircle";
@@ -7,18 +9,14 @@ import Circle from "@material-ui/icons/PanoramaFishEyeOutlined";
 import "./AmForm.css";
 
 class AmForm extends Component {
-  constructor() {
-    super();
-    this.state = {
-      fromToFocus: 0,
-      travelType: 1,
-      inpOptLen: 5,
-      airDb: null,
-      airports: null,
-    };
+  constructor(props) {
+    super(props);
+    this.amform = props.amform;
+    this.setAmForm = props.setAmformState;
   }
   // TODO This fetch should be considered moving up in the component chain
   componentDidMount() {
+    console.log(this.amform);
     fetch("http://localhost:5000/api/amform/getairports", {
       method: "POST",
     })
@@ -26,20 +24,30 @@ class AmForm extends Component {
         return response.json();
       })
       .then((data) => {
-        this.setState({ airDb: data.reqAirport });
+        this.amform.airDb = data.reqAirport;
+        this.setAmForm(this.amform);
       });
   }
-
+  setAmForm(el) {
+    this.setAmformState({
+      type: "SET_AMFORM_STATE",
+      payload: el,
+    });
+  }
   // inputlist option list changes based on input
+  // MOVE THIS LOGIC TO SERVER
   travelChange = (e) => {
-    this.setState({ travelType: e });
+    this.amform.travelType = e;
+    this.setAmForm(this.amform);
   };
   fieldChange = (e, val) => {
-    this.setState({ fromToFocus: 0 });
+    //this.amform.fromToFocus = 0;
+    this.setAmForm(this.amform);
+    let allAirports = [];
     let dataListOpt = [];
     let exact = 0;
-    if (this.state.airDb.length > 0) {
-      dataListOpt = this.state.airDb.filter((airFilter) => {
+    if (this.amform.airDb.length > 0) {
+      dataListOpt = this.amform.airDb.filter((airFilter) => {
         if (airFilter.city.toLowerCase() === e.target.value.toLowerCase()) {
           exact++;
         }
@@ -50,18 +58,33 @@ class AmForm extends Component {
         );
       });
     }
-
+    allAirports = dataListOpt.filter((airFilter) => {
+      return airFilter.name.toLowerCase() === "all airports";
+    });
+    allAirports.map((city) => {
+      let filterList = [];
+      filterList = dataListOpt.filter((airFilter) => {
+        return airFilter.city.toLowerCase() === city.city.toLowerCase();
+      });
+      filterList.map((fList) => {
+        return dataListOpt.slice(
+          dataListOpt.indexOf(fList, dataListOpt.indexOf(fList))
+        );
+      });
+      return (city["airports"] = filterList);
+    });
     if (dataListOpt.length > 0) {
       dataListOpt = this.sortInputFirst(
         e.target.value.toLowerCase(),
         dataListOpt
       );
     }
-    exact > this.state.inpOptLen
+    exact > this.amform.inpOptLen
       ? (dataListOpt = dataListOpt.slice(0, exact))
-      : (dataListOpt = dataListOpt.slice(0, this.state.inpOptLen));
-
-    this.setState({ airports: dataListOpt, fromToFocus: val });
+      : (dataListOpt = dataListOpt.slice(0, this.amform.inpOptLen));
+    this.amform.airports = dataListOpt;
+    this.amform.fromToFocus = val;
+    this.setAmForm(this.amform);
   };
 
   // sorting priority based on input value at the beginning of string first
@@ -77,14 +100,16 @@ class AmForm extends Component {
     });
     return first.concat(second);
   };
-
+  inputBlur = (e) => {
+    console.log(e.target);
+  };
   render() {
     return (
       <div className="form" id="AmForm">
         <div className="form__input-group">
           <ul className="form__radio">
             <li onClick={() => this.travelChange(1)}>
-              {(this.state.travelType === 1 && (
+              {(this.amform.travelType === 1 && (
                 <CheckCircle
                   viewBox="0 0 24 24"
                   className="icon icon__active"
@@ -93,19 +118,19 @@ class AmForm extends Component {
               <span>One way</span>
             </li>
             <li onClick={() => this.travelChange(2)}>
-              {(this.state.travelType === 2 && (
+              {(this.amform.travelType === 2 && (
                 <CheckCircle className="icon icon__active" />
               )) || <Circle className="icon" />}
               <span>Return</span>
             </li>
             <li onClick={() => this.travelChange(3)}>
-              {(this.state.travelType === 3 && (
+              {(this.amform.travelType === 3 && (
                 <CheckCircle className="icon icon__active" />
               )) || <Circle className="icon" />}
               <span>Multi-city</span>
             </li>
             <li onClick={() => this.travelChange(4)}>
-              {(this.state.travelType === 4 && (
+              {(this.amform.travelType === 4 && (
                 <CheckCircle className="icon icon__active" />
               )) || <Circle className="icon" />}
               <span>Nomad</span>
@@ -122,8 +147,15 @@ class AmForm extends Component {
           <div className="input-box">
             <label htmlFor="Amf__input-from">From</label>
             <input
-              onFocus={() => this.setState({ fromToFocus: 1 })}
-              onBlur={() => this.setState({ fromToFocus: 0, airports: [] })}
+              onFocus={() => {
+                this.amform.fromToFocus = 1;
+                this.setAmForm(this.amform);
+              }}
+              onBlur={() => {
+                this.amform.fromToFocus = 0;
+                this.amform.airports = [];
+                this.setAmForm(this.amform);
+              }}
               onInput={(e) => this.fieldChange(e, 1)}
               autoComplete="off"
               type="text"
@@ -133,11 +165,11 @@ class AmForm extends Component {
               placeholder="Origin"
             />
             <span>Iata code, Origin</span>
-            {this.state.fromToFocus === 1 && (
+            {this.amform.fromToFocus === 1 && (
               <div className="input__suggestion-list">
                 <SuggestionList
-                  field={this.state.fromToFocus}
-                  cities={this.state.airports || []}
+                  field={this.amform.fromToFocus}
+                  cities={this.amform.airports || []}
                 />
               </div>
             )}
@@ -145,8 +177,15 @@ class AmForm extends Component {
           <div className="input-box">
             <label htmlFor="Amf__input-to">To</label>
             <input
-              onFocus={() => this.setState({ fromToFocus: 2 })}
-              onBlur={() => this.setState({ fromToFocus: 0, airports: [] })}
+              onFocus={() => {
+                this.amform.fromToFocus = 2;
+                this.setAmForm(this.amform);
+              }}
+              onBlur={() => {
+                this.amform.fromToFocus = 0;
+                this.amform.airports = [];
+                this.setAmForm(this.amform);
+              }}
               onInput={(e) => this.fieldChange(e, 2)}
               autoComplete="off"
               type="text"
@@ -156,11 +195,11 @@ class AmForm extends Component {
               placeholder="Destination"
             />
             <span>IATA code, Destination</span>
-            {this.state.fromToFocus === 2 && (
+            {this.amform.fromToFocus === 2 && (
               <div className="input__suggestion-list">
                 <SuggestionList
-                  field={this.state.fromToFocus}
-                  cities={this.state.airports || []}
+                  field={this.amform.fromToFocus}
+                  cities={this.amform.airports || []}
                 />
               </div>
             )}
@@ -190,5 +229,8 @@ class AmForm extends Component {
     );
   }
 }
+const mapStateToProps = (state) => ({
+  amform: state.amform,
+});
 
-export default AmForm;
+export default connect(mapStateToProps, { setAmformState })(AmForm);

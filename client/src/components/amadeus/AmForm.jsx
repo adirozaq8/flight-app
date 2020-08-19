@@ -24,8 +24,7 @@ class AmForm extends Component {
         return response.json();
       })
       .then((data) => {
-        this.amform.airDb = data.reqAirport;
-        this.setAmForm(this.amform);
+        this.setAmForm((this.amform.airDb = data.reqAirport));
       });
   }
   setAmForm(el) {
@@ -41,8 +40,6 @@ class AmForm extends Component {
     this.setAmForm(this.amform);
   };
   fieldChange = (e, val) => {
-    //this.amform.fromToFocus = 0;
-    this.setAmForm(this.amform);
     let allAirports = [];
     let dataListOpt = [];
     let exact = 0;
@@ -82,9 +79,10 @@ class AmForm extends Component {
     exact > this.amform.inpOptLen
       ? (dataListOpt = dataListOpt.slice(0, exact))
       : (dataListOpt = dataListOpt.slice(0, this.amform.inpOptLen));
-    this.amform.airports = dataListOpt;
-    this.amform.fromToFocus = val;
-    this.setAmForm(this.amform);
+    this.setAmForm(
+      (this.amform.airports = dataListOpt),
+      (this.amform.fromToFocus = val)
+    );
   };
 
   // sorting priority based on input value at the beginning of string first
@@ -148,13 +146,13 @@ class AmForm extends Component {
             <label htmlFor="Amf__input-from">From</label>
             <input
               onFocus={() => {
-                this.amform.fromToFocus = 1;
-                this.setAmForm(this.amform);
+                this.setAmForm((this.amform.fromToFocus = 1));
               }}
               onBlur={() => {
-                this.amform.fromToFocus = 0;
-                this.amform.airports = [];
-                this.setAmForm(this.amform);
+                this.setAmForm(
+                  (this.amform.fromToFocus = 0),
+                  (this.amform.airports = [])
+                );
               }}
               onInput={(e) => this.fieldChange(e, 1)}
               autoComplete="off"
@@ -178,13 +176,13 @@ class AmForm extends Component {
             <label htmlFor="Amf__input-to">To</label>
             <input
               onFocus={() => {
-                this.amform.fromToFocus = 2;
-                this.setAmForm(this.amform);
+                this.setAmForm((this.amform.fromToFocus = 2));
               }}
               onBlur={() => {
-                this.amform.fromToFocus = 0;
-                this.amform.airports = [];
-                this.setAmForm(this.amform);
+                this.setAmForm(
+                  (this.amform.fromToFocus = 0),
+                  (this.amform.airports = [])
+                );
               }}
               onInput={(e) => this.fieldChange(e, 2)}
               autoComplete="off"

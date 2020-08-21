@@ -10,8 +10,15 @@ class SuggestionList extends Component {
     super(props);
     this.amform = props.amform.amform;
   }
+
   clickSuggestion(e) {
-    //TODO add logic to suggestion items click. Consider Redux state element, or move this functionality to parent component.
+    //TODO look into turning this segment into a Redux state change
+    this.amform.fromToFocus === 1 &&
+      (document.getElementById("Amf__input-from").value =
+        e.currentTarget.dataset.city);
+    this.amform.fromToFocus === 2 &&
+      (document.getElementById("Amf__input-to").value =
+        e.currentTarget.dataset.city);
   }
   render() {
     if (this.amform.airports && this.amform.airports.length > 0) {
@@ -25,7 +32,8 @@ class SuggestionList extends Component {
                     <div key={city._id}>
                       <div
                         className="city-block"
-                        onClickCapture={(e) => this.clickSuggestion(e)}
+                        data-city={city.city}
+                        onMouseDown={(e) => this.clickSuggestion(e)}
                       >
                         <div>
                           <div className="city-title">

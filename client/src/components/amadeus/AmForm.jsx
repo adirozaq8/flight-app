@@ -78,7 +78,7 @@ class AmForm extends Component {
     }
     exact > this.amform.inpOptLen
       ? (dataListOpt = dataListOpt.slice(0, exact))
-      : (dataListOpt = dataListOpt.slice(0, this.amform.inpOptLen));
+      : (dataListOpt = dataListOpt.slice(0, this.amform.sugOptLen));
     this.amform.airports = dataListOpt;
     this.amform.fromToFocus = val;
     this.setAmForm(this.amform);
@@ -106,6 +106,12 @@ class AmForm extends Component {
         <span>{label}</span>
       </li>
     );
+  }
+  handleBlur(e) {
+    setTimeout(() => {
+      this.amform.fromToFocus = 0;
+      this.setAmForm(this.amform);
+    }, 0);
   }
   render() {
     return (
@@ -135,10 +141,13 @@ class AmForm extends Component {
               this.setAmForm(this.amform);
             }}
             onBlur={(e) => {
-              this.amform.fromToFocus = 0;
+              this.handleBlur(e);
+            }}
+            onInput={(e) => {
+              this.fieldChange(e, 1);
+              this.amform.inpOrigin = e.target.value;
               this.setAmForm(this.amform);
             }}
-            onInput={(e) => this.fieldChange(e, 1)}
           >
             <label htmlFor="Amf__input-from">From</label>
             <input

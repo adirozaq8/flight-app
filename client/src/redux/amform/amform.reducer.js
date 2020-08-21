@@ -3,7 +3,7 @@ const INITIAL_STATE = {
   amform: {
     fromToFocus: 0,
     travelType: 1,
-    inpOptLen: 15,
+    sugOptLen: 15,
     airDb: null,
     airports: null,
   },

@@ -11,12 +11,11 @@ import "./AmForm.css";
 class AmForm extends Component {
   constructor(props) {
     super(props);
-    this.amform = props.amform;
+    this.amform = props.amform.amform;
     this.setAmForm = props.setAmformState;
   }
-  // TODO This fetch should be considered moving up in the component chain
+  // TODO this fetch should be considered moving up in the component chain
   componentDidMount() {
-    console.log(this.amform);
     fetch("http://localhost:5000/api/amform/getairports", {
       method: "POST",
     })
@@ -24,7 +23,8 @@ class AmForm extends Component {
         return response.json();
       })
       .then((data) => {
-        this.setAmForm((this.amform.airDb = data.reqAirport));
+        this.amform.airDb = data.reqAirport;
+        this.setAmForm(this.amform);
       });
   }
   setAmForm(el) {
@@ -34,7 +34,7 @@ class AmForm extends Component {
     });
   }
   // inputlist option list changes based on input
-  // MOVE THIS LOGIC TO SERVER
+  // TODO move this logic to server side
   travelChange = (e) => {
     this.amform.travelType = e;
     this.setAmForm(this.amform);
@@ -79,10 +79,9 @@ class AmForm extends Component {
     exact > this.amform.inpOptLen
       ? (dataListOpt = dataListOpt.slice(0, exact))
       : (dataListOpt = dataListOpt.slice(0, this.amform.inpOptLen));
-    this.setAmForm(
-      (this.amform.airports = dataListOpt),
-      (this.amform.fromToFocus = val)
-    );
+    this.amform.airports = dataListOpt;
+    this.amform.fromToFocus = val;
+    this.setAmForm(this.amform);
   };
 
   // sorting priority based on input value at the beginning of string first
@@ -98,41 +97,24 @@ class AmForm extends Component {
     });
     return first.concat(second);
   };
-  inputBlur = (e) => {
-    console.log(e.target);
-  };
+  travelTypeConstructor(id, label) {
+    return (
+      <li key={"travelType-" + id} onClick={() => this.travelChange(id)}>
+        {(this.amform.travelType === id && (
+          <CheckCircle className="icon icon__active" />
+        )) || <Circle className="icon" />}
+        <span>{label}</span>
+      </li>
+    );
+  }
   render() {
     return (
       <div className="form" id="AmForm">
         <div className="form__input-group">
           <ul className="form__radio">
-            <li onClick={() => this.travelChange(1)}>
-              {(this.amform.travelType === 1 && (
-                <CheckCircle
-                  viewBox="0 0 24 24"
-                  className="icon icon__active"
-                />
-              )) || <Circle className="icon" />}
-              <span>One way</span>
-            </li>
-            <li onClick={() => this.travelChange(2)}>
-              {(this.amform.travelType === 2 && (
-                <CheckCircle className="icon icon__active" />
-              )) || <Circle className="icon" />}
-              <span>Return</span>
-            </li>
-            <li onClick={() => this.travelChange(3)}>
-              {(this.amform.travelType === 3 && (
-                <CheckCircle className="icon icon__active" />
-              )) || <Circle className="icon" />}
-              <span>Multi-city</span>
-            </li>
-            <li onClick={() => this.travelChange(4)}>
-              {(this.amform.travelType === 4 && (
-                <CheckCircle className="icon icon__active" />
-              )) || <Circle className="icon" />}
-              <span>Nomad</span>
-            </li>
+            {["One way", "Return", "Multi-city", "Nomad"].map((el, idx) => {
+              return this.travelTypeConstructor(idx + 1, el);
+            })}
           </ul>
         </div>
         <div className="form__input-group">
@@ -142,21 +124,27 @@ class AmForm extends Component {
           <DateInput className="AmDate" />
         </div>
         <div className="form__input-group">
-          <div className="input-box">
+          {
+            //TODO add logic so that Suggestion list does not disappear on blur of the target input field, and add values to input
+          }
+          <div
+            className="input-box"
+            onFocus={(e) => {
+              this.amform.fromToFocus = 1;
+              this.fieldChange(e, 1);
+              this.setAmForm(this.amform);
+            }}
+            onBlur={(e) => {
+              this.amform.fromToFocus = 0;
+              this.setAmForm(this.amform);
+            }}
+            onInput={(e) => this.fieldChange(e, 1)}
+          >
             <label htmlFor="Amf__input-from">From</label>
             <input
-              onFocus={() => {
-                this.setAmForm((this.amform.fromToFocus = 1));
-              }}
-              onBlur={() => {
-                this.setAmForm(
-                  (this.amform.fromToFocus = 0),
-                  (this.amform.airports = [])
-                );
-              }}
-              onInput={(e) => this.fieldChange(e, 1)}
               autoComplete="off"
               type="text"
+              className="Amf__input-field"
               id="Amf__input-from"
               name="from"
               list="list_airports"
@@ -165,28 +153,28 @@ class AmForm extends Component {
             <span>Iata code, Origin</span>
             {this.amform.fromToFocus === 1 && (
               <div className="input__suggestion-list">
-                <SuggestionList
-                  field={this.amform.fromToFocus}
-                  cities={this.amform.airports || []}
-                />
+                <SuggestionList />
               </div>
             )}
           </div>
-          <div className="input-box">
+          <div
+            className="input-box"
+            onFocus={(e) => {
+              this.amform.fromToFocus = 2;
+              this.fieldChange(e, 2);
+              this.setAmForm(this.amform);
+            }}
+            onBlur={(e) => {
+              this.amform.fromToFocus = 0;
+              this.setAmForm(this.amform);
+            }}
+            onInput={(e) => this.fieldChange(e, 2)}
+          >
             <label htmlFor="Amf__input-to">To</label>
             <input
-              onFocus={() => {
-                this.setAmForm((this.amform.fromToFocus = 2));
-              }}
-              onBlur={() => {
-                this.setAmForm(
-                  (this.amform.fromToFocus = 0),
-                  (this.amform.airports = [])
-                );
-              }}
-              onInput={(e) => this.fieldChange(e, 2)}
               autoComplete="off"
               type="text"
+              className="Amf__input-field"
               id="Amf__input-to"
               name="to"
               list="list_airports"
@@ -195,10 +183,7 @@ class AmForm extends Component {
             <span>IATA code, Destination</span>
             {this.amform.fromToFocus === 2 && (
               <div className="input__suggestion-list">
-                <SuggestionList
-                  field={this.amform.fromToFocus}
-                  cities={this.amform.airports || []}
-                />
+                <SuggestionList />
               </div>
             )}
           </div>
@@ -227,6 +212,7 @@ class AmForm extends Component {
     );
   }
 }
+
 const mapStateToProps = (state) => ({
   amform: state.amform,
 });

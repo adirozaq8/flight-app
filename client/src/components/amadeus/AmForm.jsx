@@ -107,6 +107,46 @@ class AmForm extends Component {
       </li>
     );
   }
+  //cityInputConstructor(fromToId, label, inputId, inputName, inputPlaceHolder) {
+  cityInputConstructor(fromToId, label, inputId, inputName, inputPlaceHolder) {
+    return (
+      <div key={"input-" + fromToId} className="input-box">
+        <label htmlFor={inputId}>{label}</label>
+        <input
+          onFocus={(e) => {
+            this.fieldChange(e, fromToId);
+            this.handleFocus(e, fromToId);
+          }}
+          onBlur={(e) => {
+            this.handleBlur(e);
+          }}
+          onInput={(e) => {
+            this.fieldChange(e, fromToId);
+          }}
+          autoComplete="off"
+          type="text"
+          className="Amf__input-field"
+          id={inputId}
+          name={inputName}
+          list="list_airports"
+          placeholder={inputPlaceHolder}
+        />
+        <span>Iata code, {inputPlaceHolder}</span>
+        {this.amform.fromToFocus === fromToId && (
+          <div className="input__suggestion-list">
+            <SuggestionList />
+          </div>
+        )}
+      </div>
+    );
+  }
+  handleFocus(e, fromToId) {
+    //NOTE this has to be sent to the back of the event loop to be executed after handleBlur
+    setTimeout(() => {
+      this.amform.fromToFocus = fromToId;
+      this.setAmForm(this.amform);
+    }, 0);
+  }
   handleBlur(e) {
     setTimeout(() => {
       this.amform.fromToFocus = 0;
@@ -130,72 +170,16 @@ class AmForm extends Component {
           <DateInput className="AmDate" />
         </div>
         <div className="form__input-group">
-          {
-            //TODO add logic so that Suggestion list does not disappear on blur of the target input field, and add values to input
-          }
-          <div
-            className="input-box"
-            onFocus={(e) => {
-              this.amform.fromToFocus = 1;
-              this.fieldChange(e, 1);
-              this.setAmForm(this.amform);
-            }}
-            onBlur={(e) => {
-              this.handleBlur(e);
-            }}
-            onInput={(e) => {
-              this.fieldChange(e, 1);
-              this.amform.inpOrigin = e.target.value;
-              this.setAmForm(this.amform);
-            }}
-          >
-            <label htmlFor="Amf__input-from">From</label>
-            <input
-              autoComplete="off"
-              type="text"
-              className="Amf__input-field"
-              id="Amf__input-from"
-              name="from"
-              list="list_airports"
-              placeholder="Origin"
-            />
-            <span>Iata code, Origin</span>
-            {this.amform.fromToFocus === 1 && (
-              <div className="input__suggestion-list">
-                <SuggestionList />
-              </div>
-            )}
-          </div>
-          <div
-            className="input-box"
-            onFocus={(e) => {
-              this.amform.fromToFocus = 2;
-              this.fieldChange(e, 2);
-              this.setAmForm(this.amform);
-            }}
-            onBlur={(e) => {
-              this.amform.fromToFocus = 0;
-              this.setAmForm(this.amform);
-            }}
-            onInput={(e) => this.fieldChange(e, 2)}
-          >
-            <label htmlFor="Amf__input-to">To</label>
-            <input
-              autoComplete="off"
-              type="text"
-              className="Amf__input-field"
-              id="Amf__input-to"
-              name="to"
-              list="list_airports"
-              placeholder="Destination"
-            />
-            <span>IATA code, Destination</span>
-            {this.amform.fromToFocus === 2 && (
-              <div className="input__suggestion-list">
-                <SuggestionList />
-              </div>
-            )}
-          </div>
+          {["From", "To"].map((el, idx) => {
+            let inputArgs;
+            inputArgs = ["Amf__input-from", "from", "Origin"];
+            if (idx === 0) {
+              inputArgs = ["Amf__input-from", "from", "Origin"];
+            } else {
+              inputArgs = ["Amf__input-to", "to", "Destination"];
+            }
+            return this.cityInputConstructor(idx + 1, el, ...inputArgs);
+          })}
         </div>
         <div className="form__input-group">
           <label htmlFor="AmClass">Cabin class</label>

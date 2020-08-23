@@ -9,16 +9,15 @@ class SuggestionList extends Component {
   constructor(props) {
     super(props);
     this.amform = props.amform.amform;
+    this.setAmForm = props.setAmformState;
   }
 
   clickSuggestion(e) {
-    //TODO look into turning this segment into a Redux state change
     this.amform.fromToFocus === 1 &&
-      (document.getElementById("Amf__input-from").value =
-        e.currentTarget.dataset.city);
+      (this.amform.input.from = e.currentTarget.dataset.city);
     this.amform.fromToFocus === 2 &&
-      (document.getElementById("Amf__input-to").value =
-        e.currentTarget.dataset.city);
+      (this.amform.input.to = e.currentTarget.dataset.city);
+    this.setAmForm(this.amform);
   }
   render() {
     if (this.amform.airports && this.amform.airports.length > 0) {

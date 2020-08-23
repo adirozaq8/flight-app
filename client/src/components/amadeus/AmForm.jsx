@@ -107,18 +107,24 @@ class AmForm extends Component {
       </li>
     );
   }
-  //cityInputConstructor(fromToId, label, inputId, inputName, inputPlaceHolder) {
-  cityInputConstructor(fromToId, label, inputId, inputName, inputPlaceHolder) {
+  cityInputConstructor(
+    fromToId,
+    label,
+    inputId,
+    inputName,
+    inputPlaceHolder,
+    inputValue
+  ) {
     return (
       <div key={"input-" + fromToId} className="input-box">
         <label htmlFor={inputId}>{label}</label>
         <input
           onFocus={(e) => {
             this.fieldChange(e, fromToId);
-            this.handleFocus(e, fromToId);
+            this.handleFocus(fromToId);
           }}
-          onBlur={(e) => {
-            this.handleBlur(e);
+          onBlur={() => {
+            this.handleBlur();
           }}
           onInput={(e) => {
             this.fieldChange(e, fromToId);
@@ -130,6 +136,8 @@ class AmForm extends Component {
           name={inputName}
           list="list_airports"
           placeholder={inputPlaceHolder}
+          value={inputValue}
+          onChange={(e) => this.inputChange(e)}
         />
         <span>Iata code, {inputPlaceHolder}</span>
         {this.amform.fromToFocus === fromToId && (
@@ -140,14 +148,25 @@ class AmForm extends Component {
       </div>
     );
   }
-  handleFocus(e, fromToId) {
-    //NOTE this has to be sent to the back of the event loop to be executed after handleBlur
+  inputChange(e) {
+    //TODO add logic to remove ready flags on change
+    this.amform.fromToFocus === 1 &&
+      e &&
+      (this.amform.input.from = e.target.value);
+    this.amform.fromToFocus === 2 &&
+      e &&
+      (this.amform.input.to = e.target.value);
+    this.setAmForm(this.amform);
+  }
+  handleFocus(fromToId) {
+    //NOTE this has to be sent to the callback queue to be executed after this.handleBlur
     setTimeout(() => {
       this.amform.fromToFocus = fromToId;
       this.setAmForm(this.amform);
     }, 0);
   }
-  handleBlur(e) {
+  handleBlur() {
+    //NOTE this has to be sent to the callback queue to be executed after onMouseDown event in suggestionList component
     setTimeout(() => {
       this.amform.fromToFocus = 0;
       this.setAmForm(this.amform);
@@ -172,13 +191,26 @@ class AmForm extends Component {
         <div className="form__input-group">
           {["From", "To"].map((el, idx) => {
             let inputArgs;
-            inputArgs = ["Amf__input-from", "from", "Origin"];
             if (idx === 0) {
-              inputArgs = ["Amf__input-from", "from", "Origin"];
+              inputArgs = [
+                idx + 1,
+                el,
+                "Amf__input-from",
+                "from",
+                "Origin",
+                this.amform.input.from,
+              ];
             } else {
-              inputArgs = ["Amf__input-to", "to", "Destination"];
+              inputArgs = [
+                idx + 1,
+                el,
+                "Amf__input-to",
+                "to",
+                "Destination",
+                this.amform.input.to,
+              ];
             }
-            return this.cityInputConstructor(idx + 1, el, ...inputArgs);
+            return this.cityInputConstructor(...inputArgs);
           })}
         </div>
         <div className="form__input-group">

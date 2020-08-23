@@ -6,6 +6,12 @@ const INITIAL_STATE = {
     sugOptLen: 15,
     airDb: null,
     airports: null,
+    input: {
+      from: "",
+      fromReady: false,
+      to: "",
+      toReady: false,
+    },
   },
 };
 

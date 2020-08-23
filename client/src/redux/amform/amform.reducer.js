@@ -9,8 +9,14 @@ const INITIAL_STATE = {
     input: {
       from: "",
       fromReady: false,
+      fromIata: "",
+      fromAirport: "",
+      fromCountry: "",
       to: "",
       toReady: false,
+      toIata: "",
+      toAirport: "",
+      toCountry: "",
     },
   },
 };

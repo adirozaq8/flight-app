@@ -13,10 +13,19 @@ class SuggestionList extends Component {
   }
 
   clickSuggestion(e) {
-    this.amform.fromToFocus === 1 &&
-      (this.amform.input.from = e.currentTarget.dataset.city);
-    this.amform.fromToFocus === 2 &&
-      (this.amform.input.to = e.currentTarget.dataset.city);
+    if (this.amform.fromToFocus === 1) {
+      this.amform.input.fromReady = true;
+      this.amform.input.from = e.currentTarget.dataset.city;
+      this.amform.input.fromIata = e.currentTarget.dataset.iata;
+      this.amform.input.fromAirport = e.currentTarget.dataset.airport;
+      this.amform.input.fromCountry = e.currentTarget.dataset.country;
+    } else {
+      this.amform.input.toReady = true;
+      this.amform.input.to = e.currentTarget.dataset.city;
+      this.amform.input.toIata = e.currentTarget.dataset.iata;
+      this.amform.input.toAirport = e.currentTarget.dataset.airport;
+      this.amform.input.toCountry = e.currentTarget.dataset.country;
+    }
     this.setAmForm(this.amform);
   }
   render() {
@@ -32,6 +41,9 @@ class SuggestionList extends Component {
                       <div
                         className="city-block"
                         data-city={city.city}
+                        data-airport={city.name}
+                        data-iata={city.iata}
+                        data-country={city.country}
                         onMouseDown={(e) => this.clickSuggestion(e)}
                       >
                         <div>
@@ -43,10 +55,10 @@ class SuggestionList extends Component {
                             <span>{city.name}</span>
                           </div>
                         </div>
-                        {this.props.field === 1 && (
+                        {this.amform.fromToFocus === 1 && (
                           <FlightTakeoff className="from-to-icon" />
                         )}
-                        {this.props.field === 2 && (
+                        {this.amform.fromToFocus === 2 && (
                           <FlightLand className="from-to-icon" />
                         )}
                       </div>

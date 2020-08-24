@@ -1,13 +1,21 @@
 import React from "react";
 import DatePicker from "react-datepicker";
+import CustomInput from "./CustomInput";
 
 import "react-datepicker/dist/react-datepicker.css";
 
+// TODO move this state to redux
+
 class DateInput extends React.Component {
-  state = {
-    startDate: new Date(),
-    date: new Date(),
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      startDate: new Date(),
+      date: new Date(),
+      datePickerIsOpen: false,
+    };
+    this.handleChange = this.handleChange.bind(this);
+  }
 
   handleChange = (date) => {
     this.setState({
@@ -18,12 +26,15 @@ class DateInput extends React.Component {
 
   render() {
     return (
-      <DatePicker
-        selected={this.state.date}
-        onChange={this.handleChange}
-        showTimeSelect
-        dateFormat="Pp"
-      />
+      <>
+        <DatePicker
+          selected={this.state.date}
+          onChange={this.handleChange}
+          //showTimeSelect
+          dateFormat="d MMMM yyyy"
+          customInput={<CustomInput />}
+        />
+      </>
     );
   }
 }

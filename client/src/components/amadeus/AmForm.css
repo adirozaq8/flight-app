@@ -129,3 +129,26 @@
     opacity: 100;
   }
 }
+.react-datepicker__input-container button {
+  border-radius: 4px;
+  background: rgb(50, 56, 62);
+  color: white;
+  border: none;
+  padding: 0 0.6rem;
+  height: 3.2rem;
+  width: 5rem;
+  line-height: 1rem;
+  font-size: 80%;
+}
+.react-datepicker__input-container button:focus {
+  background: grey;
+}
+.input-box__header {
+  display: flex;
+  flex-direction: column;
+}
+.input-box__header label {
+  font-size: 80%;
+  margin: 0;
+  padding: 0;
+}

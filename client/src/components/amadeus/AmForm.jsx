@@ -152,12 +152,6 @@ class AmForm extends Component {
           </ul>
         </div>
         <div className="form__input-group">
-          <label htmlFor="AmDepart">Departure</label>
-          <DateInput className="AmDate" />
-          <label htmlFor="AmReturn">Return</label>
-          <DateInput className="AmDate" />
-        </div>
-        <div className="form__input-group">
           {
             //TODO consider turning input-box into a react component
           }
@@ -212,8 +206,12 @@ class AmForm extends Component {
               </div>
             )}
           </div>
+          <div className="input-box__header">
+            <label htmlFor="AmDepart">Departure</label>
+            <DateInput className="AmDate" />
+          </div>
           <div className="input-box">
-            <label htmlFor="Amf__input-from">To</label>
+            <label htmlFor="Amf__input-to">To</label>
             <div className="input-field__wrapper">
               <input
                 onFocus={(e) => {
@@ -262,6 +260,12 @@ class AmForm extends Component {
               </div>
             )}
           </div>
+          {this.amform.travelType !== 1 && (
+            <div className="input-box__header">
+              <label htmlFor="AmReturn">Return</label>
+              <DateInput className="AmDate" />
+            </div>
+          )}
         </div>
         <div className="form__input-group">
           <label htmlFor="AmClass">Cabin class</label>

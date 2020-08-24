@@ -51,8 +51,9 @@ class SuggestionList extends Component {
                             <span>{city.city}</span>
                           </div>
                           <div className="city-subtitle">
-                            <span>{city.iata}</span>&nbsp;
-                            <span>{city.name}</span>
+                            <span>{city.iata},</span>&nbsp;
+                            <span>{city.name},</span>&nbsp;
+                            <span>{city.country}</span>
                           </div>
                         </div>
                         {this.amform.fromToFocus === 1 && (

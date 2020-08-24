@@ -4,8 +4,6 @@
   box-shadow: inset 0px 0px 10px -4px black;
   border-radius: 2px;
   padding: 0.4rem;
-  overflow-y: auto;
-  max-height: 200px;
 }
 #SuggestionList p {
   margin: 0 0;

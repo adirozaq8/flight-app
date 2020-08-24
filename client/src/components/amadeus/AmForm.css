@@ -1,3 +1,4 @@
+/*TODO better class naming structure */
 .form {
   user-select: none;
   padding: 2rem;
@@ -21,14 +22,13 @@
   height: 1.6rem !important;
 }
 .icon {
-  opacity: 0.3;
+  color: rgb(151, 151, 151);
 }
 .icon__active {
-  opacity: 0.7;
+  color: rgb(50, 56, 62);
 }
 /* input for city search */
 .input-box {
-  height: 6rem;
   position: relative;
   margin-bottom: 1rem;
   box-sizing: content-box;
@@ -42,24 +42,90 @@
 .input-box input,
 .input-box input:active,
 .input-box input:focus {
-  font-size: 1.6rem;
-  border: 1px solid grey;
-  padding: 0.4rem 0.6rem;
-  border-radius: 4px;
   outline: none;
-  margin: 0 0.4rem;
+}
+.input-field__wrapper {
+  width: 22rem;
+  height: 3.4rem;
+  border: 1px solid rgb(50, 56, 62);
+  background: rgb(50, 56, 62);
+  border-radius: 4px;
+  position: relative;
+  margin: 0 1rem;
 }
 .input-box label,
-input {
+.Amf__input-field {
   display: block;
   left: 1rem;
   margin: 0;
+  border: none;
+  transition: all 0.3s;
+}
+.input-box label {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+.Amf__input-field__not-ready {
+  border-radius: 4px;
+  width: 100%;
+  height: 100%;
+  padding-left: 1rem;
+  left: 0;
+  margin: 0;
+  font-size: 1.6rem;
+  position: absolute;
+}
+.Amf__input-field__ready {
+  border-radius: 0 0 4px 4px;
+  width: 76%;
+  font-size: 1.4rem;
+  left: 3.5rem;
+  padding-left: 1rem;
+  position: absolute;
+}
+.Amf-input__iata,
+.Amf-input__airport,
+.Amf-input__country {
+  animation: opactosolid 1s ease;
+}
+.Amf-input__iata {
+  color: white;
+  font-size: 1.4rem;
+  position: absolute;
+  left: 0.4rem;
+  top: 34%;
+  transform: translateY(-50%);
+  transition: all 0.2s;
+}
+.Amf-input__airport {
+  color: white;
+  font-size: 0.8rem;
+  position: absolute;
+  bottom: 0;
+  left: 0.4rem;
+}
+.Amf-input__country {
+  color: white;
+  font-size: 0.8rem;
+  position: absolute;
+  bottom: 0;
+  right: 0.4rem;
 }
 .input__suggestion-list {
   display: block;
-  width: calc(100% - 0.8rem);
+  width: calc(100% - 2rem);
   background: lightblue;
   position: absolute;
   top: 4.8rem;
-  margin: 0 0.4rem;
+  margin: 0 1rem;
+  max-height: 200px;
+  overflow-y: auto;
+}
+@keyframes opactosolid {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 100;
+  }
 }

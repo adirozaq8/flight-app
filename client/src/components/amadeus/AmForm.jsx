@@ -43,7 +43,7 @@ class AmForm extends Component {
     let allAirports = [];
     let dataListOpt = [];
     let exact = 0;
-    if (this.amform.airDb.length > 0) {
+    if (this.amform.airDb && this.amform.airDb.length > 0) {
       dataListOpt = this.amform.airDb.filter((airFilter) => {
         if (airFilter.city.toLowerCase() === e.target.value.toLowerCase()) {
           exact++;
@@ -110,11 +110,13 @@ class AmForm extends Component {
   inputChange(e) {
     //TODO add logic to remove ready flags on change
     if (this.amform.fromToFocus === 1 && e) {
+      this.amform.input.fromReady = false;
       this.amform.input.from = e.target.value;
       this.amform.input.fromIata = "";
       this.amform.input.fromAirport = "";
       this.amform.input.fromCountry = "";
     } else if (e) {
+      this.amform.input.toReady = false;
       this.amform.input.to = e.target.value;
       this.amform.input.toIata = "";
       this.amform.input.toAirport = "";
@@ -161,31 +163,49 @@ class AmForm extends Component {
           }
           <div className="input-box">
             <label htmlFor="Amf__input-from">From</label>
-            <input
-              onFocus={(e) => {
-                this.fieldChange(e, 1);
-                this.handleFocus(1);
-              }}
-              onBlur={() => {
-                this.handleBlur();
-              }}
-              //TODO join onInput and onChange
-              onInput={(e) => {
-                this.fieldChange(e, 1);
-              }}
-              autoComplete="off"
-              type="text"
-              className="Amf__input-field"
-              id="Amf__input-from"
-              name="from"
-              list="list_airports"
-              placeholder="Origin"
-              value={this.amform.input.from}
-              onChange={(e) => this.inputChange(e)}
-            />
-            <span>{this.amform.input.fromIata}</span>
-            <span>{" " + this.amform.input.fromAirport}</span>
-            <span>{" " + this.amform.input.fromCountry}</span>
+            <div className="input-field__wrapper">
+              <input
+                onFocus={(e) => {
+                  this.fieldChange(e, 1);
+                  this.handleFocus(1);
+                }}
+                onBlur={() => {
+                  this.handleBlur();
+                }}
+                //TODO join onInput and onChange
+                onInput={(e) => {
+                  this.fieldChange(e, 1);
+                }}
+                autoComplete="off"
+                type="text"
+                className={
+                  this.amform.input.fromReady
+                    ? "Amf__input-field Amf__input-field__ready"
+                    : "Amf__input-field Amf__input-field__not-ready"
+                }
+                id="Amf__input-from"
+                name="from"
+                list="list_airports"
+                placeholder="Origin"
+                value={this.amform.input.from}
+                onChange={(e) => this.inputChange(e)}
+              />
+              {this.amform.input.fromIata && (
+                <span className="Amf-input__iata">
+                  {this.amform.input.fromIata}
+                </span>
+              )}
+              {this.amform.input.fromAirport && (
+                <span className="Amf-input__airport">
+                  {this.amform.input.fromAirport}
+                </span>
+              )}
+              {this.amform.input.fromCountry && (
+                <span className="Amf-input__country">
+                  {this.amform.input.fromCountry}
+                </span>
+              )}
+            </div>
             {this.amform.fromToFocus === 1 && (
               <div className="input__suggestion-list">
                 <SuggestionList />
@@ -194,30 +214,48 @@ class AmForm extends Component {
           </div>
           <div className="input-box">
             <label htmlFor="Amf__input-from">To</label>
-            <input
-              onFocus={(e) => {
-                this.fieldChange(e, 2);
-                this.handleFocus(2);
-              }}
-              onBlur={() => {
-                this.handleBlur();
-              }}
-              onInput={(e) => {
-                this.fieldChange(e, 2);
-              }}
-              autoComplete="off"
-              type="text"
-              className="Amf__input-field"
-              id="Amf__input-to"
-              name="to"
-              list="list_airports"
-              placeholder="Destination"
-              value={this.amform.input.to}
-              onChange={(e) => this.inputChange(e)}
-            />
-            <span>{this.amform.input.toIata}</span>
-            <span>{" " + this.amform.input.toAirport}</span>
-            <span>{" " + this.amform.input.toCountry}</span>
+            <div className="input-field__wrapper">
+              <input
+                onFocus={(e) => {
+                  this.fieldChange(e, 2);
+                  this.handleFocus(2);
+                }}
+                onBlur={() => {
+                  this.handleBlur();
+                }}
+                onInput={(e) => {
+                  this.fieldChange(e, 2);
+                }}
+                autoComplete="off"
+                type="text"
+                className={
+                  this.amform.input.toReady
+                    ? "Amf__input-field Amf__input-field__ready"
+                    : "Amf__input-field Amf__input-field__not-ready"
+                }
+                id="Amf__input-to"
+                name="to"
+                list="list_airports"
+                placeholder="Destination"
+                value={this.amform.input.to}
+                onChange={(e) => this.inputChange(e)}
+              />
+              {this.amform.input.toIata && (
+                <span className="Amf-input__iata">
+                  {this.amform.input.toIata}
+                </span>
+              )}
+              {this.amform.input.toAirport && (
+                <span className="Amf-input__airport">
+                  {" " + this.amform.input.toAirport}
+                </span>
+              )}
+              {this.amform.input.toCountry && (
+                <span className="Amf-input__country">
+                  {" " + this.amform.input.toCountry}
+                </span>
+              )}
+            </div>
             {this.amform.fromToFocus === 2 && (
               <div className="input__suggestion-list">
                 <SuggestionList />

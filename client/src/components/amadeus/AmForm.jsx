@@ -223,7 +223,7 @@ class AmForm extends Component {
               )}
             </div>
           </div>
-          {this.amform.travelType === 2 && (
+          {this.amform.travelType && (
             <div className="input-box">
               <div className="input-box__inner">
                 <label htmlFor="Amf__input-to">To</label>
@@ -274,10 +274,16 @@ class AmForm extends Component {
                       </span>
                     )}
                   </div>
-                  <div className="input-box__date-header">
-                    <label htmlFor="AmReturn">Return</label>
-                    <DateInput className="AmDate" />
-                  </div>
+                  {this.amform.travelType && (
+                    <div className="input-box__date-header">
+                      {this.amform.travelType === 2 && (
+                        <label htmlFor="AmReturn">Return</label>
+                      )}
+                      {this.amform.travelType === 2 && (
+                        <DateInput className="AmDate" />
+                      )}
+                    </div>
+                  )}
                 </div>
                 {this.amform.fromToFocus === 2 && (
                   <div className="input__suggestion-list">

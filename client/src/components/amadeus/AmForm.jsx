@@ -162,7 +162,13 @@ class AmForm extends Component {
           <div className="input-box">
             <div className="input-box__inner">
               <label htmlFor="Amf__input-from">From</label>
-              <div className="input-field__wrapper">
+              <div
+                className={
+                  this.amform.fromToFocus === 1
+                    ? "input-field__wrapper Amform--no-brd-rd-bottom"
+                    : "input-field__wrapper"
+                }
+              >
                 <div
                   className="input-field__wrapper-inner"
                   onClick={() => this.handleFocus(1)}
@@ -227,7 +233,13 @@ class AmForm extends Component {
             <div className="input-box">
               <div className="input-box__inner">
                 <label htmlFor="Amf__input-to">To</label>
-                <div className="input-field__wrapper">
+                <div
+                  className={
+                    this.amform.fromToFocus === 2
+                      ? "input-field__wrapper Amform--no-brd-rd-bottom"
+                      : "input-field__wrapper"
+                  }
+                >
                   <div
                     className="input-field__wrapper-inner"
                     onClick={() => this.handleFocus(2)}

@@ -274,7 +274,7 @@ class AmForm extends Component {
                       </span>
                     )}
                   </div>
-                  {this.amform.travelType && (
+                  {this.amform.travelType === 2 && (
                     <div className="input-box__date-header">
                       {this.amform.travelType === 2 && (
                         <label htmlFor="AmReturn">Return</label>
@@ -295,19 +295,30 @@ class AmForm extends Component {
           )}
         </div>
         <div className="form__input-group">
-          <label htmlFor="AmClass">Cabin class</label>
-          <select id="AmClass">
-            <option value="economy">Economy</option>
-            <option value="premium">Premium economy</option>
-            <option value="business">Business</option>
-            <option value="first">First class</option>
-          </select>
-        </div>
-        <div className="form__input-group">
-          <label htmlFor="AmAdults">Adults</label>
-          <input type="number" id="AmAdults" name="adults" defaultValue="1" />
-          <label htmlFor="AmChildren">Children</label>
-          <input type="number" id="AmChildren" name="children" />
+          <div className="form__secondary">
+            <label htmlFor="AmClass">Cabin class</label>
+            <select className="form__secondary__item" id="AmClass">
+              <option value="economy">Economy</option>
+              <option value="premium">Premium economy</option>
+              <option value="business">Business</option>
+              <option value="first">First class</option>
+            </select>
+            <label htmlFor="AmAdults">Adults</label>
+            <input
+              className="form__secondary__item form__secondary__input-number"
+              type="number"
+              id="AmAdults"
+              name="adults"
+              defaultValue="1"
+            />
+            <label htmlFor="AmChildren">Children</label>
+            <input
+              className="form__secondary__item form__secondary__input-number"
+              type="number"
+              id="AmChildren"
+              name="children"
+            />
+          </div>
         </div>
         <div className="form__input-group">
           <button id="AmSubmit" type="button">

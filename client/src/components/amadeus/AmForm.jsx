@@ -307,6 +307,8 @@ class AmForm extends Component {
             <input
               className="form__secondary__item form__secondary__input-number"
               type="number"
+              min="1"
+              max="9"
               id="AmAdults"
               name="adults"
               defaultValue="1"
@@ -314,6 +316,8 @@ class AmForm extends Component {
             <label htmlFor="AmChildren">Children</label>
             <input
               className="form__secondary__item form__secondary__input-number"
+              min="0"
+              max="9"
               type="number"
               id="AmChildren"
               name="children"

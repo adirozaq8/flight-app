@@ -4,6 +4,10 @@
   padding: 2rem;
   /* background: lightblue; */
 }
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  opacity: 1;
+}
 /* travel types */
 .form__radio {
   justify-content: center;
@@ -66,7 +70,7 @@
   border-radius: 0 4px 4px 0;
   background: rgb(255, 255, 255);
   color: black;
-  border: 2px solid black;
+  border: 2px solid rgba(50, 56, 62);
   padding: 0 0.6rem;
   height: 3.36rem;
   width: 5rem;

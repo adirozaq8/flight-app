@@ -103,8 +103,8 @@ class AmForm extends Component {
     return (
       <li key={"travelType-" + id} onClick={() => this.travelChange(id)}>
         {(this.amform.travelType === id && (
-          <CheckCircle className="icon icon__active" />
-        )) || <Circle className="icon" />}
+          <CheckCircle className="AmForm__icon AmForm__icon--active" />
+        )) || <Circle className="AmForm__icon" />}
         <span>{label}</span>
       </li>
     );
@@ -144,33 +144,33 @@ class AmForm extends Component {
   }
   render() {
     return (
-      <div className="form" id="AmForm">
-        <div className="form__input-group">
+      <div className="AmForm" id="AmForm">
+        <div className="AmForm__input-group">
           {
             //TODO consider turning this list into a react component
           }
-          <ul className="form__radio">
+          <ul className="AmForm__radio">
             {["One way", "Return", "Multi-city", "Nomad"].map((el, idx) => {
               return this.travelTypeConstructor(idx + 1, el);
             })}
           </ul>
         </div>
-        <div className="form__input-group">
+        <div className="AmForm__input-group">
           {
-            //TODO turn input-box into a react component
+            //TODO turn AmForm__input-box into a react component
           }
-          <div className="input-box">
-            <div className="input-box__inner">
-              <label htmlFor="Amf__input-from">From</label>
+          <div className="AmForm__input-box">
+            <div className="AmForm__input-box-inner">
+              <label htmlFor="AmForm__input-from">From</label>
               <div
                 className={
                   this.amform.fromToFocus === 1
-                    ? "input-field__wrapper Amform--no-brd-rd-bottom"
-                    : "input-field__wrapper"
+                    ? "AmForm__input-wrapper Amform--no-brd-rd-bottom"
+                    : "AmForm__input-wrapper"
                 }
               >
                 <div
-                  className="input-field__wrapper-inner"
+                  className="AmForm__input-wrapper-inner"
                   onClick={() => this.handleFocus(1)}
                 >
                   <input
@@ -191,10 +191,10 @@ class AmForm extends Component {
                     type="text"
                     className={
                       this.amform.input.fromReady
-                        ? "Amf__input-field Amf__input-field__ready"
-                        : "Amf__input-field Amf__input-field__not-ready"
+                        ? "AmForm__input AmForm__input-ready"
+                        : "AmForm__input AmForm__input-not-ready"
                     }
-                    id="Amf__input-from"
+                    id="AmForm__input-from"
                     name="from"
                     list="list_airports"
                     placeholder="Origin"
@@ -202,46 +202,46 @@ class AmForm extends Component {
                     onChange={(e) => this.inputChange(e)}
                   />
                   {this.amform.input.fromIata && (
-                    <span className="Amf-input__iata">
+                    <span className="AmForm__input-iata">
                       {this.amform.input.fromIata}
                     </span>
                   )}
                   {this.amform.input.fromAirport && (
-                    <span className="Amf-input__airport">
+                    <span className="AmForm__input-airport">
                       {this.amform.input.fromAirport}
                     </span>
                   )}
                   {this.amform.input.fromCountry && (
-                    <span className="Amf-input__country">
+                    <span className="AmForm__input-country">
                       {this.amform.input.fromCountry}
                     </span>
                   )}
                 </div>
-                <div className="input-box__date-header">
+                <div className="AmForm__date-header">
                   <label htmlFor="AmDepart">Departure</label>
                   <DateInput className="AmDate" />
                 </div>
               </div>
               {this.amform.fromToFocus === 1 && (
-                <div className="input__suggestion-list">
+                <div className="AmForm__suggestion-list">
                   <SuggestionList />
                 </div>
               )}
             </div>
           </div>
           {this.amform.travelType && (
-            <div className="input-box">
-              <div className="input-box__inner">
-                <label htmlFor="Amf__input-to">To</label>
+            <div className="AmForm__input-box">
+              <div className="AmForm__input-box-inner">
+                <label htmlFor="AmForm__input-to">To</label>
                 <div
                   className={
                     this.amform.fromToFocus === 2
-                      ? "input-field__wrapper Amform--no-brd-rd-bottom"
-                      : "input-field__wrapper"
+                      ? "AmForm__input-wrapper Amform--no-brd-rd-bottom"
+                      : "AmForm__input-wrapper"
                   }
                 >
                   <div
-                    className="input-field__wrapper-inner"
+                    className="AmForm__input-wrapper-inner"
                     onClick={() => this.handleFocus(2)}
                   >
                     <input
@@ -260,10 +260,10 @@ class AmForm extends Component {
                       type="text"
                       className={
                         this.amform.input.toReady
-                          ? "Amf__input-field Amf__input-field__ready"
-                          : "Amf__input-field Amf__input-field__not-ready"
+                          ? "AmForm__input AmForm__input-ready"
+                          : "AmForm__input AmForm__input-not-ready"
                       }
-                      id="Amf__input-to"
+                      id="AmForm__input-to"
                       name="to"
                       list="list_airports"
                       placeholder="Destination"
@@ -271,23 +271,23 @@ class AmForm extends Component {
                       onChange={(e) => this.inputChange(e)}
                     />
                     {this.amform.input.toIata && (
-                      <span className="Amf-input__iata">
+                      <span className="AmForm__input-iata">
                         {this.amform.input.toIata}
                       </span>
                     )}
                     {this.amform.input.toAirport && (
-                      <span className="Amf-input__airport">
+                      <span className="AmForm__input-airport">
                         {" " + this.amform.input.toAirport}
                       </span>
                     )}
                     {this.amform.input.toCountry && (
-                      <span className="Amf-input__country">
+                      <span className="AmForm__input-country">
                         {" " + this.amform.input.toCountry}
                       </span>
                     )}
                   </div>
                   {this.amform.travelType === 2 && (
-                    <div className="input-box__date-header">
+                    <div className="AmForm__date-header">
                       {this.amform.travelType === 2 && (
                         <label htmlFor="AmReturn">Return</label>
                       )}
@@ -298,7 +298,7 @@ class AmForm extends Component {
                   )}
                 </div>
                 {this.amform.fromToFocus === 2 && (
-                  <div className="input__suggestion-list">
+                  <div className="AmForm__suggestion-list">
                     <SuggestionList />
                   </div>
                 )}
@@ -306,10 +306,10 @@ class AmForm extends Component {
             </div>
           )}
         </div>
-        <div className="form__input-group">
-          <div className="form__secondary">
+        <div className="AmForm__input-group">
+          <div className="AmForm__secondary">
             <label htmlFor="AmClass">Cabin class</label>
-            <select className="form__secondary__item" id="AmClass">
+            <select className="AmForm__secondary-item" id="AmClass">
               <option value="economy">Economy</option>
               <option value="premium">Premium economy</option>
               <option value="business">Business</option>
@@ -317,7 +317,7 @@ class AmForm extends Component {
             </select>
             <label htmlFor="AmAdults">Adults</label>
             <input
-              className="form__secondary__item form__secondary__input-number"
+              className="AmForm__secondary-item AmForm__secondary-input-number"
               type="number"
               min="1"
               max="9"
@@ -327,7 +327,7 @@ class AmForm extends Component {
             />
             <label htmlFor="AmChildren">Children</label>
             <input
-              className="form__secondary__item form__secondary__input-number"
+              className="AmForm__secondary-item AmForm__secondary-input-number"
               min="0"
               max="9"
               type="number"
@@ -336,7 +336,7 @@ class AmForm extends Component {
             />
           </div>
         </div>
-        <div className="form__input-group">
+        <div className="AmForm__input-group">
           <button id="AmSubmit" type="button">
             Find flights
           </button>

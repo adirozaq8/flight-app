@@ -1,38 +1,46 @@
 /*TODO cleanup needed, better class naming structure and sorting, install 'react-transition-group' */
-.form {
+.AmForm {
   user-select: none;
   padding: 2rem;
-  /* background: lightblue; */
 }
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
+.AmForm input[type="number"]::-webkit-inner-spin-button,
+.AmForm input[type="number"]::-webkit-outer-spin-button {
   opacity: 1;
 }
+.AmForm__input-group {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 /* travel types */
-.form__radio {
+.AmForm__radio {
   justify-content: center;
   list-style-type: none;
   display: flex;
 }
-.form__radio li {
+.AmForm__radio li {
   align-items: center;
   font-size: 1.1rem;
   margin: 0 1rem;
   display: flex;
   cursor: pointer;
 }
-.MuiSvgIcon-root {
+.AmForm__icon,
+.AmForm__icon--active {
+  /* !important needed, otherwise overwritten from the icon library css */
   width: 1.6rem !important;
   height: 1.6rem !important;
 }
-.icon {
+.AmForm__icon {
   color: rgb(151, 151, 151);
 }
-.icon__active {
+.AmForm__icon--active {
   color: rgb(50, 56, 62);
 }
+
 /* input for city search */
-.input-box {
+.AmForm__input-box {
   position: relative;
   margin: 0 1rem 1rem;
   display: flex;
@@ -40,50 +48,29 @@ input[type="number"]::-webkit-outer-spin-button {
   width: 100%;
   max-width: 580px;
 }
-.form__input-group {
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.input-box input,
-.input-box input:active,
-.input-box input:focus {
+.AmForm__input-box input,
+.AmForm__input-box input:active,
+.AmForm__input-box input:focus {
   outline: none;
 }
-.input-box__inner {
+.AmForm__input-box-inner {
   width: 100%;
 }
-.input-box__date-header {
+
+.AmForm__date-header {
   position: absolute;
   right: -0.1rem;
   bottom: -0.01rem;
   margin: 0;
   padding: 0;
 }
-.input-box__date-header label {
+.AmForm__date-header label {
   font-size: 76%;
   margin: 0;
   padding: 0.18rem 0 0.12rem 0;
 }
-.react-datepicker__input-container button {
-  border-radius: 0 4px 4px 0;
-  background: rgb(255, 255, 255);
-  color: black;
-  border: 2px solid rgba(50, 56, 62);
-  padding: 0 0.6rem;
-  height: 3.36rem;
-  width: 5rem;
-  line-height: 1rem;
-  font-size: 80%;
-  outline: none;
-}
-.react-datepicker__input-container button:focus,
-.react-datepicker__input-container button:active {
-  background: rgb(235, 234, 234);
-  outline: none;
-}
-.input-field__wrapper {
+
+.AmForm__input-wrapper {
   width: 100%;
   height: 3.4rem;
   border: 1px solid rgb(50, 56, 62);
@@ -92,26 +79,26 @@ input[type="number"]::-webkit-outer-spin-button {
   position: relative;
   margin: 0;
 }
-.input-field__wrapper--focus {
+.AmForm__input-wrapper--focus {
   border-radius: 0;
 }
-.input-field__wrapper-inner {
+.AmForm__input-wrapper-inner {
   position: relative;
   height: 3.22rem;
   width: 100%;
 }
-.input-box label,
-.Amf__input-field {
+.AmForm__input-box label,
+.AmForm__input {
   display: block;
   margin: 0;
   border: none;
   transition: all 0.2s;
 }
-.input-box label {
+.AmForm__input-box label {
   text-transform: uppercase;
   font-weight: bold;
 }
-.Amf__input-field__not-ready {
+.AmForm__input-not-ready {
   border-radius: 4px;
   border: none;
   width: 100%;
@@ -122,7 +109,7 @@ input[type="number"]::-webkit-outer-spin-button {
   font-size: 1.6rem;
   position: absolute;
 }
-.Amf__input-field__ready {
+.AmForm__input-ready {
   border-radius: 0 0 4px 4px;
   border: none;
   width: 74%;
@@ -131,17 +118,17 @@ input[type="number"]::-webkit-outer-spin-button {
   padding-left: 1rem;
   position: absolute;
 }
-.Amf-input__iata,
-.Amf-input__airport,
-.Amf-input__country,
-.input-box__date-header {
+.AmForm__input-iata,
+.AmForm__input-airport,
+.AmForm__input-country,
+.AmFrom__date-header {
   backface-visibility: hidden;
   animation: opactosolid 0.4s ease;
 }
-.Amform--no-brd-rd-bottom {
+.AmForm--no-brd-rd-bottom {
   border-radius: 4px 4px 0 0;
 }
-.Amf-input__iata {
+.AmForm__input-iata {
   color: white;
   font-size: 1.4rem;
   position: absolute;
@@ -150,21 +137,21 @@ input[type="number"]::-webkit-outer-spin-button {
   transform: translateY(-50%);
   transition: all 0.2s;
 }
-.Amf-input__airport {
+.AmForm__input-airport {
   color: white;
   font-size: 0.8rem;
   position: absolute;
   bottom: 0;
   left: 1%;
 }
-.Amf-input__country {
+.AmForm__input-country {
   color: white;
   font-size: 0.8rem;
   position: absolute;
   bottom: 0;
   right: 20%;
 }
-.input__suggestion-list {
+.AmForm__suggestion-list {
   display: block;
   width: 100%;
   background: lightblue;
@@ -183,7 +170,7 @@ input[type="number"]::-webkit-outer-spin-button {
   }
 }
 
-.form__secondary {
+.AmForm__secondary {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -194,12 +181,12 @@ input[type="number"]::-webkit-outer-spin-button {
   border-radius: 4px;
   margin-bottom: 1.6rem;
 }
-.form__secondary__item {
+.AmForm__secondary-item {
   margin: 0 0.4rem;
   border-radius: 4px;
   border: none;
 }
-.form__secondary__input-number {
+.AmForm__input-number {
   width: 3rem;
   text-align: right;
 }
@@ -219,4 +206,23 @@ input[type="number"]::-webkit-outer-spin-button {
 #AmSubmit:hover {
   color: white;
   background: rgb(148, 153, 158);
+}
+
+/* react-datepicker custom css */
+.react-datepicker__input-container button {
+  border-radius: 0 4px 4px 0;
+  background: rgb(255, 255, 255);
+  color: black;
+  border: 2px solid rgba(50, 56, 62);
+  padding: 0 0.6rem;
+  height: 3.36rem;
+  width: 5rem;
+  line-height: 1rem;
+  font-size: 80%;
+  outline: none;
+}
+.react-datepicker__input-container button:focus,
+.react-datepicker__input-container button:active {
+  background: rgb(235, 234, 234);
+  outline: none;
 }

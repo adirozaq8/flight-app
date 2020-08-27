@@ -1,24 +1,33 @@
 /*TODO consider 'react-transition-group' */
 
+/* AmForm color scheme */
+.AmForm--colors {
+  --dark: rgba(50, 56, 62, 1);
+  --light: rgba(255, 255, 255, 1);
+  --select: rgba(235, 234, 234, 1);
+  --disabled: rgba(151, 151, 151, 1);
+}
 /* react-datepicker component custom css */
 .react-datepicker__input-container button {
   border-radius: 0 4px 4px 0;
-  background: rgb(255, 255, 255);
+  background: var(--light);
   color: black;
-  border: 2px solid rgba(50, 56, 62);
+  border: 2px solid var(--dark);
   padding: 0 0.6rem;
   height: 3.36rem;
   width: 5rem;
   line-height: 1rem;
   font-size: 80%;
   outline: none;
+  font-weight: 500;
 }
 .react-datepicker__input-container button:focus,
 .react-datepicker__input-container button:active {
-  background: rgb(235, 234, 234);
   outline: none;
 }
-
+.react-datepicker__input-container button:hover {
+  background: var(--select);
+}
 /* AmForm component */
 .AmForm {
   user-select: none;
@@ -54,10 +63,10 @@
   height: 1.6rem !important;
 }
 .AmForm__icon {
-  color: rgb(151, 151, 151);
+  color: var(--disabled);
 }
 .AmForm__icon--active {
-  color: rgb(50, 56, 62);
+  color: var(--dark);
 }
 
 /* input city search */
@@ -94,8 +103,8 @@
 .AmForm__input-wrapper {
   width: 100%;
   height: 3.4rem;
-  border: 1px solid rgb(50, 56, 62);
-  background: rgb(50, 56, 62);
+  border: 1px solid var(--dark);
+  background: var(--dark);
   border-radius: 4px;
   position: relative;
   margin: 0;
@@ -149,7 +158,7 @@
 .AmForm__input-iata,
 .AmForm__input-airport,
 .AmForm__input-country {
-  color: white;
+  color: var(--light);
   font-size: 0.8rem;
   position: absolute;
 }
@@ -170,7 +179,6 @@
 .AmForm__suggestion-list {
   display: block;
   width: 100%;
-  background: lightblue;
   position: absolute;
   top: 4.8rem;
   margin: 0;
@@ -185,8 +193,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgb(50, 56, 62);
-  color: white;
+  background: var(--dark);
+  color: var(--light);
   height: 3rem;
   padding: 2rem;
   border-radius: 4px;
@@ -211,15 +219,14 @@
 }
 #AmSubmit {
   border-radius: 4px;
-  color: white;
-  background: rgb(50, 56, 62);
-  border: none;
+  background: var(--light);
+  border: 4px solid var(--dark);
   padding: 1rem;
   text-transform: uppercase;
+  font-weight: bold;
 }
 #AmSubmit:hover {
-  color: white;
-  background: rgb(148, 153, 158);
+  background: var(--select);
 }
 /* media queries */
 

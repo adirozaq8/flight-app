@@ -144,7 +144,7 @@ class AmForm extends Component {
   }
   render() {
     return (
-      <div className="AmForm" id="AmForm">
+      <div className="AmForm AmForm--colors" id="AmForm">
         <div className="AmForm__input-group">
           {
             //TODO consider turning this list into a react component

@@ -1,4 +1,25 @@
-/*TODO cleanup needed, better class naming structure and sorting, install 'react-transition-group' */
+/*TODO consider 'react-transition-group' */
+
+/* react-datepicker component custom css */
+.react-datepicker__input-container button {
+  border-radius: 0 4px 4px 0;
+  background: rgb(255, 255, 255);
+  color: black;
+  border: 2px solid rgba(50, 56, 62);
+  padding: 0 0.6rem;
+  height: 3.36rem;
+  width: 5rem;
+  line-height: 1rem;
+  font-size: 80%;
+  outline: none;
+}
+.react-datepicker__input-container button:focus,
+.react-datepicker__input-container button:active {
+  background: rgb(235, 234, 234);
+  outline: none;
+}
+
+/* AmForm component */
 .AmForm {
   user-select: none;
   padding: 2rem;
@@ -39,7 +60,7 @@
   color: rgb(50, 56, 62);
 }
 
-/* input for city search */
+/* input city search */
 .AmForm__input-box {
   position: relative;
   margin: 0 1rem 1rem;
@@ -125,29 +146,24 @@
   backface-visibility: hidden;
   animation: opactosolid 0.4s ease;
 }
-.AmForm--no-brd-rd-bottom {
-  border-radius: 4px 4px 0 0;
-}
-.AmForm__input-iata {
-  color: white;
-  font-size: 1.4rem;
-  position: absolute;
-  left: 1%;
-  top: 34%;
-  transform: translateY(-50%);
-  transition: all 0.2s;
-}
-.AmForm__input-airport {
-  color: white;
-  font-size: 0.8rem;
-  position: absolute;
-  bottom: 0;
-  left: 1%;
-}
+.AmForm__input-iata,
+.AmForm__input-airport,
 .AmForm__input-country {
   color: white;
   font-size: 0.8rem;
   position: absolute;
+}
+.AmForm__input-iata {
+  font-size: 1.4rem;
+  left: 1%;
+  top: 34%;
+  transform: translateY(-50%);
+}
+.AmForm__input-airport {
+  bottom: 0;
+  left: 1%;
+}
+.AmForm__input-country {
   bottom: 0;
   right: 20%;
 }
@@ -161,15 +177,10 @@
   max-height: 200px;
   overflow-y: auto;
 }
-@keyframes opactosolid {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 100;
-  }
+.AmForm--bottom-border-radius-none {
+  border-radius: 4px 4px 0 0;
 }
-
+/* Amform secondary */
 .AmForm__secondary {
   display: flex;
   justify-content: center;
@@ -180,6 +191,9 @@
   padding: 2rem;
   border-radius: 4px;
   margin-bottom: 1.6rem;
+}
+.AmForm__secondary label {
+  margin: 0;
 }
 .AmForm__secondary-item {
   margin: 0 0.4rem;
@@ -207,22 +221,14 @@
   color: white;
   background: rgb(148, 153, 158);
 }
+/* media queries */
 
-/* react-datepicker custom css */
-.react-datepicker__input-container button {
-  border-radius: 0 4px 4px 0;
-  background: rgb(255, 255, 255);
-  color: black;
-  border: 2px solid rgba(50, 56, 62);
-  padding: 0 0.6rem;
-  height: 3.36rem;
-  width: 5rem;
-  line-height: 1rem;
-  font-size: 80%;
-  outline: none;
-}
-.react-datepicker__input-container button:focus,
-.react-datepicker__input-container button:active {
-  background: rgb(235, 234, 234);
-  outline: none;
+/* animations and effects */
+@keyframes opactosolid {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 100;
+  }
 }

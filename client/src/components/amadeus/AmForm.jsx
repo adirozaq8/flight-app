@@ -165,7 +165,7 @@ class AmForm extends Component {
               <div
                 className={
                   this.amform.fromToFocus === 1
-                    ? "AmForm__input-wrapper Amform--no-brd-rd-bottom"
+                    ? "AmForm__input-wrapper Amform--bottom-border-radius-none"
                     : "AmForm__input-wrapper"
                 }
               >
@@ -236,7 +236,7 @@ class AmForm extends Component {
                 <div
                   className={
                     this.amform.fromToFocus === 2
-                      ? "AmForm__input-wrapper Amform--no-brd-rd-bottom"
+                      ? "AmForm__input-wrapper Amform--bottom-border-radius-none"
                       : "AmForm__input-wrapper"
                   }
                 >
@@ -317,7 +317,7 @@ class AmForm extends Component {
             </select>
             <label htmlFor="AmAdults">Adults</label>
             <input
-              className="AmForm__secondary-item AmForm__secondary-input-number"
+              className="AmForm__secondary-item AmForm__input-number"
               type="number"
               min="1"
               max="9"
@@ -327,7 +327,7 @@ class AmForm extends Component {
             />
             <label htmlFor="AmChildren">Children</label>
             <input
-              className="AmForm__secondary-item AmForm__secondary-input-number"
+              className="AmForm__secondary-item AmForm__input-number"
               min="0"
               max="9"
               type="number"

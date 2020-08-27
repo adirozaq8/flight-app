@@ -8,6 +8,29 @@
   --disabled: rgba(151, 151, 151, 1);
 }
 /* react-datepicker component custom css */
+.react-datepicker-popper[data-placement^="bottom"] .react-datepicker__triangle,
+.react-datepicker-popper[data-placement^="bottom"]
+  .react-datepicker__triangle::before {
+  border-bottom-color: var(--dark);
+}
+.react-datepicker__day--keyboard-selected,
+.react-datepicker__header,
+.react-datepicker__today-button,
+.react-datepicker__day--selected {
+  background: var(--dark);
+}
+.react-datepicker__current-month,
+.react-datepicker-time__header,
+.react-datepicker-year-header,
+.react-datepicker__day-name,
+.react-datepicker__header,
+.react-datepicker__navigation--previous,
+.react-datepicker__navigation--next {
+  color: var(--light);
+}
+.react-datepicker__triangle {
+  color: var(--dark);
+}
 .react-datepicker__input-container button {
   border-radius: 0 4px 4px 0;
   background: var(--light);

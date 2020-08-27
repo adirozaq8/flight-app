@@ -30,6 +30,19 @@ class DateInput extends React.Component {
         <DatePicker
           selected={this.state.date}
           onChange={this.handleChange}
+          popperPlacement="top-end"
+          // modifiers easy access
+          popperModifiers={{
+            offset: {
+              enabled: false,
+              offset: "1px, 1px",
+            },
+            preventOverflow: {
+              enabled: false,
+              escapeWithReference: false, // force popper to stay in viewport (even when input is scrolled out of view)
+              boundariesElement: "viewport",
+            },
+          }}
           //showTimeSelect
           dateFormat="d MMMM yyyy"
           customInput={<CustomInput />}

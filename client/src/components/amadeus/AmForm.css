@@ -37,6 +37,7 @@
 .AmForm input[type="number"]::-webkit-outer-spin-button {
   opacity: 1;
   cursor: pointer;
+  margin-left: 2px;
 }
 .AmForm__input-group {
   text-align: center;

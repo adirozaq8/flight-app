@@ -1,6 +1,6 @@
 #SuggestionList {
   text-align: start;
-  background: white;
+  background: var(--light);
   box-shadow: inset 0px 0px 10px -4px rgb(50, 56, 62);
   border-radius: 0px 0px 4px 4px;
   padding: 0.4rem;
@@ -9,22 +9,26 @@
 #SuggestionList p {
   margin: 0 0;
 }
-.city-block {
+.SuggestionList__city-block {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 0.6rem;
   cursor: pointer;
+  border-radius: 4px;
+  padding: 0.3rem 0.8rem;
+  line-height: 1rem;
 }
-.city-block:hover {
-  background-color: rgba(0, 0, 0, 0.1);
+.SuggestionList__city-block:hover,
+.SuggestionList__city-block--active {
+  background: var(--dark);
+  color: var(--light);
 }
-.city-title {
+.SuggestionList__city-title {
   font-weight: bold;
 }
-.city-subtitle {
+.SuggestionList__city-subtitle {
   font-size: 80%;
 }
-.from-to-icon {
+.SuggestionList__from-to-icon {
   opacity: 0.7;
 }

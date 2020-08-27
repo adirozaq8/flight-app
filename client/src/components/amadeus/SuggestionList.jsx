@@ -33,13 +33,13 @@ class SuggestionList extends Component {
       return (
         <>
           {this.amform.airports.length > 0 && (
-            <div id="SuggestionList">
+            <div className="SuggestionList" id="SuggestionList">
               <div id="sugList-suggest">
                 <div>
                   {this.amform.airports.map((city) => (
-                    <div key={city._id}>
+                    <div key={city._id} className="">
                       <div
-                        className="city-block"
+                        className="SuggestionList__city-block"
                         data-city={city.city}
                         data-airport={city.name}
                         data-iata={city.iata}
@@ -47,20 +47,20 @@ class SuggestionList extends Component {
                         onMouseDown={(e) => this.clickSuggestion(e)}
                       >
                         <div>
-                          <div className="city-title">
+                          <div className="SuggestionList__city-title">
                             <span>{city.city}</span>
                           </div>
-                          <div className="city-subtitle">
+                          <div className="SuggestionList__city-subtitle">
                             <span>{city.iata},</span>&nbsp;
                             <span>{city.name},</span>&nbsp;
                             <span>{city.country}</span>
                           </div>
                         </div>
                         {this.amform.fromToFocus === 1 && (
-                          <FlightTakeoff className="from-to-icon" />
+                          <FlightTakeoff className="SuggestionList__from-to-icon" />
                         )}
                         {this.amform.fromToFocus === 2 && (
-                          <FlightLand className="from-to-icon" />
+                          <FlightLand className="SuggestionList__from-to-icon" />
                         )}
                       </div>
                     </div>

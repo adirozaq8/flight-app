@@ -36,6 +36,7 @@
 .AmForm input[type="number"]::-webkit-inner-spin-button,
 .AmForm input[type="number"]::-webkit-outer-spin-button {
   opacity: 1;
+  cursor: pointer;
 }
 .AmForm__input-group {
   text-align: center;
@@ -207,6 +208,9 @@
   margin: 0 0.4rem;
   border-radius: 4px;
   border: none;
+}
+.AmForm__select {
+  cursor: pointer;
 }
 .AmForm__input-number {
   width: 3rem;

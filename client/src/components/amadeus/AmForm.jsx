@@ -309,7 +309,10 @@ class AmForm extends Component {
         <div className="AmForm__input-group">
           <div className="AmForm__secondary">
             <label htmlFor="AmClass">Cabin class</label>
-            <select className="AmForm__secondary-item" id="AmClass">
+            <select
+              className="AmForm__secondary-item AmForm__select"
+              id="AmClass"
+            >
               <option value="economy">Economy</option>
               <option value="premium">Premium economy</option>
               <option value="business">Business</option>

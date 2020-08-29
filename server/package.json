@@ -10,24 +10,24 @@
   },
   "dependencies": {
     "airport-codes": "^1.0.2",
-    "amadeus": "^4.0.0",
+    "amadeus": "^5.2.0",
     "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
-    "connect-mongodb-session": "^2.2.0",
-    "cookie-parser": "^1.4.4",
+    "connect-mongodb-session": "^2.4.1",
+    "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "express-session": "^1.17.0",
-    "i18n-iso-countries": "^5.2.0",
+    "express-session": "^1.17.1",
+    "i18n-iso-countries": "^6.0.0",
     "jsonwebtoken": "^8.5.1",
-    "md5": "^2.2.1",
-    "mongodb": "^3.3.3",
-    "mongoose": "^5.7.8",
-    "pm2": "^4.4.0",
-    "validator": "^11.1.0"
+    "md5": "^2.3.0",
+    "mongodb": "^3.6.0",
+    "mongoose": "^5.10.2",
+    "pm2": "^4.4.1",
+    "validator": "^13.1.1"
   },
   "devDependencies": {
-    "nodemon": "^1.19.4"
+    "nodemon": "^2.0.4"
   }
 }

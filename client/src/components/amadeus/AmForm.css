@@ -176,7 +176,7 @@
 .AmForm__input-iata,
 .AmForm__input-airport,
 .AmForm__input-country,
-.AmFrom__date-header {
+.AmForm__date-header {
   backface-visibility: hidden;
   animation: opactosolid 0.4s ease;
 }

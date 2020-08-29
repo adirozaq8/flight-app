@@ -13,6 +13,7 @@ class SuggestionList extends Component {
   }
 
   clickSuggestion(e) {
+    // TODO move to redux
     if (this.amform.fromToFocus === 1) {
       this.amform.input.fromReady = true;
       this.amform.input.from = e.currentTarget.dataset.city;

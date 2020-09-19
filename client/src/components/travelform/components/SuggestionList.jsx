@@ -7,18 +7,28 @@ import "./SuggestionList.css";
 const SuggestionList = () => {
   const travelForm = useSelector((state) => state.travelForm);
   const dispatch = useDispatch();
-  const updateTravelForm = (state) => {
-    dispatch({ type: "UPDATE_TRAVELFORM", payload: state });
+  const updateTravelForm = () => {
+    dispatch({ type: "UPDATE_TRAVELFORM", payload: travelForm });
   };
   useEffect(() => {
-    travelForm.airports &&
+    if (
+      travelForm.airports &&
       travelForm.airports.length > 0 &&
-      document.getElementsByClassName(
+      document.getElementsByClassName("SuggestionList__city-block--active")[0]
+    ) {
+      const targetCity = document.getElementsByClassName(
         "SuggestionList__city-block--active"
-      )[0] &&
-      document
-        .getElementsByClassName("SuggestionList__city-block--active")[0]
-        .scrollIntoView({ behavior: "auto", block: "end", inline: "nearest" });
+      )[0];
+      targetCity.scrollIntoView({
+        behavior: "auto",
+        block: "end",
+        inline: "nearest",
+      });
+      travelForm.sugList.city = targetCity.dataset.city;
+      travelForm.sugList.iata = targetCity.dataset.iata;
+      travelForm.sugList.airport = targetCity.dataset.airport;
+      travelForm.sugList.country = targetCity.dataset.country;
+    }
   });
   const handleMouseDown = (e) => {
     const inputFocus = travelForm.inputFocus.split("-");
@@ -31,12 +41,12 @@ const SuggestionList = () => {
       e.currentTarget.dataset.airport;
     travelForm.cityInputs[Number(inputFocus[0])][inputFocus[1]].country =
       e.currentTarget.dataset.country;
-    updateTravelForm(travelForm);
+    updateTravelForm();
   };
   const handleMouseEnter = (e) => {
     if (e.currentTarget.dataset.idx !== undefined) {
       travelForm.sugList.selected = Number(e.currentTarget.dataset.idx);
-      updateTravelForm(travelForm);
+      updateTravelForm();
     }
   };
   return (

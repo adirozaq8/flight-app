@@ -30,6 +30,9 @@ const INITIAL_STATE = {
   ],
   sugList: {
     selected: 0,
+    iata: "",
+    airport: "",
+    country: "",
   },
 };
 

@@ -18,11 +18,12 @@ const sortInputFirst = (inp, obj) => {
 const TravelFormInput = () => {
   const travelForm = useSelector((state) => state.travelForm);
   const dispatch = useDispatch();
-  const updateTravelForm = (state) => {
-    dispatch({ type: "UPDATE_TRAVELFORM", payload: state });
+  const updateTravelForm = () => {
+    dispatch({ type: "UPDATE_TRAVELFORM", payload: travelForm });
   };
   const handleBlur = () => {
     travelForm.inputFocus = "none";
+    travelForm.sugList.selected = 0;
     updateTravelForm(travelForm);
   };
   const handleChange = (e, idx, originDest) => {
@@ -65,12 +66,12 @@ const TravelFormInput = () => {
       : (airportsList = airportsList.slice(0, travelForm.sugListLen));
     travelForm.airports = airportsList;
     travelForm.inputFocus = idx + "-" + originDest;
-    updateTravelForm(travelForm);
+    updateTravelForm();
   };
   const handleFocus = (e, idx, originDest) => {
     setTimeout(() => {
       travelForm.inputFocus = idx + "-" + originDest;
-      updateTravelForm(travelForm);
+      updateTravelForm();
     }, 0);
   };
   const handleInput = (e, idx, originDest) => {
@@ -80,9 +81,9 @@ const TravelFormInput = () => {
     travelForm.cityInputs[idx][originDest].airport = "";
     travelForm.cityInputs[idx][originDest].country = "";
     travelForm.inputFocus = idx + "-" + originDest;
-    updateTravelForm(travelForm);
+    updateTravelForm();
   };
-  const handleKeyDown = (e) => {
+  const handleKeyDown = (e, idx, originDest) => {
     if (e.keyCode === 38 || e.keyCode === 40) {
       e.preventDefault();
       e.keyCode === 38 &&
@@ -94,8 +95,20 @@ const TravelFormInput = () => {
         (e.keyCode === 38 && travelForm.sugList.selected === -1)
       )
         travelForm.sugList.selected++;
-      updateTravelForm(travelForm);
+      updateTravelForm();
     }
+    if (e.keyCode === 13) {
+      console.log(travelForm.sugList.city);
+      console.log(e.target);
+      travelForm.cityInputs[idx][originDest].ready = true;
+      travelForm.cityInputs[idx][originDest].value = travelForm.sugList.city;
+      travelForm.cityInputs[idx][originDest].iata = travelForm.sugList.iata;
+      travelForm.cityInputs[idx][originDest].airport =
+        travelForm.sugList.airport;
+      travelForm.cityInputs[idx][originDest].country =
+        travelForm.sugList.country;
+    }
+    updateTravelForm();
   };
   return travelForm.cityInputs.map((input, idx) => {
     return Object.keys(input).map((originDest) => {
@@ -132,7 +145,7 @@ const TravelFormInput = () => {
                       handleChange(e, idx, originDest);
                       handleInput(e, idx, originDest);
                     }}
-                    onKeyDown={(e) => handleKeyDown(e)}
+                    onKeyDown={(e) => handleKeyDown(e, idx, originDest)}
                     autoComplete="off"
                     type="text"
                     className={

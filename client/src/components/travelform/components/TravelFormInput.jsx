@@ -98,8 +98,6 @@ const TravelFormInput = () => {
       updateTravelForm();
     }
     if (e.keyCode === 13) {
-      console.log(travelForm.sugList.city);
-      console.log(e.target);
       travelForm.cityInputs[idx][originDest].ready = true;
       travelForm.cityInputs[idx][originDest].value = travelForm.sugList.city;
       travelForm.cityInputs[idx][originDest].iata = travelForm.sugList.iata;
@@ -118,69 +116,57 @@ const TravelFormInput = () => {
           key={"travelSet-" + idx + originDest}
         >
           <div className="TravelForm__input-box">
-            <div className="TravelForm__input-box-inner">
-              <div
+            <div className="TravelForm__input-wrapper">
+              <label htmlFor={"TravelForm__input-" + idx + "-" + originDest}>
+                {input[originDest].title}
+              </label>
+              <input
+                onBlur={() => {
+                  handleBlur();
+                }}
+                onChange={(e) => handleChange(e, idx, originDest)}
+                onFocus={(e) => {
+                  handleFocus(e, idx, originDest);
+                  handleChange(e, idx, originDest);
+                }}
+                onInput={(e) => {
+                  handleChange(e, idx, originDest);
+                  handleInput(e, idx, originDest);
+                }}
+                onKeyDown={(e) => handleKeyDown(e, idx, originDest)}
+                autoComplete="off"
+                type="text"
                 className={
-                  travelForm.inputFocus === idx + "-" + originDest
-                    ? "TravelForm__input-wrapper TravelForm--bottom-border-radius-none"
-                    : "TravelForm__input-wrapper"
+                  input[originDest].ready
+                    ? "TravelForm__input TravelForm__input-ready"
+                    : "TravelForm__input TravelForm__input-not-ready"
                 }
-              >
-                <div className="TravelForm__input-wrapper-inner">
-                  <label
-                    htmlFor={"TravelForm__input-" + idx + "-" + originDest}
-                  >
-                    {input[originDest].title}
-                  </label>
-                  <input
-                    onBlur={() => {
-                      handleBlur();
-                    }}
-                    onChange={(e) => handleChange(e, idx, originDest)}
-                    onFocus={(e) => {
-                      handleFocus(e, idx, originDest);
-                      handleChange(e, idx, originDest);
-                    }}
-                    onInput={(e) => {
-                      handleChange(e, idx, originDest);
-                      handleInput(e, idx, originDest);
-                    }}
-                    onKeyDown={(e) => handleKeyDown(e, idx, originDest)}
-                    autoComplete="off"
-                    type="text"
-                    className={
-                      input[originDest].ready
-                        ? "TravelForm__input TravelForm__input-ready"
-                        : "TravelForm__input TravelForm__input-not-ready"
-                    }
-                    id={"TravelForm__input-" + idx + "-" + originDest}
-                    name="from"
-                    list="list_airports"
-                    placeholder={input[originDest].placeholder}
-                    value={input[originDest].value}
-                  />
-                  {input[originDest].iata && (
-                    <span className="TravelForm__input-iata">
-                      {input[originDest].iata}
-                    </span>
-                  )}
-                  {input[originDest].airport && (
-                    <span className="TravelForm__input-airport">
-                      {input[originDest].airport}
-                    </span>
-                  )}
-                  {input[originDest].country && (
-                    <span className="TravelForm__input-country">
-                      {input[originDest].country}
-                    </span>
-                  )}
-                  {travelForm.inputFocus === idx + "-" + originDest && (
-                    <div className="TravelForm__suggestion-list">
-                      <SuggestionList />
-                    </div>
-                  )}
+                id={"TravelForm__input-" + idx + "-" + originDest}
+                name="from"
+                list="list_airports"
+                placeholder={input[originDest].placeholder}
+                value={input[originDest].value}
+              />
+              {input[originDest].iata && (
+                <span className="TravelForm__input-iata">
+                  {input[originDest].iata}
+                </span>
+              )}
+              {input[originDest].airport && (
+                <span className="TravelForm__input-airport">
+                  {input[originDest].airport}
+                </span>
+              )}
+              {input[originDest].country && (
+                <span className="TravelForm__input-country">
+                  {input[originDest].country}
+                </span>
+              )}
+              {travelForm.inputFocus === idx + "-" + originDest && (
+                <div className="TravelForm__suggestion-list">
+                  <SuggestionList />
                 </div>
-              </div>
+              )}
             </div>
           </div>
         </div>

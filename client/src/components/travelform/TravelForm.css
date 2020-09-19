@@ -98,7 +98,13 @@
 /* input */
 .TravelForm__input-group-wrapper {
   display: flex;
-  border-radius: 4px;
+  border-radius: 4px 0 0 4px;
+  background: var(--dark);
+  border: 1px solid var(--dark);
+}
+.TravelForm__date-group-wrapper {
+  display: flex;
+  border: 1px solid var(--dark);
 }
 .TravelForm__input-box label,
 .TravelForm__input {
@@ -106,9 +112,6 @@
   margin: 0;
   border: none;
   transition: all 0.2s;
-}
-.TravelForm__input-box-inner {
-  width: 100%;
 }
 .TravelForm__input-box label {
   font-size: 80%;
@@ -122,33 +125,29 @@
 .TravelForm__input-wrapper {
   width: 100%;
   display: flex;
-  background: var(--dark);
   margin: 0;
-}
-.TravelForm__input-wrapper-inner {
   position: relative;
   height: var(--inputHeight);
   width: 300px;
   border: 1px solid var(--dark);
 }
+.TravelForm__input {
+  outline: none;
+  padding-left: 0.2rem;
+  position: absolute;
+}
 .TravelForm__input-not-ready {
-  border: none;
   width: 100%;
   height: 100%;
-  padding-left: 1rem;
   left: 0;
   margin: 0;
   font-size: 1.6rem;
-  position: absolute;
 }
 .TravelForm__input-ready {
   border-radius: 0 0 4px 4px;
-  border: none;
   width: 74%;
   font-size: 1.4rem;
   left: 3.5rem;
-  padding-left: 1rem;
-  position: absolute;
 }
 .TravelForm__date-header {
   display: flex;

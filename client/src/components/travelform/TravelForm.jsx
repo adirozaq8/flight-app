@@ -39,7 +39,7 @@ const TravelForm = () => {
         <div className="TravelForm__input-group-wrapper">
           <TravelFormInput />
         </div>
-        <div className="TravelForm__input-group-wrapper">
+        <div className="TravelForm__control-group-wrapper TravelForm__date-group-wrapper">
           <div className="TravelForm__date-header">
             <label htmlFor="TravelDepart">Departure</label>
             <DateInput className="TravelDate" id="TravelDepart" />

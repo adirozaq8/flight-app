@@ -1,12 +1,12 @@
 import React from "react";
-import AmForm from "../amadeus/AmForm";
+import TravelForm from "..//travelform/TravelForm";
 import "./Jumbotron.css";
 
 function Jumbotron() {
   return (
     <div>
-      <div className="AmForm-wrapper">
-        <AmForm />
+      <div className="TravelForm-wrapper">
+        <TravelForm />
       </div>
     </div>
   );

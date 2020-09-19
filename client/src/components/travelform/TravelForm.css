@@ -1,11 +1,11 @@
-/*TODO consider 'react-transition-group' */
-
-/* AmForm color scheme */
-.AmForm--colors {
+.TravelForm--colors {
   --dark: rgba(50, 56, 62, 1);
   --light: rgba(255, 255, 255, 1);
   --select: rgba(235, 234, 234, 1);
   --disabled: rgba(151, 151, 151, 1);
+}
+.TravelForm--vars {
+  --inputHeight: 3.22rem;
 }
 /* react-datepicker component custom css */
 .react-datepicker-popper[data-placement^="bottom"] .react-datepicker__triangle,
@@ -32,15 +32,12 @@
   color: var(--dark);
 }
 .react-datepicker__input-container button {
-  border-radius: 0 4px 4px 0;
+  width: 100%;
   background: var(--light);
   color: black;
-  border: 2px solid var(--dark);
-  padding: 0 0.6rem;
-  height: 3.36rem;
-  width: 5rem;
-  line-height: 1rem;
-  font-size: 80%;
+  border: 1px solid var(--dark);
+  font-size: 90%;
+  line-height: 1.64rem;
   outline: none;
   font-weight: 500;
 }
@@ -51,110 +48,90 @@
 .react-datepicker__input-container button:hover {
   background: var(--select);
 }
-/* AmForm component */
-.AmForm {
+/* travelForm */
+.TravelForm {
+  margin: 1rem;
   user-select: none;
-  padding: 2rem;
+  border: 1px solid var(--disabled);
+  border-radius: 4px;
+  padding: 1rem;
 }
-.AmForm input[type="number"]::-webkit-inner-spin-button,
-.AmForm input[type="number"]::-webkit-outer-spin-button {
+.TravelForm input[type="number"]::-webkit-inner-spin-button,
+.TravelForm input[type="number"]::-webkit-outer-spin-button {
   opacity: 1;
   cursor: pointer;
   margin-left: 2px;
 }
-.AmForm__input-group {
+.TravelForm__control-group {
   text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 1rem;
 }
 /* travel types */
-.AmForm__radio {
+.TravelForm__radio-button {
   justify-content: center;
   list-style-type: none;
   display: flex;
+  padding: 0;
 }
-.AmForm__radio li {
+.TravelForm__radio-button li {
   align-items: center;
   font-size: 1.1rem;
-  margin: 0 1rem;
+  margin: 0 16px;
   display: flex;
   cursor: pointer;
 }
-.AmForm__icon,
-.AmForm__icon--active {
+.TravelForm__icon,
+.TravelForm__icon--active {
   /* !important needed, otherwise overwritten from the icon library css */
   width: 1.6rem !important;
   height: 1.6rem !important;
 }
-.AmForm__icon {
+.TravelForm__icon {
   color: var(--disabled);
 }
-.AmForm__icon--active {
+.TravelForm__icon--active {
   color: var(--dark);
 }
-
-/* input city search */
-.AmForm__input-box {
-  position: relative;
-  margin: 0 1rem 1rem;
+/* input */
+.TravelForm__input-group-wrapper {
   display: flex;
-  flex-direction: row;
-  width: 100%;
-  max-width: 580px;
-}
-.AmForm__input-box input,
-.AmForm__input-box input:active,
-.AmForm__input-box input:focus {
-  outline: none;
-}
-.AmForm__input-box-inner {
-  width: 100%;
-}
-
-.AmForm__date-header {
-  position: absolute;
-  right: -0.1rem;
-  bottom: -0.01rem;
-  margin: 0;
-  padding: 0;
-}
-.AmForm__date-header label {
-  font-size: 76%;
-  margin: 0;
-  padding: 0.18rem 0 0.12rem 0;
-}
-
-.AmForm__input-wrapper {
-  width: 100%;
-  height: 3.4rem;
-  border: 1px solid var(--dark);
-  background: var(--dark);
   border-radius: 4px;
-  position: relative;
-  margin: 0;
 }
-.AmForm__input-wrapper--focus {
-  border-radius: 0;
-}
-.AmForm__input-wrapper-inner {
-  position: relative;
-  height: 3.22rem;
-  width: 100%;
-}
-.AmForm__input-box label,
-.AmForm__input {
+.TravelForm__input-box label,
+.TravelForm__input {
   display: block;
   margin: 0;
   border: none;
   transition: all 0.2s;
 }
-.AmForm__input-box label {
+.TravelForm__input-box-inner {
+  width: 100%;
+}
+.TravelForm__input-box label {
+  font-size: 80%;
   text-transform: uppercase;
   font-weight: bold;
+  position: absolute;
+  top: -1.2rem;
+  left: 50%;
+  transform: translateX(-50%);
 }
-.AmForm__input-not-ready {
-  border-radius: 4px;
+.TravelForm__input-wrapper {
+  width: 100%;
+  display: flex;
+  background: var(--dark);
+  margin: 0;
+}
+.TravelForm__input-wrapper-inner {
+  position: relative;
+  height: var(--inputHeight);
+  width: 300px;
+  border: 1px solid var(--dark);
+}
+.TravelForm__input-not-ready {
   border: none;
   width: 100%;
   height: 100%;
@@ -164,7 +141,7 @@
   font-size: 1.6rem;
   position: absolute;
 }
-.AmForm__input-ready {
+.TravelForm__input-ready {
   border-radius: 0 0 4px 4px;
   border: none;
   width: 74%;
@@ -173,48 +150,64 @@
   padding-left: 1rem;
   position: absolute;
 }
-.AmForm__input-iata,
-.AmForm__input-airport,
-.AmForm__input-country,
-.AmForm__date-header {
+.TravelForm__date-header {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  height: var(--inputHeight);
+}
+.TravelForm__date-header label {
+  position: absolute;
+  top: -1.4rem;
+  left: 0;
+  right: 0;
+}
+.TravelForm__date-header button {
+  height: var(--inputHeight);
+}
+.TravelForm__datepicker-wrapper {
+  height: var(--inputHeight);
+}
+.TravelForm__input-iata,
+.TravelForm__input-airport,
+.TravelForm__input-country,
+.TravelForm__date-header {
   backface-visibility: hidden;
   animation: opactosolid 0.4s ease;
 }
-.AmForm__input-iata,
-.AmForm__input-airport,
-.AmForm__input-country {
+.TravelForm__input-iata,
+.TravelForm__input-airport,
+.TravelForm__input-country {
   color: var(--light);
   font-size: 0.8rem;
   position: absolute;
 }
-.AmForm__input-iata {
+.TravelForm__input-iata {
   font-size: 1.4rem;
   left: 1%;
   top: 34%;
   transform: translateY(-50%);
 }
-.AmForm__input-airport {
+.TravelForm__input-airport {
   bottom: 0;
   left: 1%;
 }
-.AmForm__input-country {
+.TravelForm__input-country {
   bottom: 0;
   right: 20%;
 }
-.AmForm__suggestion-list {
-  display: block;
-  width: 100%;
+.TravelForm__suggestion-list {
   position: absolute;
-  top: 4.8rem;
-  margin: 0;
+  background: white;
+  z-index: 100;
+  border: 1px solid var(--dark);
+  width: 100%;
   max-height: 200px;
   overflow-y: auto;
-}
-.AmForm--bottom-border-radius-none {
-  border-radius: 4px 4px 0 0;
+  top: var(--inputHeight);
 }
 /* Amform secondary */
-.AmForm__secondary {
+.TravelForm__secondary {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -225,27 +218,27 @@
   border-radius: 4px;
   margin-bottom: 1.6rem;
 }
-.AmForm__secondary label {
+.TravelForm__secondary label {
   margin: 0;
 }
-.AmForm__secondary-item {
+.TravelForm__secondary-item {
   margin: 0 0.4rem;
   border-radius: 4px;
   border: none;
 }
-.AmForm__select {
+.TravelForm__select {
   cursor: pointer;
 }
-.AmForm__input-number {
+.TravelForm__input-number {
   width: 3rem;
   text-align: right;
 }
-#AmSubmit,
-#AmSubmit:focus,
-#AmSubmit:active {
+#TravelForm__submit,
+#TravelForm__submit:focus,
+#TravelForm__submit:active {
   margin: 0;
 }
-#AmSubmit {
+#TravelForm__submit {
   border-radius: 4px;
   background: var(--light);
   border: 4px solid var(--dark);
@@ -253,7 +246,7 @@
   text-transform: uppercase;
   font-weight: bold;
 }
-#AmSubmit:hover {
+#TravelForm__submit:hover {
   background: var(--select);
 }
 /* media queries */

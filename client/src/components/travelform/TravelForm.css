@@ -133,10 +133,10 @@
 }
 .TravelForm__input {
   outline: none;
-  padding-left: 0.2rem;
   position: absolute;
 }
 .TravelForm__input-not-ready {
+  padding: 0 0.6rem;
   width: 100%;
   height: 100%;
   left: 0;
@@ -144,10 +144,11 @@
   font-size: 1.6rem;
 }
 .TravelForm__input-ready {
+  text-align: center;
   border-radius: 0 0 4px 4px;
-  width: 74%;
+  width: 75%;
   font-size: 1.4rem;
-  left: 3.5rem;
+  left: 16%;
 }
 .TravelForm__date-header {
   display: flex;
@@ -182,22 +183,24 @@
   position: absolute;
 }
 .TravelForm__input-iata {
-  font-size: 1.4rem;
-  left: 1%;
+  font-size: 1.2rem;
+  left: 1.2%;
   top: 34%;
   transform: translateY(-50%);
 }
 .TravelForm__input-airport {
-  bottom: 0;
-  left: 1%;
+  font-size: 0.64rem;
+  bottom: -2px;
+  left: 1.2%;
 }
 .TravelForm__input-country {
-  bottom: 0;
-  right: 20%;
+  font-size: 0.78rem;
+  bottom: -2px;
+  right: 9%;
 }
 .TravelForm__suggestion-list {
   position: absolute;
-  background: white;
+  background: var(--light);
   z-index: 100;
   border: 1px solid var(--dark);
   width: 100%;

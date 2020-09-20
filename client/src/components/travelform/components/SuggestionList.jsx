@@ -21,7 +21,7 @@ const SuggestionList = () => {
       )[0];
       targetCity.scrollIntoView({
         behavior: "auto",
-        block: "end",
+        block: "nearest",
         inline: "nearest",
       });
       travelForm.sugList.city = targetCity.dataset.city;

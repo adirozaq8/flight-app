@@ -45,7 +45,7 @@ class DateInput extends React.Component {
           }}
           //showTimeSelect
           dateFormat="d MMMM yyyy"
-          customInput={<CustomInput />}
+          customInput={<CustomInput className="date-input" />}
         />
       </>
     );

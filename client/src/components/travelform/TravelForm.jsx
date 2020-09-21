@@ -42,12 +42,12 @@ const TravelForm = () => {
         <div className="TravelForm__control-group-wrapper TravelForm__date-group-wrapper">
           <div className="TravelForm__date-header">
             <label htmlFor="TravelDepart">Departure</label>
-            <DateInput className="TravelDate" id="TravelDepart" />
+            <DateInput className="TravelForm__date" id="TravelDepart" />
           </div>
           {travelForm.travelType === 1 && (
             <div className="TravelForm__date-header">
               <label htmlFor="TravelReturn">Return</label>
-              <DateInput className="TravelDate" id="TravelReturn" />
+              <DateInput className="TravelForm__date" id="TravelReturn" />
             </div>
           )}
         </div>

@@ -8,44 +8,55 @@
   --inputHeight: 3.22rem;
 }
 /* react-datepicker component custom css */
-.react-datepicker-popper[data-placement^="bottom"] .react-datepicker__triangle,
-.react-datepicker-popper[data-placement^="bottom"]
+.TravelForm
+  .react-datepicker-popper[data-placement^="bottom"]
+  .TravelForm
+  .react-datepicker__triangle,
+.TravelForm
+  .react-datepicker-popper[data-placement^="bottom"]
+  .TravelForm
   .react-datepicker__triangle::before {
   border-bottom-color: var(--dark);
 }
-.react-datepicker__day--keyboard-selected,
-.react-datepicker__header,
-.react-datepicker__today-button,
-.react-datepicker__day--selected {
+.TravelForm .react-datepicker__day--keyboard-selected,
+.TravelForm .react-datepicker__header,
+.TravelForm .react-datepicker__today-button,
+.TravelForm .react-datepicker__day--selected {
   background: var(--dark);
 }
-.react-datepicker__current-month,
-.react-datepicker-time__header,
-.react-datepicker-year-header,
-.react-datepicker__day-name,
-.react-datepicker__header,
-.react-datepicker__navigation--previous,
-.react-datepicker__navigation--next {
+.TravelForm .react-datepicker__current-month,
+.TravelForm .react-datepicker-time__header,
+.TravelForm .react-datepicker-year-header,
+.TravelForm .react-datepicker__day-name,
+.TravelForm .react-datepicker__header,
+.TravelForm .react-datepicker__navigation--previous,
+.TravelForm .react-datepicker__navigation--next {
   color: var(--light);
 }
-.react-datepicker__triangle {
+.TravelForm .react-datepicker__triangle {
   color: var(--dark);
 }
-.react-datepicker__input-container button {
+.TravelForm .react-datepicker-wrapper,
+.TravelForm .react-datepicker__input-container {
+  border: none;
+  border-radius: 10px;
+  margin-left: 6px;
+}
+.TravelForm .react-datepicker__input-container button {
   width: 100%;
   background: var(--light);
-  color: black;
+  color: var(--dark);
   border: 1px solid var(--dark);
   font-size: 90%;
   line-height: 1.64rem;
-  outline: none;
   font-weight: 500;
 }
-.react-datepicker__input-container button:focus,
-.react-datepicker__input-container button:active {
-  outline: none;
+.TravelForm .react-datepicker__input-container button:focus,
+.TravelForm .react-datepicker__input-container button:active {
+  margin: 0;
+  outline: 4px solid var(--dark);
 }
-.react-datepicker__input-container button:hover {
+.TravelForm .react-datepicker__input-container button:hover {
   background: var(--select);
 }
 /* travelForm */
@@ -68,6 +79,7 @@
   justify-content: center;
   align-items: center;
   margin-bottom: 1rem;
+  flex-wrap: wrap;
 }
 /* travel types */
 .TravelForm__radio-button {
@@ -98,12 +110,8 @@
 /* input */
 .TravelForm__input-group-wrapper {
   display: flex;
-  border-radius: 4px 0 0 4px;
+  border-radius: 4px;
   background: var(--dark);
-  border: 1px solid var(--dark);
-}
-.TravelForm__date-group-wrapper {
-  display: flex;
   border: 1px solid var(--dark);
 }
 .TravelForm__input-box label,
@@ -123,7 +131,6 @@
   transform: translateX(-50%);
 }
 .TravelForm__input-wrapper {
-  width: 100%;
   display: flex;
   margin: 0;
   position: relative;
@@ -132,16 +139,16 @@
   border: 1px solid var(--dark);
 }
 .TravelForm__input {
-  outline: none;
   position: absolute;
 }
 .TravelForm__input-not-ready {
   padding: 0 0.6rem;
-  width: 100%;
-  height: 100%;
-  left: 0;
+  width: 94%;
+  height: 90%;
+  left: 3%;
   margin: 0;
   font-size: 1.6rem;
+  border-radius: 0 0 4px 4px;
 }
 .TravelForm__input-ready {
   text-align: center;
@@ -150,19 +157,23 @@
   font-size: 1.4rem;
   left: 16%;
 }
+.TravelForm__date-group-wrapper {
+  display: flex;
+}
 .TravelForm__date-header {
   display: flex;
   flex-direction: column;
   position: relative;
   height: var(--inputHeight);
 }
+
 .TravelForm__date-header label {
   position: absolute;
   top: -1.4rem;
   left: 0;
   right: 0;
 }
-.TravelForm__date-header button {
+.TravelForm .CustomInput__btn {
   height: var(--inputHeight);
 }
 .TravelForm__datepicker-wrapper {
@@ -184,14 +195,14 @@
 }
 .TravelForm__input-iata {
   font-size: 1.2rem;
-  left: 1.2%;
+  left: 1.6%;
   top: 34%;
   transform: translateY(-50%);
 }
 .TravelForm__input-airport {
   font-size: 0.64rem;
   bottom: -2px;
-  left: 1.2%;
+  left: 1.6%;
 }
 .TravelForm__input-country {
   font-size: 0.78rem;

@@ -2,7 +2,7 @@ import React from "react";
 
 const CustomInput = React.forwardRef((props, ref) => {
   return (
-    <button onClick={props.onClick} ref={ref}>
+    <button className="CustomInput__btn" onClick={props.onClick} ref={ref}>
       {props.value || props.placeholder}
     </button>
   );

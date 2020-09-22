@@ -2,15 +2,14 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import TravelTypes from "./components/TravelTypes";
 import TravelFormInput from "./components/TravelFormInput";
-import DateInput from "./components/dateinput/DateInput";
 
 import "./TravelForm.css";
 
 const TravelForm = () => {
   const travelForm = useSelector((state) => state.travelForm);
   const dispatch = useDispatch();
-  const updateTravelForm = (state) => {
-    dispatch({ type: "UPDATE_TRAVELFORM", payload: state });
+  const updateTravelForm = () => {
+    dispatch({ type: "UPDATE_TRAVELFORM", payload: travelForm });
   };
   useEffect(() => {
     if (travelForm.initialFetch === false) {
@@ -23,8 +22,18 @@ const TravelForm = () => {
         .then((data) => {
           travelForm.airDb = data.reqAirport;
           travelForm.initialFetch = true;
-          updateTravelForm(travelForm);
+          updateTravelForm();
         });
+    }
+  });
+  useEffect(() => {
+    if (travelForm.travelType === 2 && travelForm.cityInputs.length < 2) {
+      travelForm.cityInputs.push(travelForm.cityInputTemplate);
+      updateTravelForm();
+    }
+    if (travelForm.travelType !== 2 && travelForm.cityInputs.length > 1) {
+      travelForm.cityInputs.pop();
+      travelForm.cityInputs.length < 2 && updateTravelForm();
     }
   });
   return (
@@ -36,21 +45,7 @@ const TravelForm = () => {
         <ul className="TravelForm__radio-button">{<TravelTypes />}</ul>
       </div>
       <div className="TravelForm__control-group">
-        <div className="TravelForm__input-group-wrapper">
-          <TravelFormInput />
-        </div>
-        <div className="TravelForm__control-group-wrapper TravelForm__date-group-wrapper">
-          <div className="TravelForm__date-header">
-            <label htmlFor="TravelDepart">Departure</label>
-            <DateInput className="TravelForm__date" id="TravelDepart" />
-          </div>
-          {travelForm.travelType === 1 && (
-            <div className="TravelForm__date-header">
-              <label htmlFor="TravelReturn">Return</label>
-              <DateInput className="TravelForm__date" id="TravelReturn" />
-            </div>
-          )}
-        </div>
+        <TravelFormInput />
       </div>
       <div className="TravelForm__control-group">
         <div className="TravelForm__secondary">

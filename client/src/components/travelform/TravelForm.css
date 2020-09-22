@@ -39,15 +39,17 @@
 .TravelForm .react-datepicker-wrapper,
 .TravelForm .react-datepicker__input-container {
   border: none;
-  border-radius: 10px;
+}
+.TravelForm .react-datepicker-wrapper {
   margin-left: 6px;
+  width: 140px;
 }
 .TravelForm .react-datepicker__input-container button {
   width: 100%;
   background: var(--light);
   color: var(--dark);
-  border: 1px solid var(--dark);
-  font-size: 90%;
+  border: 2px solid var(--dark);
+  font-size: 80%;
   line-height: 1.64rem;
   font-weight: 500;
 }
@@ -55,6 +57,7 @@
 .TravelForm .react-datepicker__input-container button:active {
   margin: 0;
   outline: 4px solid var(--dark);
+  outline-offset: 1px;
 }
 .TravelForm .react-datepicker__input-container button:hover {
   background: var(--select);
@@ -113,6 +116,7 @@
   border-radius: 4px;
   background: var(--dark);
   border: 1px solid var(--dark);
+  margin-bottom: 16px;
 }
 .TravelForm__input-box label,
 .TravelForm__input {
@@ -169,12 +173,18 @@
 
 .TravelForm__date-header label {
   position: absolute;
-  top: -1.4rem;
+  margin-left: 8px;
+  font-size: 70%;
+  text-transform: uppercase;
+  font-weight: 800;
+  top: 0rem;
   left: 0;
   right: 0;
+  z-index: 1;
 }
 .TravelForm .CustomInput__btn {
   height: var(--inputHeight);
+  width: 100%;
 }
 .TravelForm__datepicker-wrapper {
   height: var(--inputHeight);

@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import TravelTypes from "./components/TravelTypes";
 import TravelFormInput from "./components/TravelFormInput";
+import AddFlight from "./components/AddFlight";
 
 import "./TravelForm.css";
 
@@ -44,9 +45,16 @@ const TravelForm = () => {
       <div className="TravelForm__control-group">
         <ul className="TravelForm__radio-button">{<TravelTypes />}</ul>
       </div>
-      <div className="TravelForm__control-group">
+      <div
+        className={
+          travelForm.travelType === 2
+            ? "TravelForm__control-group TravelForm--margin-bottom-none"
+            : "TravelForm__control-group"
+        }
+      >
         <TravelFormInput />
       </div>
+      {travelForm.travelType === 2 && <AddFlight />}
       <div className="TravelForm__control-group">
         <div className="TravelForm__secondary">
           <label htmlFor="TravelClass">Cabin class</label>

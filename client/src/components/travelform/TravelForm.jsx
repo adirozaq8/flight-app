@@ -34,7 +34,7 @@ const TravelForm = () => {
     }
     if (travelForm.travelType !== 2 && travelForm.cityInputs.length > 1) {
       travelForm.cityInputs.pop();
-      travelForm.cityInputs.length < 2 && updateTravelForm();
+      updateTravelForm();
     }
   });
   return (

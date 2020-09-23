@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import TravelTypes from "./components/TravelTypes";
 import TravelFormInput from "./components/TravelFormInput";
 import AddFlight from "./components/AddFlight";
+import Flight from "@material-ui/icons/Flight";
 
 import "./TravelForm.css";
 
@@ -96,7 +97,8 @@ const TravelForm = () => {
       </div>
       <div className="TravelForm__control-group">
         <button id="TravelForm__submit" type="button">
-          Find flights
+          <Flight className="TravelForm__icon-flight" />
+          <span>Find flights</span>
         </button>
       </div>
     </div>

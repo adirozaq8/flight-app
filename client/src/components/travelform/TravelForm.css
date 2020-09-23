@@ -83,6 +83,8 @@
   align-items: center;
   margin-bottom: 1rem;
   flex-wrap: wrap;
+  backface-visibility: hidden;
+  animation: opactosolid 0.4s ease;
 }
 /* travel types */
 .TravelForm__radio-button {
@@ -120,6 +122,8 @@
   background: var(--dark);
   border: 1px solid var(--dark);
   margin-bottom: 16px;
+  backface-visibility: hidden;
+  animation: opactosolid 0.4s ease;
 }
 .TravelForm__input-box label,
 .TravelForm__input {
@@ -197,7 +201,6 @@
 .TravelForm__input-country,
 .TravelForm__date-header {
   backface-visibility: hidden;
-  animation: opactosolid 0.2s ease;
 }
 .TravelForm__input-iata,
 .TravelForm__input-airport,
@@ -323,6 +326,18 @@
     /*TEMPORARY solution for getting only one box per row */
     margin: 0.4rem 50%;
   }
+  .TravelForm__input-wrapper {
+    margin-bottom: 1rem;
+  }
+  .TravelForm__date-group-wrapper {
+    justify-content: center;
+  }
+  .TravelForm__remove-flight {
+    margin: 0.4rem auto;
+  }
+  .TravelForm__secondary-item-wrapper {
+    margin: 0.4rem 0;
+  }
 }
 @media only screen and (max-width: 690px) {
   .TravelForm__input-group-wrapper {
@@ -331,6 +346,20 @@
   .TravelForm__secondary {
     flex-wrap: wrap;
     height: 100%;
+  }
+}
+@media only screen and (max-width: 460px) {
+  .TravelForm__radio-button li {
+    margin: 0 0.3rem;
+    font-size: 80%;
+  }
+}
+@media only screen and (max-width: 340px) {
+  .TravelForm__input-wrapper {
+    width: 260px;
+  }
+  .TravelForm__input-iata {
+    font-size: 1rem;
   }
 }
 /* animations and effects */

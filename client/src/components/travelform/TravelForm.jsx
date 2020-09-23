@@ -57,35 +57,41 @@ const TravelForm = () => {
       {travelForm.travelType === 2 && <AddFlight />}
       <div className="TravelForm__control-group">
         <div className="TravelForm__secondary">
-          <label htmlFor="TravelClass">Cabin class</label>
-          <select
-            className="TravelForm__secondary-item TravelForm__select"
-            id="TravelForm__Class"
-          >
-            <option value="economy">Economy</option>
-            <option value="premium">Premium economy</option>
-            <option value="business">Business</option>
-            <option value="first">First class</option>
-          </select>
-          <label htmlFor="TravelForm__Adults">Adults</label>
-          <input
-            className="TravelForm__secondary-item TravelForm__input-number"
-            type="number"
-            min="1"
-            max="9"
-            id="TravelForm__Adults"
-            name="adults"
-            defaultValue="1"
-          />
-          <label htmlFor="TravelForm__Children">Children</label>
-          <input
-            className="TravelForm__secondary-item TravelForm__input-number"
-            min="0"
-            max="9"
-            type="number"
-            id="TravelForm__Children"
-            name="children"
-          />
+          <div className="TravelForm__secondary-item-wrapper">
+            <label htmlFor="TravelClass">Cabin class</label>
+            <select
+              className="TravelForm__secondary-item TravelForm__select"
+              id="TravelForm__Class"
+            >
+              <option value="economy">Economy</option>
+              <option value="premium">Premium economy</option>
+              <option value="business">Business</option>
+              <option value="first">First class</option>
+            </select>
+          </div>
+          <div className="TravelForm__secondary-item-wrapper">
+            <label htmlFor="TravelForm__Adults">Adults</label>
+            <input
+              className="TravelForm__secondary-item TravelForm__input-number"
+              type="number"
+              min="1"
+              max="9"
+              id="TravelForm__Adults"
+              name="adults"
+              defaultValue="1"
+            />
+          </div>
+          <div className="TravelForm__secondary-item-wrapper">
+            <label htmlFor="TravelForm__Children">Children</label>
+            <input
+              className="TravelForm__secondary-item TravelForm__input-number"
+              min="0"
+              max="9"
+              type="number"
+              id="TravelForm__Children"
+              name="children"
+            />
+          </div>
         </div>
       </div>
       <div className="TravelForm__control-group">

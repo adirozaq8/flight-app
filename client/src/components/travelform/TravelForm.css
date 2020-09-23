@@ -63,8 +63,12 @@
   outline: 4px solid var(--dark);
   outline-offset: 1px;
 }
-.TravelForm .react-datepicker__input-container button:hover {
-  background: var(--select);
+/* default hover background */
+.TravelForm__input:hover,
+.TravelForm .react-datepicker__input-container button:hover,
+.TravelForm__add-flight:hover,
+#TravelForm__submit:hover {
+  background-color: var(--select);
 }
 /* travelForm */
 .TravelForm {
@@ -89,8 +93,6 @@
   align-items: center;
   margin-bottom: 1rem;
   flex-wrap: wrap;
-  backface-visibility: hidden;
-  animation: opactosolid 0.4s ease;
 }
 /* travel types */
 .TravelForm__radio-button {
@@ -130,8 +132,6 @@
   background: var(--dark);
   border: 1px solid var(--dark);
   margin-bottom: 16px;
-  backface-visibility: hidden;
-  animation: opactosolid 0.4s ease;
 }
 .TravelForm__input-box label,
 .TravelForm__input {
@@ -245,8 +245,6 @@
 }
 .TravelForm__add-flight {
   text-align: center;
-}
-.TravelForm__add-flight {
   margin-bottom: 1rem;
   display: flex;
   justify-content: center;
@@ -284,6 +282,9 @@
   width: 2.2rem !important;
   height: 2.2rem !important;
   color: var(--light);
+}
+.TravelForm__icon-remove:hover {
+  color: var(--select);
 }
 /* Amform secondary */
 .TravelForm__secondary {
@@ -334,12 +335,13 @@
   color: var(--dark);
   margin-right: 0.4rem;
 }
-#TravelForm__submit:hover {
-  background: var(--select);
-}
 /* modifiers */
 .TravelForm--margin-bottom-none {
   margin-bottom: 0;
+}
+.TravelForm--ease-in-opacity {
+  backface-visibility: hidden;
+  animation: opactosolid 0.4s ease;
 }
 /* media queries */
 @media only screen and (max-width: 800px) {

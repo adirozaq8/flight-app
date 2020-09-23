@@ -43,20 +43,20 @@ const TravelForm = () => {
       className="TravelForm TravelForm--colors TravelForm--vars"
       id="TravelForm"
     >
-      <div className="TravelForm__control-group">
+      <div className="TravelForm__control-group TravelForm--ease-in-opacity">
         <ul className="TravelForm__radio-button">{<TravelTypes />}</ul>
       </div>
       <div
         className={
           travelForm.travelType === 2
-            ? "TravelForm__control-group TravelForm--margin-bottom-none"
-            : "TravelForm__control-group"
+            ? "TravelForm__control-group TravelForm--ease-in-opacity TravelForm--margin-bottom-none"
+            : "TravelForm__control-group TravelForm--ease-in-opacity"
         }
       >
         <TravelFormInput />
       </div>
       {travelForm.travelType === 2 && <AddFlight />}
-      <div className="TravelForm__control-group">
+      <div className="TravelForm__control-group TravelForm--ease-in-opacity">
         <div className="TravelForm__secondary">
           <div className="TravelForm__secondary-item-wrapper">
             <label htmlFor="TravelClass">Cabin class</label>

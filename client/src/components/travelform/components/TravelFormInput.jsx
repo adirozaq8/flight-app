@@ -180,13 +180,13 @@ const TravelFormInput = () => {
       })}
       <div className="TravelForm__control-group-wrapper TravelForm__date-group-wrapper">
         <div className="TravelForm__date-header">
-          <label htmlFor="TravelDepart">Departure</label>
-          <DateInput className="TravelForm__date" id="TravelDepart" />
+          <label>Departure</label>
+          <DateInput className="TravelForm__date" />
         </div>
         {travelForm.travelType === 1 && (
           <div className="TravelForm__date-header">
-            <label htmlFor="TravelReturn">Return</label>
-            <DateInput className="TravelForm__date" id="TravelReturn" />
+            <label>Return</label>
+            <DateInput className="TravelForm__date" />
           </div>
         )}
       </div>

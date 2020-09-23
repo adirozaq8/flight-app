@@ -192,14 +192,16 @@
   font-size: 70%;
   text-transform: uppercase;
   font-weight: 800;
-  top: 0rem;
+  top: 0.6rem;
   left: 0;
   right: 0;
   z-index: 1;
+  pointer-events: none;
 }
 .TravelForm .CustomInput__btn {
   height: var(--inputHeight);
   width: 100%;
+  padding-top: 0.8rem;
 }
 .TravelForm__datepicker-wrapper {
   height: var(--inputHeight);

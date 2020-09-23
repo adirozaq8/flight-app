@@ -6,6 +6,7 @@ const INITIAL_STATE = {
   sugListLen: 15,
   airDb: null,
   airports: null,
+  currentLabel: "",
   cityInputTemplate: {
     from: {
       title: "From",

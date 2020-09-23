@@ -8,6 +8,9 @@
   --inputHeight: 3.22rem;
 }
 /* react-datepicker component custom css */
+.TravelForm .react-datepicker-popper {
+  z-index: 1000;
+}
 .TravelForm
   .react-datepicker-popper[data-placement^="bottom"]
   .TravelForm

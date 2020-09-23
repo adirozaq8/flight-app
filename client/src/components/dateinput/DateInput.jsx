@@ -7,8 +7,8 @@ import "react-datepicker/dist/react-datepicker.css";
 // TODO move this state to redux
 
 class DateInput extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       startDate: new Date(),
       date: new Date(),

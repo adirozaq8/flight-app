@@ -74,7 +74,12 @@ const TravelForm = () => {
       >
         <TravelFormInput />
       </div>
-      {travelForm.travelType === 2 && <AddFlight />}
+
+      {travelForm.travelType === 2 && (
+        <div className="TravelForm__control-group TravelForm--ease-in-opacity">
+          <AddFlight />
+        </div>
+      )}
       <div className="TravelForm__control-group TravelForm--ease-in-opacity">
         <div className="TravelForm__secondary">
           <div className="TravelForm__secondary-item-wrapper">

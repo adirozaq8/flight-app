@@ -15,9 +15,8 @@ const RemoveFlight = () => {
 
   return (
     <div className="TravelForm__remove-flight" onClick={handleClick}>
-      <div className="">
-        {<RemoveCircle className="TravelForm__icon-remove" />}
-      </div>
+      {<RemoveCircle className="TravelForm__icon-remove" />}
+      <span>Remove flight</span>
     </div>
   );
 };

@@ -7,6 +7,7 @@
 }
 .TravelForm--vars {
   --inputHeight: 3.22rem;
+  --max-width: 1200px;
 }
 /* react-datepicker component custom css */
 .TravelForm .react-datepicker-popper {
@@ -72,7 +73,8 @@
 }
 /* travelForm */
 .TravelForm {
-  margin: 1rem;
+  max-width: var(--max-width);
+  margin: 1rem auto;
   user-select: none;
   border: 1px solid var(--disabled);
   border-radius: 4px;
@@ -251,8 +253,8 @@
   text-align: center;
   margin-bottom: 1rem;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   color: var(--dark);
   background-color: var(--light);
   padding: 0.4rem 0.6rem;
@@ -260,9 +262,6 @@
   border-radius: 4px;
   border: 2px solid var(--dark);
   margin: 0 auto;
-  margin-bottom: 1rem;
-  display: flex;
-  justify-content: center;
   cursor: pointer;
   text-transform: uppercase;
   font-weight: bold;
@@ -278,17 +277,25 @@
   width: fit-content;
   margin: 0 auto;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  font-size: 0.6rem;
+  padding: 0 0.1rem;
 }
 .TravelForm__icon-remove {
-  width: 2.2rem !important;
-  height: 2.2rem !important;
   color: var(--light);
+  width: 1.6rem !important;
+  height: 1.6rem !important;
+  display: inline-block;
 }
-.TravelForm__icon-remove:hover {
+.TravelForm__remove-flight:hover .TravelForm__icon-remove {
   color: var(--select);
+}
+.TravelForm__remove-flight span {
+  display: inline-block;
+  word-wrap: wrap;
 }
 /* Amform secondary */
 .TravelForm__secondary {
@@ -347,11 +354,33 @@
   backface-visibility: hidden;
   animation: opactosolid 0.4s ease;
 }
+.TravelForm--justify-flex-start {
+  justify-content: flex-start;
+  margin: 0 0 0 15%;
+}
 /* media queries */
+@media only screen and (max-width: 1000px) {
+  .TravelForm--justify-flex-start {
+    margin: 0 0 0 8%;
+  }
+}
 @media only screen and (max-width: 940px) {
   .TravelForm__input-group-wrapper {
     flex-wrap: wrap;
+  }
+  .TravelForm--justify-flex-start {
+    margin: 0 0 0 2%;
+  }
+}
+@media only screen and (max-width: 860px) {
+  .TravelForm--justify-flex-start {
+    margin: 0 0 0 2%;
+  }
+}
+@media only screen and (max-width: 835px) {
+  .TravelForm--justify-flex-start {
     justify-content: center;
+    margin: 0;
   }
 }
 @media only screen and (max-width: 800px) {
@@ -376,6 +405,7 @@
   .TravelForm__secondary {
     flex-wrap: wrap;
     height: 100%;
+    padding: 1rem 2rem;
   }
 }
 @media only screen and (max-width: 460px) {

@@ -348,15 +348,13 @@
   animation: opactosolid 0.4s ease;
 }
 /* media queries */
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 940px) {
   .TravelForm__input-group-wrapper {
-    flex-direction: column;
-    /*TEMPORARY solution for getting only one box per row */
-    margin: 0.4rem 50%;
+    flex-wrap: wrap;
+    justify-content: center;
   }
-  .TravelForm__input-wrapper {
-    margin-bottom: 1rem;
-  }
+}
+@media only screen and (max-width: 800px) {
   .TravelForm__date-group-wrapper {
     justify-content: center;
   }
@@ -369,7 +367,11 @@
 }
 @media only screen and (max-width: 690px) {
   .TravelForm__input-group-wrapper {
+    flex-direction: column;
     margin: 0.4rem;
+  }
+  .TravelForm__input-wrapper {
+    margin-bottom: 1rem;
   }
   .TravelForm__secondary {
     flex-wrap: wrap;

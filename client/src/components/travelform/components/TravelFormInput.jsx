@@ -100,6 +100,28 @@ const TravelFormInput = () => {
       updateTravelForm();
     }
     if (e.keyCode === 13) {
+      if (travelForm.cityInputs.length > idx + 1 && originDest === "to") {
+        travelForm.cityInputs[idx + 1]["from"].ready = true;
+        travelForm.cityInputs[idx + 1]["from"].value = travelForm.sugList.city;
+        travelForm.cityInputs[idx + 1]["from"].iata = travelForm.sugList.iata;
+        travelForm.cityInputs[idx + 1]["from"].airport =
+          travelForm.sugList.airport;
+        travelForm.cityInputs[idx + 1]["from"].country =
+          travelForm.sugList.country;
+      }
+      if (
+        travelForm.cityInputs.length > 0 &&
+        idx > 0 &&
+        originDest === "from"
+      ) {
+        travelForm.cityInputs[idx - 1]["to"].ready = true;
+        travelForm.cityInputs[idx - 1]["to"].value = travelForm.sugList.city;
+        travelForm.cityInputs[idx - 1]["to"].iata = travelForm.sugList.iata;
+        travelForm.cityInputs[idx - 1]["to"].airport =
+          travelForm.sugList.airport;
+        travelForm.cityInputs[idx - 1]["to"].country =
+          travelForm.sugList.country;
+      }
       travelForm.cityInputs[idx][originDest].ready = true;
       travelForm.cityInputs[idx][originDest].value = travelForm.sugList.city;
       travelForm.cityInputs[idx][originDest].iata = travelForm.sugList.iata;

@@ -32,6 +32,35 @@ const SuggestionList = () => {
   });
   const handleMouseDown = (e) => {
     const inputFocus = travelForm.inputFocus.split("-");
+    if (
+      travelForm.cityInputs.length > Number(inputFocus[0]) + 1 &&
+      inputFocus[1] === "to"
+    ) {
+      travelForm.cityInputs[Number(inputFocus[0]) + 1]["from"].ready = true;
+      travelForm.cityInputs[Number(inputFocus[0]) + 1]["from"].value =
+        travelForm.sugList.city;
+      travelForm.cityInputs[Number(inputFocus[0]) + 1]["from"].iata =
+        travelForm.sugList.iata;
+      travelForm.cityInputs[Number(inputFocus[0]) + 1]["from"].airport =
+        travelForm.sugList.airport;
+      travelForm.cityInputs[Number(inputFocus[0]) + 1]["from"].country =
+        travelForm.sugList.country;
+    }
+    if (
+      travelForm.cityInputs.length > 0 &&
+      Number(inputFocus[0]) > 0 &&
+      inputFocus[1] === "from"
+    ) {
+      travelForm.cityInputs[Number(inputFocus[0]) - 1]["to"].ready = true;
+      travelForm.cityInputs[Number(inputFocus[0]) - 1]["to"].value =
+        travelForm.sugList.city;
+      travelForm.cityInputs[Number(inputFocus[0]) - 1]["to"].iata =
+        travelForm.sugList.iata;
+      travelForm.cityInputs[Number(inputFocus[0]) - 1]["to"].airport =
+        travelForm.sugList.airport;
+      travelForm.cityInputs[Number(inputFocus[0]) - 1]["to"].country =
+        travelForm.sugList.country;
+    }
     travelForm.cityInputs[Number(inputFocus[0])][inputFocus[1]].ready = true;
     travelForm.cityInputs[Number(inputFocus[0])][inputFocus[1]].value =
       e.currentTarget.dataset.city;

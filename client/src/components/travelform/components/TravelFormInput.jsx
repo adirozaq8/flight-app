@@ -115,6 +115,7 @@ const TravelFormInput = () => {
       key={"travelSetWrap-" + idx}
       className="TravelForm__input-group-wrapper TravelForm--ease-in-opacity"
     >
+      {" "}
       {Object.keys(input).map((originDest) => {
         return (
           <div

@@ -8,8 +8,27 @@ const AddFlight = () => {
   const updateTravelForm = () => {
     dispatch({ type: "UPDATE_TRAVELFORM", payload: travelForm });
   };
-  const handleClick = (idx) => {
-    travelForm.cityInputs.push(travelForm.cityInputTemplate);
+  const handleClick = () => {
+    travelForm.cityInputs.push({
+      from: {
+        title: "From",
+        placeholder: "Origin",
+        value: "",
+        ready: false,
+        iata: "",
+        airport: "",
+        country: "",
+      },
+      to: {
+        title: "To",
+        placeholder: "Destination",
+        value: "",
+        ready: false,
+        iata: "",
+        airport: "",
+        country: "",
+      },
+    });
     updateTravelForm();
   };
 

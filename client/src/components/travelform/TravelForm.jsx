@@ -30,7 +30,26 @@ const TravelForm = () => {
   });
   useEffect(() => {
     if (travelForm.travelType === 2 && travelForm.cityInputs.length < 2) {
-      travelForm.cityInputs.push(travelForm.cityInputTemplate);
+      travelForm.cityInputs.push({
+        from: {
+          title: "From",
+          placeholder: "Origin",
+          value: "",
+          ready: false,
+          iata: "",
+          airport: "",
+          country: "",
+        },
+        to: {
+          title: "To",
+          placeholder: "Destination",
+          value: "",
+          ready: false,
+          iata: "",
+          airport: "",
+          country: "",
+        },
+      });
       updateTravelForm();
     }
     if (travelForm.travelType !== 2 && travelForm.cityInputs.length > 1) {

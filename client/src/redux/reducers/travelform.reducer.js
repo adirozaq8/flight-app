@@ -6,6 +6,29 @@ const INITIAL_STATE = {
   sugListLen: 15,
   airDb: null,
   airports: null,
+  templates: {
+    cityInputs: {
+      from: {
+        title: "From",
+        placeholder: "Origin",
+        value: "",
+        ready: false,
+        iata: "",
+        airport: "",
+        country: "",
+      },
+      to: {
+        title: "To",
+        placeholder: "Destination",
+        value: "",
+        ready: false,
+        iata: "",
+        airport: "",
+        country: "",
+      },
+    },
+    iterables: ["ready", "value", "iata", "airport", "country"],
+  },
   cityInputs: [
     {
       from: {

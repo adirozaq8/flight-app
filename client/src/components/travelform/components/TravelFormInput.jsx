@@ -77,11 +77,11 @@ const TravelFormInput = () => {
     }, 0);
   };
   const handleInput = (e, idx, originDest) => {
-    travelForm.cityInputs[idx][originDest].ready = false;
-    travelForm.cityInputs[idx][originDest].value = e.target.value;
-    travelForm.cityInputs[idx][originDest].iata = "";
-    travelForm.cityInputs[idx][originDest].airport = "";
-    travelForm.cityInputs[idx][originDest].country = "";
+    const values = [false, e.target.value, "", "", ""];
+    travelForm.templates.iterables.map((templateValue, index) => {
+      return (travelForm.cityInputs[idx][originDest][templateValue] =
+        values[index]);
+    });
     travelForm.inputFocus = idx + "-" + originDest;
     updateTravelForm();
   };
@@ -100,35 +100,33 @@ const TravelFormInput = () => {
       updateTravelForm();
     }
     if (e.keyCode === 13) {
+      const values = [
+        true,
+        travelForm.sugList.city,
+        travelForm.sugList.iata,
+        travelForm.sugList.airport,
+        travelForm.sugList.country,
+      ];
       if (travelForm.cityInputs.length > idx + 1 && originDest === "to") {
-        travelForm.cityInputs[idx + 1]["from"].ready = true;
-        travelForm.cityInputs[idx + 1]["from"].value = travelForm.sugList.city;
-        travelForm.cityInputs[idx + 1]["from"].iata = travelForm.sugList.iata;
-        travelForm.cityInputs[idx + 1]["from"].airport =
-          travelForm.sugList.airport;
-        travelForm.cityInputs[idx + 1]["from"].country =
-          travelForm.sugList.country;
+        travelForm.templates.iterables.map((templateValue, index) => {
+          return (travelForm.cityInputs[idx + 1]["from"][templateValue] =
+            values[index]);
+        });
       }
       if (
         travelForm.cityInputs.length > 0 &&
         idx > 0 &&
         originDest === "from"
       ) {
-        travelForm.cityInputs[idx - 1]["to"].ready = true;
-        travelForm.cityInputs[idx - 1]["to"].value = travelForm.sugList.city;
-        travelForm.cityInputs[idx - 1]["to"].iata = travelForm.sugList.iata;
-        travelForm.cityInputs[idx - 1]["to"].airport =
-          travelForm.sugList.airport;
-        travelForm.cityInputs[idx - 1]["to"].country =
-          travelForm.sugList.country;
+        travelForm.templates.iterables.map((templateValue, index) => {
+          return (travelForm.cityInputs[idx - 1]["to"][templateValue] =
+            values[index]);
+        });
       }
-      travelForm.cityInputs[idx][originDest].ready = true;
-      travelForm.cityInputs[idx][originDest].value = travelForm.sugList.city;
-      travelForm.cityInputs[idx][originDest].iata = travelForm.sugList.iata;
-      travelForm.cityInputs[idx][originDest].airport =
-        travelForm.sugList.airport;
-      travelForm.cityInputs[idx][originDest].country =
-        travelForm.sugList.country;
+      travelForm.templates.iterables.map((templateValue, index) => {
+        return (travelForm.cityInputs[idx][originDest][templateValue] =
+          values[index]);
+      });
     }
     updateTravelForm();
   };

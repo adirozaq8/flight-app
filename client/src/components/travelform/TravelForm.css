@@ -282,7 +282,7 @@
   align-items: center;
   cursor: pointer;
   font-size: 0.6rem;
-  padding: 0 0.1rem;
+  padding: 0 0.2rem;
 }
 .TravelForm__icon-remove {
   color: var(--light);

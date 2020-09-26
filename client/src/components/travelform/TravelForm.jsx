@@ -13,9 +13,13 @@ const TravelForm = () => {
   const updateTravelForm = () => {
     dispatch({ type: "UPDATE_TRAVELFORM", payload: travelForm });
   };
+  travelForm.cityInputs.length === 0 &&
+    travelForm.cityInputs.push(
+      JSON.parse(JSON.stringify({ ...travelForm.templates.cityInputs }))
+    );
   useEffect(() => {
     if (travelForm.initialFetch === false) {
-      fetch("http://localhost:5000/api/amform/getairports", {
+      fetch(process.env.REACT_APP_FETCH_URL + "/api/getairports", {
         method: "POST",
       })
         .then((response) => {

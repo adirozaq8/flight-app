@@ -29,28 +29,7 @@ const INITIAL_STATE = {
     },
     iterables: ["ready", "value", "iata", "airport", "country"],
   },
-  cityInputs: [
-    {
-      from: {
-        title: "From",
-        placeholder: "Origin",
-        value: "",
-        ready: false,
-        iata: "",
-        airport: "",
-        country: "",
-      },
-      to: {
-        title: "To",
-        placeholder: "Destination",
-        value: "",
-        ready: false,
-        iata: "",
-        airport: "",
-        country: "",
-      },
-    },
-  ],
+  cityInputs: [],
   sugList: {
     selected: 0,
     iata: "",

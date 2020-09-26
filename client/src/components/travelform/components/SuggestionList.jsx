@@ -30,46 +30,58 @@ const SuggestionList = () => {
       travelForm.sugList.country = targetCity.dataset.country;
     }
   });
+  const inputIterate = (
+    template = travelForm.templates.iterables,
+    element = travelForm.cityInputs,
+    indexIn = 0,
+    fromto = "from",
+    values = []
+  ) => {
+    template.map((templateValue, index) => {
+      return (element[indexIn][fromto][templateValue] = values[index]);
+    });
+  };
   const handleMouseDown = (e) => {
+    const values = [
+      true,
+      travelForm.sugList.city,
+      travelForm.sugList.iata,
+      travelForm.sugList.airport,
+      travelForm.sugList.country,
+    ];
     const inputFocus = travelForm.inputFocus.split("-");
     if (
       travelForm.cityInputs.length > Number(inputFocus[0]) + 1 &&
       inputFocus[1] === "to"
     ) {
-      travelForm.cityInputs[Number(inputFocus[0]) + 1]["from"].ready = true;
-      travelForm.cityInputs[Number(inputFocus[0]) + 1]["from"].value =
-        travelForm.sugList.city;
-      travelForm.cityInputs[Number(inputFocus[0]) + 1]["from"].iata =
-        travelForm.sugList.iata;
-      travelForm.cityInputs[Number(inputFocus[0]) + 1]["from"].airport =
-        travelForm.sugList.airport;
-      travelForm.cityInputs[Number(inputFocus[0]) + 1]["from"].country =
-        travelForm.sugList.country;
+      inputIterate(
+        undefined,
+        undefined,
+        Number(inputFocus[0]) + 1,
+        undefined,
+        values
+      );
     }
     if (
       travelForm.cityInputs.length > 0 &&
       Number(inputFocus[0]) > 0 &&
       inputFocus[1] === "from"
     ) {
-      travelForm.cityInputs[Number(inputFocus[0]) - 1]["to"].ready = true;
-      travelForm.cityInputs[Number(inputFocus[0]) - 1]["to"].value =
-        travelForm.sugList.city;
-      travelForm.cityInputs[Number(inputFocus[0]) - 1]["to"].iata =
-        travelForm.sugList.iata;
-      travelForm.cityInputs[Number(inputFocus[0]) - 1]["to"].airport =
-        travelForm.sugList.airport;
-      travelForm.cityInputs[Number(inputFocus[0]) - 1]["to"].country =
-        travelForm.sugList.country;
+      inputIterate(
+        undefined,
+        undefined,
+        Number(inputFocus[0]) - 1,
+        "to",
+        values
+      );
     }
-    travelForm.cityInputs[Number(inputFocus[0])][inputFocus[1]].ready = true;
-    travelForm.cityInputs[Number(inputFocus[0])][inputFocus[1]].value =
-      e.currentTarget.dataset.city;
-    travelForm.cityInputs[Number(inputFocus[0])][inputFocus[1]].iata =
-      e.currentTarget.dataset.iata;
-    travelForm.cityInputs[Number(inputFocus[0])][inputFocus[1]].airport =
-      e.currentTarget.dataset.airport;
-    travelForm.cityInputs[Number(inputFocus[0])][inputFocus[1]].country =
-      e.currentTarget.dataset.country;
+    inputIterate(
+      undefined,
+      undefined,
+      Number(inputFocus[0]),
+      inputFocus[1],
+      values
+    );
     updateTravelForm();
   };
   const handleMouseEnter = (e) => {

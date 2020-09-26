@@ -76,12 +76,20 @@ const TravelFormInput = () => {
       updateTravelForm();
     }, 0);
   };
+  const inputIterate = (
+    template = travelForm.templates.iterables,
+    element = travelForm.cityInputs,
+    indexIn = 0,
+    fromto = "from",
+    values = []
+  ) => {
+    template.map((templateValue, index) => {
+      return (element[indexIn][fromto][templateValue] = values[index]);
+    });
+  };
   const handleInput = (e, idx, originDest) => {
     const values = [false, e.target.value, "", "", ""];
-    travelForm.templates.iterables.map((templateValue, index) => {
-      return (travelForm.cityInputs[idx][originDest][templateValue] =
-        values[index]);
-    });
+    inputIterate(undefined, undefined, idx, originDest, values);
     travelForm.inputFocus = idx + "-" + originDest;
     updateTravelForm();
   };
@@ -108,25 +116,16 @@ const TravelFormInput = () => {
         travelForm.sugList.country,
       ];
       if (travelForm.cityInputs.length > idx + 1 && originDest === "to") {
-        travelForm.templates.iterables.map((templateValue, index) => {
-          return (travelForm.cityInputs[idx + 1]["from"][templateValue] =
-            values[index]);
-        });
+        inputIterate(undefined, undefined, idx + 1, undefined, values);
       }
       if (
         travelForm.cityInputs.length > 0 &&
         idx > 0 &&
         originDest === "from"
       ) {
-        travelForm.templates.iterables.map((templateValue, index) => {
-          return (travelForm.cityInputs[idx - 1]["to"][templateValue] =
-            values[index]);
-        });
+        inputIterate(undefined, undefined, idx - 1, "to", values);
       }
-      travelForm.templates.iterables.map((templateValue, index) => {
-        return (travelForm.cityInputs[idx][originDest][templateValue] =
-          values[index]);
-      });
+      inputIterate(undefined, undefined, idx, originDest, values);
     }
     updateTravelForm();
   };

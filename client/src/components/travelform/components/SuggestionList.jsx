@@ -41,7 +41,7 @@ const SuggestionList = () => {
       return (element[indexIn][fromto][templateValue] = values[index]);
     });
   };
-  const handleMouseDown = (e) => {
+  const handleMouseDown = () => {
     const values = [
       true,
       travelForm.sugList.city,

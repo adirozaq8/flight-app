@@ -19,7 +19,7 @@ const TravelForm = () => {
     );
   useEffect(() => {
     if (travelForm.initialFetch === false) {
-      fetch(process.env.REACT_APP_FETCH_URL + "/api/getairports", {
+      fetch(process.env.REACT_APP_FETCH_DOMAIN + "/api/getairports", {
         method: "POST",
       })
         .then((response) => {

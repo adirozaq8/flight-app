@@ -99,12 +99,13 @@ const setAirportSource = async () => {
           };
           const apCodesTodb = modifyList(apCodes);
           const Airport = AirportSchema(apCodesTodb[0]);
-          apCodesTodb.forEach((apCode) => {
-            let airport = new Airport(apCode);
-            airport.save((err, ap) => {
-              if (err) return console.log(err);
-            });
-          });
+          Airport.insertMany([...apCodesTodb]);
+          // apCodesTodb.forEach((apCode) => {
+          //   let airport = new Airport(apCode);
+          //   airport.save((err, ap) => {
+          //     if (err) return console.log(err);
+          //   });
+          // });
         } else {
           // creates Airport schema from mongodb collection
           const AirportSetSchema = mongoose.model(

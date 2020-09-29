@@ -1,4 +1,5 @@
-require("dotenv").config();
+require("dotenv-expand")(require("dotenv").config());
+
 // Basic server components
 const express = require("express");
 // const session = require("express-session");
@@ -26,6 +27,7 @@ const authRoutes = require("./routes/auth");
 const travelFormRoutes = require("./routes/travelform");
 
 app.use(cors());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use("/api/auth", authRoutes);

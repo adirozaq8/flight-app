@@ -35,14 +35,15 @@ const TravelFormInput = () => {
     let exactMatch = 0;
     if (travelForm.airDb && travelForm.airDb.length > 0) {
       airportsList = travelForm.airDb.filter((airFilter) => {
-        if (airFilter.city.toLowerCase() === e.target.value.toLowerCase()) {
+        if (
+          airFilter.city.toLowerCase() === e.target.value.toLowerCase() &&
+          e.target.value !== ""
+        ) {
           exactMatch++;
         }
-        return (
-          airFilter.city
-            .toLowerCase()
-            .includes(e.target.value.toLowerCase(), 0) && airFilter.iata !== ""
-        );
+        return airFilter.city
+          .toLowerCase()
+          .includes(e.target.value.toLowerCase(), 0);
       });
     }
     allAirports = airportsList.filter((airFilter) => {

@@ -38,6 +38,11 @@ const setAirportSource = async () => {
           const modifyList = (reqAirport) => {
             let tempCities = [];
             const sortedCities = [];
+            let i = 0;
+            let cityFound = false;
+
+            // Loops through airport-codes and reorganize cities
+            // TODO improve the order so the "All airports" inside airport-codes are found first
             reqAirport.map((airport) => {
               // converts letter case to lower with each word capitalized
               let tempSplit = airport.city.split(" ");
@@ -48,64 +53,66 @@ const setAirportSource = async () => {
                 tempSplit[idx] = el;
               });
               airport.city = tempSplit.join(" ");
+              cityFound = false;
               if (sortedCities.length > 0) {
                 sortedCities.forEach((city) => {
                   if (
-                    airport.city === city.city &&
-                    airport.country === city.country
+                    airport.city.toLowerCase() === city.city.toLowerCase() &&
+                    airport.country.toLowerCase() === city.country.toLowerCase()
                   ) {
+                    cityFound = true;
+                    return;
+                  } else {
                     return;
                   }
                 });
               } else {
                 tempCities.push(airport);
+                cityFound = false;
               }
-              reqAirport.forEach((reqAir) => {
-                if (
-                  reqAir.city === airport.city &&
-                  reqAir.country === airport.country
-                ) {
-                  tempCities.push(reqAir);
-                }
-              });
-              const isAllAirports =
-                tempCities.filter((temp) => {
-                  temp.name === "All Airports";
-                }) || [];
-              const notAllAirports =
-                tempCities.filter((temp) => {
-                  temp.name !== "All Airports";
-                }) || [];
-              if (isAllAirports.length === 0 && tempCities.length > 1) {
-                const pushObject = {};
-                Object.keys(pushKeys).map((el) => {
-                  pushObject[pushKeys[el]] = "";
+              if (cityFound === false) {
+                reqAirport.forEach((reqAir) => {
+                  if (
+                    reqAir.city === airport.city &&
+                    reqAir.country === airport.country
+                  ) {
+                    tempCities.push(reqAir);
+                  }
                 });
-                pushObject["name"] = "All Airports";
-                pushObject["city"] = tempCities[0].city;
-                pushObject["country"] = tempCities[0].country;
-                pushObject["airports"] = [...tempCities];
-                sortedCities.push(pushObject);
-              } else if (tempCities.length > 1) {
-                isAllAirports.push({ airports: [...notAllAirports] });
-                sortedCities.push(isAllAirports);
-              } else {
-                sortedCities.push(...tempCities);
+                const isAllAirports =
+                  tempCities.filter((temp) => {
+                    temp.name.toLowerCase() === "all airports";
+                  }) || [];
+                const notAllAirports =
+                  tempCities.filter((temp) => {
+                    temp.name.toLowerCase() !== "all airports";
+                  }) || [];
+                if (isAllAirports.length === 0 && tempCities.length > 1) {
+                  const pushObject = {};
+                  Object.keys(pushKeys).map((el) => {
+                    pushObject[pushKeys[el]] = "";
+                  });
+                  pushObject["name"] = "All Airports";
+                  pushObject["city"] = tempCities[0].city;
+                  pushObject["country"] = tempCities[0].country;
+                  pushObject["airports"] = [...tempCities];
+                  sortedCities.push(pushObject);
+                } else if (tempCities.length > 1) {
+                  isAllAirports.push({ airports: [...notAllAirports] });
+                  sortedCities.push(isAllAirports);
+                } else {
+                  sortedCities.push(...tempCities);
+                }
+                tempCities = [];
+                return;
               }
-              tempCities = [];
-              return;
+              i++;
             });
             return sortedCities;
           };
           const apCodesTodb = modifyList(apCodes);
           const Airport = AirportSchema(apCodesTodb[0]);
           Airport.insertMany([...apCodesTodb]);
-          // apCodesTodb.forEach((apCode) => {
-          //   let airport = new Airport(apCode);
-          //   airport.save((err, ap) => {
-          //     if (err) return console.log(err);
-          //   });
-          // });
         } else {
           // creates Airport schema from mongodb collection
           const AirportSetSchema = mongoose.model(

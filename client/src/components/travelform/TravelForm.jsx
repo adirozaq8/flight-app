@@ -4,33 +4,54 @@ import TravelTypes from "./components/TravelTypes";
 import TravelFormInput from "./components/TravelFormInput";
 import AddFlight from "./components/AddFlight";
 import Flight from "@material-ui/icons/Flight";
+import { Store, set, get } from "../indexdb";
 
 import "./TravelForm.css";
-
 const TravelForm = () => {
   const travelForm = useSelector((state) => state.travelForm);
   const dispatch = useDispatch();
   const updateTravelForm = () => {
     dispatch({ type: "UPDATE_TRAVELFORM", payload: travelForm });
   };
+  const idbStore = new Store("flight_app", "airports");
   travelForm.cityInputs.length === 0 &&
     travelForm.cityInputs.push(
       JSON.parse(JSON.stringify({ ...travelForm.templates.cityInputs }))
     );
   useEffect(() => {
-    if (travelForm.initialFetch === false) {
-      fetch(process.env.REACT_APP_FETCH_DOMAIN + "/api/getairports", {
-        method: "POST",
-      })
-        .then((response) => {
-          return response.json();
+    const initialFetch = async () => {
+      let indexFetch = await get(
+        JSON.stringify({
+          method: "POST",
+        }),
+        idbStore
+      );
+      if (indexFetch) {
+        travelForm.airDb = indexFetch;
+        travelForm.initialFetch = true;
+        updateTravelForm();
+      } else {
+        fetch(process.env.REACT_APP_FETCH_DOMAIN + "/api/getairports", {
+          method: "POST",
         })
-        .then((data) => {
-          travelForm.airDb = data.reqAirport;
-          travelForm.initialFetch = true;
-          updateTravelForm();
-        });
-    }
+          .then((response) => {
+            return response.json();
+          })
+          .then((data) => {
+            travelForm.airDb = data.reqAirport;
+            travelForm.initialFetch = true;
+            set(
+              JSON.stringify({
+                method: "POST",
+              }),
+              data.reqAirport,
+              idbStore
+            );
+            updateTravelForm();
+          });
+      }
+    };
+    if (travelForm.initialFetch === false) initialFetch();
   });
   useEffect(() => {
     if (travelForm.travelType === 2 && travelForm.cityInputs.length < 2) {

@@ -3,33 +3,23 @@ import SuggestionList from "./SuggestionList";
 import DateInput from "../components/dateinput/DateInput";
 import RemoveFlight from "./RemoveFlight";
 import { useSelector, useDispatch } from "react-redux";
+import { Store, set, get } from "../../indexdb";
 
-// sorting priority based on input value at the beginning of string first
-const sortInputFirst = (inp, obj) => {
-  let first = [];
-  let second = [];
-  obj.forEach((el) => {
-    if (el.city.toLowerCase().indexOf(inp) === 0) {
-      first.push(el);
-    } else {
-      second.push(el);
-    }
-  });
-  return first.concat(second);
-};
 const TravelFormInput = () => {
   const travelForm = useSelector((state) => state.travelForm);
   const dispatch = useDispatch();
   const updateTravelForm = () => {
     dispatch({ type: "UPDATE_TRAVELFORM", payload: travelForm });
   };
+  const idbStore = new Store("flight_app", "airports");
   const handleBlur = () => {
     travelForm.inputFocus = "none";
     travelForm.sugList.selected = 0;
     updateTravelForm(travelForm);
   };
-  const handleChange = (e, idx, originDest) => {
-    fetch(process.env.REACT_APP_FETCH_DOMAIN + "/api/getairports", {
+  const handleChange = async (e) => {
+    //NEW code
+    const fetchElement = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -40,15 +30,27 @@ const TravelFormInput = () => {
         length: travelForm.sugListLen,
         sorted: false,
       }),
-    })
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        travelForm.airDb = data.reqAirport;
-        travelForm.airports = travelForm.airDb;
-        updateTravelForm();
-      });
+    };
+    let indexFetch = await get(JSON.stringify(fetchElement), idbStore);
+    if (indexFetch) {
+      travelForm.airDb = indexFetch;
+      travelForm.airports = indexFetch;
+      updateTravelForm();
+    } else {
+      fetch(
+        process.env.REACT_APP_FETCH_DOMAIN + "/api/getairports",
+        fetchElement
+      )
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          travelForm.airDb = data.reqAirport;
+          travelForm.airports = travelForm.airDb;
+          set(JSON.stringify(fetchElement), data.reqAirport, idbStore);
+          updateTravelForm();
+        });
+    }
   };
   const handleFocus = (e, idx, originDest) => {
     setTimeout(() => {

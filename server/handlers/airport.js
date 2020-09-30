@@ -71,8 +71,6 @@ exports.flightOffers = async (req, res, next) => {
   }
 };
 exports.getAirports = async (req, res, next) => {
-  console.log(req.body);
-  console.log(!isNaN(req.body.start) && !isNaN(req.body.length));
   let searchKey;
   let reqAirport;
   try {

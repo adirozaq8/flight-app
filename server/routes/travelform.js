@@ -1,6 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const { flightOffers, getAirports } = require("../handlers/airport");
+const {
+  flightOffers,
+  getAirports,
+  getTestFunc,
+} = require("../handlers/airport");
 
 router.post("/getairports", getAirports);
 router.post("/flightoffers", flightOffers);

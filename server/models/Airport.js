@@ -22,6 +22,7 @@ const AirportSchema = (apCodes) => {
   return mongoose.model("Airport", airportSchema, "airports");
 };
 
+// TODO improve IATA codes library (remove non-airports)
 const setAirportSource = async () => {
   try {
     mongoose.connection.on("open", function () {
@@ -38,13 +39,10 @@ const setAirportSource = async () => {
           const modifyList = (reqAirport) => {
             let tempCities = [];
             const sortedCities = [];
-            let i = 0;
             let cityFound = false;
 
-            // Loops through airport-codes and reorganize cities
-            // TODO improve the order so the "All airports" inside airport-codes are found first
             reqAirport.map((airport) => {
-              // converts letter case to lower with each word capitalized
+              // converts city names to lower case with each word capitalized
               let tempSplit = airport.city.split(" ");
               tempSplit.forEach((el, idx) => {
                 el =
@@ -57,12 +55,14 @@ const setAirportSource = async () => {
               if (sortedCities.length > 0) {
                 sortedCities.forEach((city) => {
                   if (
+                    airport.city &&
+                    city.city &&
                     airport.city.toLowerCase() === city.city.toLowerCase() &&
+                    airport.country &&
+                    city.country &&
                     airport.country.toLowerCase() === city.country.toLowerCase()
                   ) {
                     cityFound = true;
-                    return;
-                  } else {
                     return;
                   }
                 });
@@ -81,11 +81,11 @@ const setAirportSource = async () => {
                 });
                 const isAllAirports =
                   tempCities.filter((temp) => {
-                    temp.name.toLowerCase() === "all airports";
+                    return temp.name.toLowerCase() === "all airports";
                   }) || [];
                 const notAllAirports =
                   tempCities.filter((temp) => {
-                    temp.name.toLowerCase() !== "all airports";
+                    return temp.name.toLowerCase() !== "all airports";
                   }) || [];
                 if (isAllAirports.length === 0 && tempCities.length > 1) {
                   const pushObject = {};
@@ -98,15 +98,14 @@ const setAirportSource = async () => {
                   pushObject["airports"] = [...tempCities];
                   sortedCities.push(pushObject);
                 } else if (tempCities.length > 1) {
-                  isAllAirports.push({ airports: [...notAllAirports] });
-                  sortedCities.push(isAllAirports);
+                  isAllAirports[0]["airports"] = [...notAllAirports];
+                  sortedCities.push(...isAllAirports);
                 } else {
                   sortedCities.push(...tempCities);
                 }
                 tempCities = [];
                 return;
               }
-              i++;
             });
             return sortedCities;
           };

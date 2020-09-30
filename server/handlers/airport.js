@@ -25,7 +25,7 @@ const popularCities = [
     country: "United States",
   },
   {
-    city: "Singapore City",
+    city: "Singapore",
     country: "Singapore",
   },
   {
@@ -72,7 +72,7 @@ exports.flightOffers = async (req, res, next) => {
     return next({ status: 400, message: "Invalid request." });
   }
 };
-exports.getAirports = async = async (req, res, next) => {
+exports.getAirports = async (req, res, next) => {
   try {
     const reqAirport = await db.Airport.find({
       $or: popularCities,

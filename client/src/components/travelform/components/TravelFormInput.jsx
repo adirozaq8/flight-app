@@ -29,47 +29,26 @@ const TravelFormInput = () => {
     updateTravelForm(travelForm);
   };
   const handleChange = (e, idx, originDest) => {
-    travelForm.cityInputs[idx][originDest].value = e.target.value;
-    let allAirports = [];
-    let airportsList = [];
-    let exactMatch = 0;
-    if (travelForm.airDb && travelForm.airDb.length > 0) {
-      airportsList = travelForm.airDb.filter((airFilter) => {
-        if (
-          airFilter.city.toLowerCase() === e.target.value.toLowerCase() &&
-          e.target.value !== ""
-        ) {
-          exactMatch++;
-        }
-        return airFilter.city
-          .toLowerCase()
-          .includes(e.target.value.toLowerCase(), 0);
+    fetch(process.env.REACT_APP_FETCH_DOMAIN + "/api/getairports", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        searchKey: e.target.value,
+        start: 0,
+        length: travelForm.sugListLen,
+        sorted: false,
+      }),
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        travelForm.airDb = data.reqAirport;
+        travelForm.airports = travelForm.airDb;
+        updateTravelForm();
       });
-    }
-    allAirports = airportsList.filter((airFilter) => {
-      return airFilter.name.toLowerCase() === "all airports";
-    });
-    allAirports.map((city) => {
-      let filterList = [];
-      filterList = airportsList.filter((airFilter) => {
-        return airFilter.city.toLowerCase() === city.city.toLowerCase();
-      });
-      filterList.map((fList) => {
-        return airportsList.slice(
-          airportsList.indexOf(fList, airportsList.indexOf(fList))
-        );
-      });
-      return (city["airports"] = filterList);
-    });
-    if (airportsList.length > 0) {
-      airportsList = sortInputFirst(e.target.value.toLowerCase(), airportsList);
-    }
-    exactMatch > travelForm.sugListLen
-      ? (airportsList = airportsList.slice(0, exactMatch))
-      : (airportsList = airportsList.slice(0, travelForm.sugListLen));
-    travelForm.airports = airportsList;
-    travelForm.inputFocus = idx + "-" + originDest;
-    updateTravelForm();
   };
   const handleFocus = (e, idx, originDest) => {
     setTimeout(() => {

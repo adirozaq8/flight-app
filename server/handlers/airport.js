@@ -38,7 +38,6 @@ const popularCities = [
   },
   {
     city: "Hong Kong",
-    country: "China",
   },
   {
     city: "Tokyo",
@@ -61,7 +60,6 @@ const popularCities = [
     country: "Italy",
   },
 ];
-// for later use/interaction with the airports collection
 exports.flightOffers = async (req, res, next) => {
   try {
     const reqAirport = await db.Airport.findOne({ city: req.body.from });
@@ -73,10 +71,32 @@ exports.flightOffers = async (req, res, next) => {
   }
 };
 exports.getAirports = async (req, res, next) => {
+  console.log(req.body);
+  console.log(!isNaN(req.body.start) && !isNaN(req.body.length));
+  let searchKey;
+  let reqAirport;
   try {
-    const reqAirport = await db.Airport.find({
-      $or: popularCities,
-    });
+    if (!req.body.searchKey) {
+      searchKey = {
+        $or: popularCities,
+      };
+    } else {
+      searchKey = {
+        city: new RegExp("^" + req.body.searchKey, "i"),
+      };
+    }
+    if (
+      req.body.start !== undefined &&
+      req.body.length !== undefined &&
+      !isNaN(req.body.start) &&
+      !isNaN(req.body.length)
+    ) {
+      reqAirport = await db.Airport.find(searchKey)
+        .skip(req.body.start)
+        .limit(req.body.length);
+    } else {
+      reqAirport = await db.Airport.find(searchKey);
+    }
     return res.status(200).json({ reqAirport });
   } catch {
     return next({ status: 400, message: "Invalid request." });

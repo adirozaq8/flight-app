@@ -23,6 +23,15 @@ const TravelForm = () => {
       let indexFetch = await get(
         JSON.stringify({
           method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            searchKey: "",
+            start: 0,
+            length: travelForm.sugListLen,
+            sorted: false,
+          }),
         }),
         idbStore
       );

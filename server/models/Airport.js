@@ -29,7 +29,7 @@ const setAirportSource = async () => {
       // get collection names from database
       mongoose.connection.db.listCollections().toArray((err, colList) => {
         airportsExists = false;
-        colList.forEach((col) => {
+        colList.some((col) => {
           if (col.name === "airports") airportsExists = true;
         });
         // creates the airports collection from airport-codes if it does not exist
@@ -53,7 +53,7 @@ const setAirportSource = async () => {
               airport.city = tempSplit.join(" ");
               cityFound = false;
               if (sortedCities.length > 0) {
-                sortedCities.forEach((city) => {
+                sortedCities.some((city) => {
                   if (
                     airport.city &&
                     city.city &&

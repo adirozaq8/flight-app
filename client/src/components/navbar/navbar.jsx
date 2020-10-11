@@ -1,7 +1,9 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
+
 import "./navbar.css";
+import classes from './navbar.module.css';
 
 class Navbar extends React.Component {
   //
@@ -69,7 +71,7 @@ function SearchBar(){
           aria-label="Search"
           aria-describedby="basic-addon1"
         />
-        <div className="input-group-append">
+        <div className={['input-group-append', classes.searchButton].join(' ')}>
           <div className="input-group-text" id="basic-addon1">
             <div className="MainFrame__fa-icon">
               <FontAwesomeIcon icon={faSearch} />
